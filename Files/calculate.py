@@ -1,0 +1,166 @@
+from sympy import *
+from addings import *
+
+def replace_caret_with_power(expression):
+	"""Заменяет символ ^ на оператор возведения в степень (**)."""
+	return expression.replace('^', '**')
+
+
+def replace_z_t(expression):
+	"""Заменяет запятую на точку в числе."""
+	return expression.replace(',', '.')
+
+
+import asyncio
+import math
+from decimal import Decimal
+
+
+
+
+
+def nth_root(number, n):
+	"""Вычисляет корень n-й степени из числа."""
+	if number < 0 and n % 2 == 0:
+		raise ValueError("Корень четной степени из отрицательного числа невозможен.")
+	return number ** (1 / n)
+
+
+def calculate(windows):
+	try:
+		expression = '2/0'
+		expression = replace_z_t(expression)
+		expression = replace_caret_with_power(expression)
+		print(expression)
+		if expression == "":
+			return
+		if '0' in expression and '/' in expression:
+			parts = expression.split('/')
+			if parts[1].strip() == '0':
+				raise ZeroDivisionError
+		if '!' in expression:
+			expression = expression.replace('!', '')
+			result = factorial_scientific(int(expression))
+			final_result = dynamic_precision(result)
+			mantissa, exponent = final_result.split("E")
+			final_result = "{}*10^{}".format(float(mantissa), int(exponent))
+			add_to_history(expression, final_result)
+			update_history(window)
+			window.label.setText(f"{final_result}")
+			clear_errors(window)
+			
+			return
+		elif '√' in expression:
+			parts = expression.split('√')
+			if len(parts) != 2:
+				raise ValueError("Неверный формат корня")
+			n = int(parts[0])
+			x = int(parts[1])
+			result = nth_root(x, n)
+		else:
+			result = sympify(expression).evalf()
+			logging.info(result)
+			result = float(result)
+		
+		# Применение динамической точности
+		final_result = format_number(dynamic_precision(result))
+		
+		window.label.setText(f"{final_result}")
+		clear_errors(window)
+		
+	
+	
+	except ZeroDivisionError:
+		handle_error(window=windows, error_message="Ошибка: деление на ноль.", input_data=expression, function_name='calculate')
+	except ValueError as ve:
+		handle_error(error_message=f"Ошибка: {ve}", input_data=expression, function_name='calculate')
+	except SyntaxError:
+		handle_error(error_message="Ошибка: синтаксическая ошибка в выражении.", input_data=expression, function_name='calculate',
+		             )
+	except Exception as e:
+		handle_error(window=window,error_message=f"Ошибка: {e}", input_data=expression, function_name='calculate')
+
+
+def format_number(num):
+	try:
+		# Проверяем условие вывода числа в экспоненциальной форме
+		num = float(num)
+		if (abs(num) >= 1000000000 or abs(num) <= 0.00001) and num != 0:
+			# Переводим число в научную нотацию
+			scientific_str = "{:.9E}".format(num)
+			mantissa, exponent = scientific_str.split("E")
+			return "{}*10^{}".format(float(mantissa), int(exponent))
+		else:
+			# Просто возвращаем само число
+			return str(num)
+	except Exception as e:
+		return num
+
+
+
+
+
+import math
+
+from decimal import Decimal, getcontext
+
+
+def factorial_scientific(n):
+	"""
+	Представляет факториал числа в научной форме.
+
+	Параметры:
+	- n: Число, факториал которого нужно представить.
+
+	Возвращает:
+	Строку с представлением факториала в научной форме.
+	"""
+	if not isinstance(n, int) or n < 0:
+		raise ValueError("Факториал определен только для неотрицательных целых чисел")
+	
+	# Устанавливаем высокую точность для работы с большими числами
+	getcontext().prec = 100  # Можно увеличить точность при необходимости
+	
+	# Рассчитываем факториал
+	fact = Decimal(1)
+	for i in range(1, n + 1):
+		fact *= Decimal(i)
+	
+	# Представляем в научной форме
+	scientific_representation = "{:.5E}".format(fact.normalize())
+	
+	return scientific_representation
+
+if __name__ == '__main__':
+	from PyQt6.QtWidgets import QApplication, QWidget, QPushButton, QLabel, QLineEdit, QTextEdit, QComboBox
+	import sys
+	from PyQt6.QtGui import QIcon
+	from PyQt6.QtCore import QSize
+	
+	
+	class MyApp(QWidget):
+		def __init__(self):
+			super().__init__()
+			
+			# Настройка окна
+			self.setWindowTitle("Расширенный калькулятор")
+			self.resize(1000, 1000)
+			label_basic_calc_text = QLabel(self)
+			label_basic_calc_text.setText("Введите числовое выражение (2+2):")
+			label_basic_calc_text.move(0, 0)
+			
+			self.msg_box = QMessageBox(self)
+	
+			self.entry = QLineEdit(self)
+			self.entry.move(0, 20)
+	
+			self.button_calc = QPushButton(self)
+	
+			self.button_calc.setText("Вычислить")
+			self.button_calc.move(216, 15)
+	
+			self.label = QLabel(self)
+			self.label.move(0, 40)
+			self.label.resize(1000, 16)
+	window = MyApp
+	calculate(window)

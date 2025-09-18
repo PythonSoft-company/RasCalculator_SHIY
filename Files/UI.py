@@ -1,4 +1,4 @@
-from PyQt6.QtWidgets import QApplication, QWidget, QPushButton, QLabel, QLineEdit, QTextEdit, QComboBox
+from PyQt6.QtWidgets import QApplication, QWidget, QPushButton, QLabel, QLineEdit, QTextEdit, QComboBox, QMessageBox
 import sys
 from PyQt6.QtGui import QIcon
 from PyQt6.QtCore import QSize
@@ -14,136 +14,138 @@ class MyApp(QWidget):
 		self.setWindowTitle("Расширенный калькулятор")
 		self.resize(1000, 1000)
 		# Кнопка внутри окна
-		button_settings = QPushButton(self)
+		self.msg_box = QMessageBox(self)
+		self.button_settings = QPushButton(self)
 		icon = QIcon("settings_icon.png")
-		button_settings.setIcon(icon)
-		button_settings.setIconSize(icon.actualSize(QSize(30, 30)))
-		button_settings.move(955, 0)
+		self.button_settings.setIcon(icon)
+		self.button_settings.setIconSize(icon.actualSize(QSize(30, 30)))
+		self.button_settings.move(955, 0)
 		
 		label_basic_calc_text = QLabel(self)
 		label_basic_calc_text.setText("Введите числовое выражение (2+2):")
 		label_basic_calc_text.move(0, 0)
 		
-		help_button = QPushButton(self)
-		help_button.setText("Справка")
-		help_button.move(930, 55)
+		self.help_button = QPushButton(self)
+		self.help_button.setText("Справка")
+		self.help_button.move(930, 55)
 		
-		entry = QLineEdit(self)
-		entry.move(0, 20)
+		self.entry = QLineEdit(self)
+		self.entry.move(0, 20)
 		
-		button_calc = QPushButton(self)
+		self.button_calc = QPushButton(self)
 		
-		button_calc.setText("Вычислить")
-		button_calc.move(216, 15)
+		self.button_calc.setText("Вычислить")
+		self.button_calc.move(216, 15)
 		
-		label = QLabel(self, text="Hello World")
-		label.move(0, 40)
-		
+		self.label = QLabel(self)
+		self.label.move(0, 40)
+		self.label.resize(1000, 16)
 		label_system_of_equations_text = QLabel(self, text="Введите систему уравнений (через пробел):")
 		label_system_of_equations_text.move(0, 60)
 		
-		entry_system_of_equations = QLineEdit(self)
-		entry_system_of_equations.move(0, 80)
+		self.entry_system_of_equations = QLineEdit(self)
+		self.entry_system_of_equations.move(0, 80)
 		
-		button_system_of_equations = QPushButton(self, text="Решить систему уравнений")
-		button_system_of_equations.move(305, 80)
-		entry_system_of_equations.resize(250, 20)
+		self.button_system_of_equations = QPushButton(self, text="Решить систему уравнений")
+		self.button_system_of_equations.move(305, 80)
+		self.entry_system_of_equations.resize(250, 20)
 		
-		label_system_of_equations = QLabel(self)
-		label_system_of_equations.move(0, 105)
+		self.label_system_of_equations = QLabel(self)
+		self.label_system_of_equations.move(0, 105)
 		
 		label_number_entry = QLabel(self, text="Введите числа через пробел:")
 		label_number_entry.move(0, 145)
 		
-		entry_numbers = QLineEdit(self)
-		entry_numbers.resize(245, 20)
-		entry_numbers.move(0, 165)
+		self.entry_numbers = QLineEdit(self)
+		self.entry_numbers.resize(245, 20)
+		self.entry_numbers.move(0, 165)
 		
-		button_mean = QPushButton(self, text="Среднее значение")
-		button_mean.move(305, 160)
+		self.button_mean = QPushButton(self, text="Среднее значение")
+		self.button_mean.move(305, 160)
 		
-		button_median = QPushButton(self, text="Медиана")
-		button_median.move(418, 160)
+		self.button_median = QPushButton(self, text="Медиана")
+		self.button_median.move(418, 160)
 		
-		button_max = QPushButton(self, text="Максимум")
-		button_max.move(484, 160)
+		self.button_max = QPushButton(self, text="Максимум")
+		self.button_max.move(484, 160)
 		
-		button_min = QPushButton(self, text="Минимум")
-		button_min.move(556, 160)
+		self.button_min = QPushButton(self, text="Минимум")
+		self.button_min.move(556, 160)
 		
-		button_range = QPushButton(self, text="Размах")
-		button_range.move(624, 160)
+		self.button_range = QPushButton(self, text="Размах")
+		self.button_range.move(624, 160)
 		
-		button_variance = QPushButton(self, text="Дисперсия")
-		button_variance.move(690, 160)
+		self.button_variance = QPushButton(self, text="Дисперсия")
+		self.button_variance.move(690, 160)
 		
 		
 		
-		label_stat_result = QLabel(self, text="Hello World")
-		label_stat_result.move(0, 200)
+		self.label_stat_result = QLabel(self)
+		self.label_stat_result.move(0, 200)
 		
-		button_exit = QPushButton(self, text="Выход")
-		button_exit.move(930, 85)
+		self.button_exit = QPushButton(self, text="Выход")
+		self.button_exit.move(930, 85)
 		
-		error_text = QTextEdit(self, )
-		error_text.setReadOnly(True)
-		error_text.resize(500,300)
-		error_text.move(0, 400)
-		error_text.setText("Hello World")
-		button_cor = QPushButton(self, text='√')
-		button_cor.move(296, 15)
+		self.error_text = QTextEdit(self, )
+		self.error_text.setReadOnly(True)
+		self.error_text.resize(500,300)
+		self.error_text.move(0, 400)
+		
+		self.button_cor = QPushButton(self, text='√')
+		self.button_cor.move(296, 15)
 		label_fractions_text = QLabel(self, text="Арифметика дробей:")
 		label_fractions_text.move(0, 290)
 		
-		entry_first_fraction = QLineEdit(self)
-		entry_first_fraction.move(0, 310)
 		
-		entry_second_fraction = QLineEdit(self)
-		entry_second_fraction.move(185, 310)
+		self.entry_first_fraction = QLineEdit(self)
+		self.entry_first_fraction.move(0, 310)
 		
-		operator_variable = QComboBox(self)
-		operator_variable.addItems(["+", "-", "*", "/"])
-		operator_variable.move(125, 310)
+		self.entry_second_fraction = QLineEdit(self)
+		self.entry_second_fraction.move(185, 310)
 		
-		button_fractions_calculate = QPushButton(self, text="Выполнить операцию")
-		button_fractions_calculate.move(0, 338)
+		self.operator_variable = QComboBox(self)
+		self.operator_variable.addItems(["+", "-", "*", "/"])
+		self.operator_variable.move(125, 310)
 		
-		label_fractions_result = QLabel(self, text="Hello World")
-		label_fractions_result.move(0, 363)
+		self.button_fractions_calculate = QPushButton(self, text="Выполнить операцию")
+		self.button_fractions_calculate.move(0, 338)
 		
-		history_text = QTextEdit(self)
-		history_text.move(0, 540)
-		history_text.resize(600, 300)
-		label_of_errors = QLabel(self, text='Поле с ошибками при вычислении:')
-		label_of_errors.move(0, 380)
+		self.label_fractions_result = QLabel(self)
+		self.label_fractions_result.move(0, 363)
 		
-		cl_b = QPushButton(self, text="Очистить историю")
-		cl_b.move(680, 530)
+		self.history_text = QTextEdit(self)
+		self.history_text.move(0, 540)
+		self.history_text.resize(600, 300)
+		self.label_of_errors = QLabel(self, text='Поле с ошибками при вычислении:')
+		self.label_of_errors.move(0, 380)
+		
+		self.cl_b = QPushButton(self, text="Очистить историю")
+		self.cl_b.move(680, 530)
 		cord_x = 0
 		cord_y = 220
-		label_trig_text = QLabel(self, text="Введите угол синус, косинус или тангенс которого вы хотите найти:")
-		label_trig_text.move(cord_x, cord_y)
+		self.label_trig_text = QLabel(self, text="Введите угол синус, косинус или тангенс которого вы хотите найти:")
+		self.label_trig_text.move(cord_x, cord_y)
 		
-		trig_input = QLineEdit(self)
-		trig_input.move(cord_x, cord_y + 20)
+		self.trig_input = QLineEdit(self)
+		self.trig_input.move(cord_x, cord_y + 20)
 		
-		sin_button = QPushButton(self, text="sin")
-		sin_button.move(cord_x, cord_y + 40)
+		self.sin_button = QPushButton(self, text="sin")
+		self.sin_button.move(cord_x, cord_y + 40)
 		
-		cos_button = QPushButton(self, text="cos")
-		cos_button.move(cord_x + 100, cord_y + 40)
+		self.cos_button = QPushButton(self, text="cos")
+		self.cos_button.move(cord_x + 100, cord_y + 40)
 		
-		tan_button = QPushButton(self, text="tan")
-		tan_button.move(cord_x + 200, cord_y + 40)
+		self.tan_button = QPushButton(self, text="tan")
+		self.tan_button.move(cord_x + 200, cord_y + 40)
 		
-		trig_output = QLabel(self, text="Hello World")
-		trig_output.move(cord_x + 135, cord_y + 20)
+		self.trig_output = QLabel(self)
+		self.trig_output.move(cord_x + 135, cord_y + 20)
 		
-		tgb = QPushButton(self, text='Перейти в официальный тгк Калькулятора')
-		tgb.move(750, 115)
+		self.tgb = QPushButton(self, text='Перейти в официальный тгк Калькулятора')
+		self.tgb.move(750, 115)
 		
-		form_btn = QPushButton(self, text='Собщить об ошибке')
-		form_btn.move(870, 150)
+		self.form_btn = QPushButton(self, text='Собщить об ошибке')
+		self.form_btn.move(870, 150)
 		
 
 if __name__ == '__main__':
