@@ -59,6 +59,7 @@ options = {
         "includes": [],                      # Дополнительные модули, если нужны
         "include_files": ["version.txt", "settings_icon.png", 'settings_panel.py', 'preferences.txt', 'preferences2.txt', 'config.ini', 'cur_version.txt'],# Добавляем файл version.txt
         "optimize": 2,
+        "excludes": ["PyQt6, PyQt5"]
          # Попробуйте добавить этот параметр# Уровень оптимизации байт-кода (может уменьшить размер)
     },
     "bdist_msi": {
