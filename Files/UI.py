@@ -52,7 +52,7 @@ class MyApp(QWidget):
 		
 		self.label_system_of_equations = QLabel(self)
 		self.label_system_of_equations.move(0, 105)
-		
+		self.label_system_of_equations.resize(1000, 40)
 		label_number_entry = QLabel(self, text="Введите числа через пробел:")
 		label_number_entry.move(0, 145)
 		
@@ -86,7 +86,7 @@ class MyApp(QWidget):
 		self.button_exit = QPushButton(self, text="Выход")
 		self.button_exit.move(930, 85)
 		
-		self.error_text = QTextEdit(self, )
+		self.error_text = QTextEdit(self)
 		self.error_text.setReadOnly(True)
 		self.error_text.resize(500,300)
 		self.error_text.move(0, 400)

@@ -28,7 +28,7 @@ def nth_root(number, n):
 
 def calculate(windows):
 	try:
-		expression = '2/0'
+		expression = windows.entry.text()
 		expression = replace_z_t(expression)
 		expression = replace_caret_with_power(expression)
 		print(expression)
@@ -45,9 +45,9 @@ def calculate(windows):
 			mantissa, exponent = final_result.split("E")
 			final_result = "{}*10^{}".format(float(mantissa), int(exponent))
 			add_to_history(expression, final_result)
-			update_history(window)
-			window.label.setText(f"{final_result}")
-			clear_errors(window)
+			update_history(windows)
+			windows.label.setText(f"{final_result}")
+			clear_errors(windows)
 			
 			return
 		elif '√' in expression:
@@ -64,21 +64,22 @@ def calculate(windows):
 		
 		# Применение динамической точности
 		final_result = format_number(dynamic_precision(result))
-		
-		window.label.setText(f"{final_result}")
-		clear_errors(window)
+		add_to_history(expression, final_result)
+		update_history(windows)
+		windows.label.setText(f"{final_result}")
+		clear_errors(windows)
 		
 	
 	
 	except ZeroDivisionError:
 		handle_error(window=windows, error_message="Ошибка: деление на ноль.", input_data=expression, function_name='calculate')
 	except ValueError as ve:
-		handle_error(error_message=f"Ошибка: {ve}", input_data=expression, function_name='calculate')
+		handle_error(window=windows, error_message=f"Ошибка: {ve}", input_data=expression, function_name='calculate')
 	except SyntaxError:
-		handle_error(error_message="Ошибка: синтаксическая ошибка в выражении.", input_data=expression, function_name='calculate',
+		handle_error(window=windows, error_message="Ошибка: синтаксическая ошибка в выражении.", function_name='calculate',
 		             )
 	except Exception as e:
-		handle_error(window=window,error_message=f"Ошибка: {e}", input_data=expression, function_name='calculate')
+		handle_error(window=windows,error_message=f"Ошибка: {e}", function_name='calculate')
 
 
 def format_number(num):

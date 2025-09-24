@@ -978,7 +978,6 @@ def update_history():
 		else:
 			history_text.insert(tk.END, f"{i + 1}. {expr} = {res}\n")
 	history_text.config(state="disabled")  # Возвращаем запрет редактирования
-	history_text.see(tk.END)
 
 
 def clear_errors():
@@ -987,16 +986,11 @@ def clear_errors():
 	error_text.delete(1.0, tk.END)
 	error_text.config(state="disabled")
 
-
 def clear_history():
 	"""Очищает историю вычислений."""
-	history.clear()
-	label.config(text="")
-	label_system_of_equations.config(text="")
-	label_stat_result.config(text="")
-	label_fractions_result.config(text="")
-	trig_output.config(text="")
-	update_history()
+	history_text.config(state="normal")
+	history_text.delete(1.0, tk.END)
+	history_text.config(state="disabled")
 
 
 def check_first_run_and_show_tutorial_for_settings():
