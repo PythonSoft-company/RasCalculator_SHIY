@@ -48,6 +48,7 @@ def calculate(windows):
 			update_history(windows)
 			windows.label.setText(f"{final_result}")
 			clear_errors(windows)
+			clear_labels(windows, 'label')
 			
 			return
 		elif '√' in expression:
@@ -69,10 +70,10 @@ def calculate(windows):
 		windows.label.setText(f"{final_result}")
 		clear_errors(windows)
 		
-	
+		clear_labels(windows, "label")
 	
 	except ZeroDivisionError:
-		handle_error(window=windows, error_message="Ошибка: деление на ноль.", input_data=expression, function_name='calculate')
+		handle_error(window=windows, error_message="Ошибка: деление на ноль.", input_data=expression, function_name='calculate', lb="label")
 	except ValueError as ve:
 		handle_error(window=windows, error_message=f"Ошибка: {ve}", input_data=expression, function_name='calculate')
 	except SyntaxError:
@@ -82,20 +83,7 @@ def calculate(windows):
 		handle_error(window=windows,error_message=f"Ошибка: {e}", function_name='calculate')
 
 
-def format_number(num):
-	try:
-		# Проверяем условие вывода числа в экспоненциальной форме
-		num = float(num)
-		if (abs(num) >= 1000000000 or abs(num) <= 0.00001) and num != 0:
-			# Переводим число в научную нотацию
-			scientific_str = "{:.9E}".format(num)
-			mantissa, exponent = scientific_str.split("E")
-			return "{}*10^{}".format(float(mantissa), int(exponent))
-		else:
-			# Просто возвращаем само число
-			return str(num)
-	except Exception as e:
-		return num
+
 
 
 

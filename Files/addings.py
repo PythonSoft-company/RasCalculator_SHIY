@@ -44,9 +44,14 @@ def dynamic_precision(value):
 
 def clear_labels(window, lb):
     labels = ["label_stat_result", "trig_output", "label_fractions_result", "label_system_of_equations", "label"]
-    for cll in labels:
-        if cll != lb:
-            window.cll.clear()
+    for label_name in labels:
+        # Получаем элемент QLabel по имени
+        lbl_widget = getattr(window, label_name)
+        
+        # Проверяем, соответствует ли текущее имя метки значению lb
+        if label_name != lb:
+            # Очищаем содержание QLabel
+            lbl_widget.clear()
 
 
 def handle_error(window, error_message, input_data=None, function_name=None, lb=None):
@@ -79,10 +84,13 @@ def handle_error(window, error_message, input_data=None, function_name=None, lb=
     elif "Sympify of expression 'could not parse" in error_message:
         full_error_message = 'Не выполняйте код'
     window.error_text.setText(full_error_message)
-
-
+    if lb:
+        lbl_widget = getattr(window, lb)
+    
+        lbl_widget.setText("Ошибка, взгляните на тектовое поле с ошибками")
     # Добавляем ошибку в историю
-
+    history.append(("Ошибка:", full_error_message))
+    update_history(window)
 
 def add_to_history(expression, result):
     if str(result).startswith("Ошибка:"):
@@ -101,8 +109,22 @@ def update_history(window):
             window.history_text.insertPlainText(f"{i + 1}. {expr} = {res}\n")
         else:
             window.history_text.insertPlainText(f"{i + 1}. {expr} = {res}\n")
+        window.auto_scroll()
 
-
+def format_number(num):
+    try:
+        # Проверяем условие вывода числа в экспоненциальной форме
+        num = float(num)
+        if (abs(num) >= 1000000000 or abs(num) <= 0.00001) and num != 0:
+            # Переводим число в научную нотацию
+            scientific_str = "{:.9E}".format(num)
+            mantissa, exponent = scientific_str.split("E")
+            return "{}*10^{}".format(float(mantissa), int(exponent))
+        else:
+            # Просто возвращаем само число
+            return str(num)
+    except Exception as e:
+        return num
 
 def clear_errors(window):
     """Очищает поле ошибок."""
@@ -133,25 +155,36 @@ if __name__ == '__main__':
             label_basic_calc_text = QLabel(self)
             label_basic_calc_text.setText("Введите числовое выражение (2+2):")
             label_basic_calc_text.move(0, 0)
-
-            self.msg_box = QMessageBox(self)
-
-            self.entry = QLineEdit(self)
-            self.entry.move(0, 20)
-
-            self.button_calc = QPushButton(self)
-
-            self.button_calc.setText("Вычислить")
-            self.button_calc.move(216, 15)
-
-            self.label = QLabel(self)
-            self.label.move(0, 40)
-            self.label.resize(1000, 16)
+            
+            label_number_entry = QLabel(self, text="Введите числа через пробел:")
+            label_number_entry.move(0, 145)
+            
+            self.entry_numbers = QLineEdit(self)
+            self.entry_numbers.resize(245, 20)
+            self.entry_numbers.move(0, 165)
+            
+            self.button_mean = QPushButton(self, text="Среднее значение")
+            self.button_mean.move(305, 160)
+            
+            self.button_median = QPushButton(self, text="Медиана")
+            self.button_median.move(418, 160)
+            
+            self.button_max = QPushButton(self, text="Максимум")
+            self.button_max.move(484, 160)
+            
+            self.button_min = QPushButton(self, text="Минимум")
+            self.button_min.move(556, 160)
+            
+            self.button_range = QPushButton(self, text="Размах")
+            self.button_range.move(624, 160)
+            
+            self.button_variance = QPushButton(self, text="Дисперсия")
+            self.button_variance.move(690, 160)
 
 
     app = QApplication(sys.argv)
 
     window = MyApp()
     window.show()
-    handle_error(window, "Ошибка", input_data="2+2", function_name="Hello")
+    
     sys.exit(app.exec())

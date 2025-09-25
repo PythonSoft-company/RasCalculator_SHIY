@@ -1,7 +1,7 @@
 from PyQt6.QtWidgets import QApplication, QWidget, QPushButton, QLabel, QLineEdit, QTextEdit, QComboBox, QMessageBox
 import sys
-from PyQt6.QtGui import QIcon
-from PyQt6.QtCore import QSize
+from PyQt6.QtGui import QIcon, QTextCursor
+from PyQt6.QtCore import QSize, Qt
 
 
 
@@ -82,13 +82,14 @@ class MyApp(QWidget):
 		
 		self.label_stat_result = QLabel(self)
 		self.label_stat_result.move(0, 200)
-		
+		self.label_stat_result.resize(1000, 30)
 		self.button_exit = QPushButton(self, text="Выход")
 		self.button_exit.move(930, 85)
 		
+		
 		self.error_text = QTextEdit(self)
 		self.error_text.setReadOnly(True)
-		self.error_text.resize(500,300)
+		self.error_text.resize(500,150)
 		self.error_text.move(0, 400)
 		
 		self.button_cor = QPushButton(self, text='√')
@@ -115,7 +116,7 @@ class MyApp(QWidget):
 		
 		self.history_text = QTextEdit(self)
 		self.history_text.move(0, 540)
-		self.history_text.resize(600, 300)
+		self.history_text.resize(600, 150)
 		self.label_of_errors = QLabel(self, text='Поле с ошибками при вычислении:')
 		self.label_of_errors.move(0, 380)
 		
@@ -147,6 +148,11 @@ class MyApp(QWidget):
 		self.form_btn = QPushButton(self, text='Собщить об ошибке')
 		self.form_btn.move(870, 150)
 		
+	def auto_scroll(self):
+		cursor = self.history_text.textCursor()
+		cursor.movePosition(QTextCursor.MoveOperation.End)
+		self.history_text.setTextCursor(cursor)
+
 
 if __name__ == '__main__':
 	app = QApplication(sys.argv)

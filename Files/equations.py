@@ -1,5 +1,4 @@
 from addings import *
-import logging
 from sympy import *
 import numpy as np
 import matplotlib.pyplot as plt
@@ -120,7 +119,7 @@ def solve_system_of_equations(window):
         for equation in equations_list:
             logging.info(f"Преобразование уравнения: {equation}")
             equation = equation.replace('=', '==')
-            equation = re.sub(r'(\d+)([a-zA-Z])', r'\1*\2', equation)
+            equation = re.sub(r'(\d+)([A-Za-zА-ЯЁа-яё])', r'\1*\2', equation)
             lhs, rhs = equation.split('==')
             print(lhs)
             print(rhs)
@@ -135,8 +134,14 @@ def solve_system_of_equations(window):
         # Проверка на недоопределённость системы
         if len(expressions) < len(used_variables) and len(used_variables) <= 2:
             logging.info("Количество уравнений меньше количества переменных, система недоопределена.")
-            response = True
-            if response:
+            response = QMessageBox.question(None,
+                                          'Выбор',
+                                          'Бесконечное количество решений.\nВы хотите увидеть график или уравнение функции?',
+                                          QMessageBox.StandardButton.Yes | QMessageBox.StandardButton.No)
+            
+           
+            print(response)
+            if response == QMessageBox.StandardButton.Yes:
                 variable = re.findall('[A-Za-zА-ЯЁа-яё]', lhs)
                 print(variable)
                 variables = [Symbol(name) for name in variable]
@@ -235,12 +240,15 @@ def solve_system_of_equations(window):
             logging.info(f"Форматированный результат: {formatted_result}")
             add_to_history(equations_str, formatted_result)
             update_history(window)
+            clear_labels(window, "label_system_of_equations")
             # Выводим решение
             window.label_system_of_equations.setText(f"Решение системы уравнений:\n{formatted_result}")
         else:
             # Если решение не найдено
             window.label_system_of_equations.setText("Решение не найдено.")
+            add_to_history(equations_str, 'Решения нет')
             update_history(window)
+            clear_labels(window, "label_system_of_equations")
             logging.info("Решение не найдено.")
         clear_errors(window)
 
