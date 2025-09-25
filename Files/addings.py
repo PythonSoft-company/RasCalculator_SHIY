@@ -77,9 +77,7 @@ def handle_error(window, error_message, input_data=None, function_name=None, lb=
     full_error_message += f"\nТрассировка стека:\n{stack_trace}"
 
     # Специальное сообщение для конкретной ошибки
-    if "not enough values to unpack (expected 2, got 1)" in error_message:
-        full_error_message = "Ошибка: Вы не ввели знак '='. Пожалуйста, введите '=' и получите ответ."
-    elif 'деление на ноль' in error_message:
+    if 'деление на ноль' in error_message:
         full_error_message = 'Ошибка: Вы реально поделили на ноль? Вы не знаете правило математики?!'
     elif "Sympify of expression 'could not parse" in error_message:
         full_error_message = 'Не выполняйте код'

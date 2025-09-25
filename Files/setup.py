@@ -2,21 +2,9 @@ from cx_Freeze import setup, Executable
 import os
 import sys
 
-# Заданная версия в setup.py
-app_version = str(input("Какая версия: "))  # Здесь указывается версия сборки
 
-# Чтение версии из setup.py и запись в version.txt
-version_file = "version.txt"
-with open(version_file, "w") as f:
-    f.write(app_version)
 
-with open('preferences2.txt', 'w') as f3:
-    f3.write('True')
-with open('preferences.txt', 'w') as f2:
-    f2.write('True')
-
-with open("logs.log", "w") as f4:
-    f4.write('')
+app_version = input("Версия: ")
 base_executable = 'Win32Gui'
 # Базовые настройки сборки
 app_name = "Рас. Калькулятор"       # Название вашего приложения
@@ -26,7 +14,7 @@ icon_path = "calculator.ico"      # Путь к иконке приложени�
 # Скрипт главного модуля
 # Ярлык в меню "Пуск"
 start_menu_shortcut = Executable(
-    script="The_mainest.py",
+    script="main.py",
     base=base_executable,
     icon=icon_path,
     target_name="calculator.exe",
@@ -36,7 +24,7 @@ start_menu_shortcut = Executable(
 
 # Ярлык на рабочем столе
 desktop_shortcut = Executable(
-    script="The_mainest.py",
+    script="main.py",
     base=base_executable,
     icon=icon_path,
     target_name="calculator.exe",
@@ -49,9 +37,11 @@ options = {
     "build_exe": {
         
         "includes": [],                      # Дополнительные модули, если нужны
-        "include_files": [],# Добавляем файл version.txt
+        "include_files": ["addings.py", "calculate.py", "calculator.ico", "equations.py", "logs.log", "settings_icon.png", "statistic.py", "trinogremetric.py", "UI.py"],# Добавляем файл version.txt
         "optimize": 2,
-        "excludes": ["PyQt6, PyQt5"]
+        
+        "zip_include_packages": ['*'],
+        "zip_exclude_packages": ['tkinter']
          # Попробуйте добавить этот параметр# Уровень оптимизации байт-кода (может уменьшить размер)
     },
     "bdist_msi": {
@@ -68,7 +58,7 @@ setup(
     name=app_name,
     version=app_version,
     description="Рас. Калькулятор",
-    executables=[start_menu_shortcut, desktop_shortcut],  # Два разных ярлык,
+    executables=[start_menu_shortcut, desktop_shortcut],  # Два разных ярлыка,
     options=options,
     author='PythonSoft'
 )

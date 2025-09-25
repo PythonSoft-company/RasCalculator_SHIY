@@ -27,7 +27,7 @@ def plot_linear_equation(a, b, c):
     if not "-" in b_str:
         center_y = -c / b
     else:
-        center_y = -c / b
+        center_y = c / b
     center_y = float(center_y)  # Убеждаемся, что center_y является числом
     center_x = float(center_x)
     ax.set_xlim(center_x - 10, center_x + 10)  # Центрирование по оси X
@@ -44,7 +44,7 @@ def plot_linear_equation(a, b, c):
     if not "-" in b_str:
         x_1 = -c / a
     else:
-        x_1 = -c / a
+        x_1 = c / a
     x_1 = float(x_1)
     ax.scatter(x_1, y_1, s=50, color='red', marker='o', label=f'({x_1}, 0)')
     ax.legend()
@@ -231,12 +231,35 @@ def solve_system_of_equations(window):
 
         if solution:
             # Применяем dynamic_precision к каждому значению
+            print(solution)
+            if isinstance(solution, list):
+                num = []  # Список для хранения результирующих словарей
+                
+                for x in solution:
+                    # Применяем точность к каждому решению
+                    numeric_dict = {var: dynamic_precision(sol) for var, sol in x.items()}
+                    
+                    # Добавляем полученный словарь в список
+                    num.append(numeric_dict)
+                
+                # Теперь мы имеем список словарей в переменной num
+                # Нам нужно объединить их в единую строку формата "var=value"
+                results = []
+                for dct in num:
+                    # Для каждого словаря создадим строки вида "var=value"
+                    for var, val in dct.items():
+                        results.append(f"{var}={val}")
+                
+                # Объединяем все полученные строки в одну общую строку
+                formatted_result = ", ".join(results)
+                
+                print(formatted_result)
+            else:
+                numeric_dict = {var: dynamic_precision(sol) for var, sol in solution.items()}
+                logging.info(f"Применение динамической точности: {numeric_dict}")
 
-            numeric_dict = {var: dynamic_precision(sol) for var, sol in solution.items()}
-            logging.info(f"Применение динамической точности: {numeric_dict}")
-
-            # Форматируем результат для отображения
-            formatted_result = ', '.join(f'{var}={val}' for var, val in numeric_dict.items())
+                # Форматируем результат для отображения
+                formatted_result = ', '.join(f'{var}={val}' for var, val in numeric_dict.items())
             logging.info(f"Форматированный результат: {formatted_result}")
             add_to_history(equations_str, formatted_result)
             update_history(window)
