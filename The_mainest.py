@@ -518,7 +518,7 @@ def plot_linear_equation(a, b, c):
 	if not "-" in b_str:
 		center_y = -c / b
 	else:
-		center_y = -c / b
+		center_y = c / b
 	center_y = float(center_y)  # Убеждаемся, что center_y является числом
 	center_x = float(center_x)
 	ax.set_xlim(center_x - 10, center_x + 10)  # Центрирование по оси X
@@ -535,7 +535,7 @@ def plot_linear_equation(a, b, c):
 	if not "-" in b_str:
 		x_1 = -c / a
 	else:
-		x_1 = -c / a
+		x_1 = c / a
 	x_1 = float(x_1)
 	ax.scatter(x_1, y_1, s=50, color='red', marker='o', label=f'({x_1}, 0)')
 	ax.legend()
@@ -590,7 +590,7 @@ def transform_equation(lhs, rhs):
 	return transformed_eq
 
 
-def solve_system_of_equations(event=None):
+def solve_system_of_equations(window):
 	try:
 		# Получаем уравнения из поля ввода
 		equations_str = entry_system_of_equations.get()
@@ -598,21 +598,6 @@ def solve_system_of_equations(event=None):
 		if equations_str == "":
 			return
 		# Проверяем наличие запятых в строке
-		if ',' in equations_str:
-			logging.info("Обнаружены запятые, уточняем интерпретацию...")
-			response = messagebox.askyesno(
-				"Интерпретация запятой",
-				"Вы ввели запятую. Как её интерпретировать?\n"
-				"Да - как разделитель дробной части (например, 1,5 -> 1.5)\n"
-				"Нет - как разделитель уравнений (например, 1,5 -> 1 5)"
-			)
-			
-			if response:
-				logging.info("Замена запятых на точки.")
-				equations_str = equations_str.replace(',', '.')
-			else:
-				logging.info("Замена запятых на пробелы.")
-				equations_str = equations_str.replace(', ', ' ')
 		
 		# Разбиение строки на отдельные уравнения
 		equations_list = equations_str.split(' ')
@@ -624,7 +609,7 @@ def solve_system_of_equations(event=None):
 		for equation in equations_list:
 			logging.info(f"Преобразование уравнения: {equation}")
 			equation = equation.replace('=', '==')
-			equation = re.sub(r'(\d+)([a-zA-Z])', r'\1*\2', equation)
+			equation = re.sub(r'(\d+)([A-Za-zА-ЯЁа-яё])', r'\1*\2', equation)
 			lhs, rhs = equation.split('==')
 			print(lhs)
 			print(rhs)
@@ -639,11 +624,11 @@ def solve_system_of_equations(event=None):
 		# Проверка на недоопределённость системы
 		if len(expressions) < len(used_variables) and len(used_variables) <= 2:
 			logging.info("Количество уравнений меньше количества переменных, система недоопределена.")
-			response = messagebox.askyesno(
-				"Бесконечное множество решений",
-				"Система уравнений имеет бесконечное множество решений.\nХотите увидеть график?"
-			)
-			if response:
+			response = messagebox.askyesno(title="Бесконечное множество решение",
+			                               message="Бесконечное множество решений вы хотите увидеть график")
+			
+			print(response)
+			if response == QMessageBox.StandardButton.Yes:
 				variable = re.findall('[A-Za-zА-ЯЁа-яё]', lhs)
 				print(variable)
 				variables = [Symbol(name) for name in variable]
@@ -733,30 +718,56 @@ def solve_system_of_equations(event=None):
 		
 		if solution:
 			# Применяем dynamic_precision к каждому значению
-			
-			numeric_dict = {var: dynamic_precision(sol) for var, sol in solution.items()}
-			logging.info(f"Применение динамической точности: {numeric_dict}")
-			
-			# Форматируем результат для отображения
-			formatted_result = ', '.join(f'{var}={val}' for var, val in numeric_dict.items())
+			print(solution)
+			if isinstance(solution, list):
+				num = []  # Список для хранения результирующих словарей
+				
+				for x in solution:
+					# Применяем точность к каждому решению
+					numeric_dict = {var: dynamic_precision(sol) for var, sol in x.items()}
+					
+					# Добавляем полученный словарь в список
+					num.append(numeric_dict)
+				
+				# Теперь мы имеем список словарей в переменной num
+				# Нам нужно объединить их в единую строку формата "var=value"
+				results = []
+				for dct in num:
+					# Для каждого словаря создадим строки вида "var=value"
+					for var, val in dct.items():
+						results.append(f"{var}={val}")
+				
+				# Объединяем все полученные строки в одну общую строку
+				formatted_result = ", ".join(results)
+				
+				print(formatted_result)
+			else:
+				numeric_dict = {var: dynamic_precision(sol) for var, sol in solution.items()}
+				logging.info(f"Применение динамической точности: {numeric_dict}")
+				
+				# Форматируем результат для отображения
+				formatted_result = ', '.join(f'{var}={val}' for var, val in numeric_dict.items())
 			logging.info(f"Форматированный результат: {formatted_result}")
 			add_to_history(equations_str, formatted_result)
 			update_history()
+			clear_labels(label_system_of_equations)
 			# Выводим решение
-			label_system_of_equations.config(text=f"Решение системы уравнений:\n{formatted_result}")
+			label_system_of_equations.config(text="Решение не найдено.")
 		else:
 			# Если решение не найдено
 			label_system_of_equations.config(text="Решение не найдено.")
+			add_to_history(equations_str, 'Решения нет')
 			update_history()
+			clear_labels(label_system_of_equations)
 			logging.info("Решение не найдено.")
 		clear_errors()
-		clear_labels(label_system_of_equations)
+	
 	# Обновляем историю
 	
-	
 	except Exception as e:
-		handle_error(f"Ошибка: {e}\n", input_data=equations_str, function_name='solve_system_of_equations',
-		             lb=label_system_of_equations)
+		handle_error(error_message=f"Ошибка: {e}\n", input_data=equations_str,
+		             function_name='solve_system_of_equations',
+		             lb="label_system_of_equations")
 		logging.error(f"Исключительная ситуация в solve_system_of_equations: {e}")
 
 

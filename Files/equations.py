@@ -2,6 +2,8 @@ from addings import *
 from sympy import *
 import numpy as np
 import matplotlib.pyplot as plt
+
+
 def plot_linear_equation(a, b, c):
     """
     Строит график линейного уравнения ax + by + c = 0.
@@ -17,7 +19,7 @@ def plot_linear_equation(a, b, c):
     ax.set_ylabel('y')
     ax.grid(True)
     ax.legend()
-
+    
     # Устанавливаем начальные границы оси X и Y
     ax.set_xlim([-10, 10])
     ax.set_ylim([-10, 10])
@@ -27,16 +29,16 @@ def plot_linear_equation(a, b, c):
     if not "-" in b_str:
         center_y = -c / b
     else:
-        center_y = -c / b
+        center_y = c / b
     center_y = float(center_y)  # Убеждаемся, что center_y является числом
     center_x = float(center_x)
     ax.set_xlim(center_x - 10, center_x + 10)  # Центрирование по оси X
     ax.set_ylim(center_y - 10, center_y + 10)  # Центрирование по оси Y
-
+    
     # Выделяем оси x и y
     ax.axhline(0, color='black', linewidth=1)  # Горизонтальная ось y=0
     ax.axvline(0, color='black', linewidth=1)  # Вертикальная ось x=0
-
+    
     # Помещаем точку (0, b) в центр графика
     ax.scatter(center_x, center_y, s=50, color='blue', marker='o', label=f'(0, {center_y})')  # Размер точки s=50
     ax.legend()
@@ -44,11 +46,11 @@ def plot_linear_equation(a, b, c):
     if not "-" in b_str:
         x_1 = -c / a
     else:
-        x_1 = -c / a
+        x_1 = c / a
     x_1 = float(x_1)
     ax.scatter(x_1, y_1, s=50, color='red', marker='o', label=f'({x_1}, 0)')
     ax.legend()
-
+    
     # Назначаем события мыши для динамического масштабирования
     def on_motion(event):
         if event.inaxes:
@@ -59,10 +61,10 @@ def plot_linear_equation(a, b, c):
                 # Расширяем границы оси X
                 ax.set_xlim(xmin - 0.05 * (xmax - xmin), xmax + 0.05 * (xmax - xmin))
                 fig.canvas.draw_idle()
-
+    
     # Привязываем событие движения мыши
     fig.canvas.mpl_connect('motion_notify_event', on_motion)
-
+    
     plt.show()
 
 
@@ -84,17 +86,17 @@ def transform_equation(lhs, rhs):
     pattern = r'(?P<y>\w+)\s*=\s*((?P<k>[+-]?\d*\.*\d*)?\s*\*\s*)?(?P<x>\w+)(?:\s*[+-]?\s*(?P<b>-?\d*\.*\d*))?'
     # Объединяем левую и правую стороны в одно уравнение
     equation = f"{lhs} = {rhs}"
-
+    
     match = re.match(pattern, equation)
-
+    
     if not match:
         return "Неверный формат уравнения."
-
+    
     y = match.group('y')
     k = match.group('k') or '1'  # Если коэффициент не указан, считаем его равным 1
     x = match.group('x')
     b = match.group('b') or '0'
-
+    
     transformed_eq = f"{y}-{k}*{x}={b}"
     return transformed_eq
 
@@ -107,12 +109,11 @@ def solve_system_of_equations(window):
         if equations_str == "":
             return
         # Проверяем наличие запятых в строке
-
-
+        
         # Разбиение строки на отдельные уравнения
         equations_list = equations_str.split(' ')
         logging.info(f"Разбито на уравнения: {equations_list}")
-
+        
         # Преобразование уравнений в объекты Sympy
         expressions = []
         used_variables = set()  # Множество переменных, используемых в уравнениях
@@ -125,30 +126,29 @@ def solve_system_of_equations(window):
             print(rhs)
             expressions.append(Eq(sympify(lhs), sympify(rhs)))
             logging.info(f"Добавлено уравнение: {expressions[-1]}")
-
+            
             # Определяем переменные, участвующие в текущем уравнении
             used_variables.update(list(expressions[-1].free_symbols))
-
+        
         logging.info(f"Переменные, задействованные в уравнениях: {used_variables}")
-
+        
         # Проверка на недоопределённость системы
         if len(expressions) < len(used_variables) and len(used_variables) <= 2:
             logging.info("Количество уравнений меньше количества переменных, система недоопределена.")
             response = QMessageBox.question(None,
-                                          'Выбор',
-                                          'Бесконечное количество решений.\nВы хотите увидеть график или уравнение функции?',
-                                          QMessageBox.StandardButton.Yes | QMessageBox.StandardButton.No)
+                                            'Выбор',
+                                            'Бесконечное количество решений.\nВы хотите увидеть график или уравнение функции?',
+                                            QMessageBox.StandardButton.Yes | QMessageBox.StandardButton.No)
             
-           
             print(response)
             if response == QMessageBox.StandardButton.Yes:
                 variable = re.findall('[A-Za-zА-ЯЁа-яё]', lhs)
                 print(variable)
                 variables = [Symbol(name) for name in variable]
                 print(variables)
-
+                
                 if len(variables) < len(used_variables):
-
+                    
                     equation = transform_equation(lhs, rhs)
                     print(equation)
                     equation = equation.replace('=', '==')
@@ -176,7 +176,7 @@ def solve_system_of_equations(window):
                     collected_expr_str = str(collected_expr)
                     collected_expr_str = collected_expr_str.replace(' ', '')
                     if str(lhs) == collected_expr_str:
-
+                        
                         a = collected_expr.coeff(first_var)  # Коэффициент при первой переменной
                         b = collected_expr.coeff(second_var)  # Коэффициент при второй переменной
                         c = -equ.rhs
@@ -209,7 +209,7 @@ def solve_system_of_equations(window):
                 collected_expr_str = str(collected_expr)
                 collected_expr_str = collected_expr_str.replace(' ', '')
                 if str(lhs) == collected_expr_str:
-
+                    
                     a = collected_expr.coeff(first_var)  # Коэффициент при первой переменной
                     b = collected_expr.coeff(second_var)  # Коэффициент при второй переменной
                     c = -eq.rhs
@@ -224,19 +224,42 @@ def solve_system_of_equations(window):
                 return
             else:
                 logging.info("Выбор пользователя: нет, график не нужен.")
-
+        
         # Решаем систему уравнений
         solution = solve(expressions, used_variables)
         logging.info(f"Решение системы уравнений: {solution}")
-
+        
         if solution:
             # Применяем dynamic_precision к каждому значению
-
-            numeric_dict = {var: dynamic_precision(sol) for var, sol in solution.items()}
-            logging.info(f"Применение динамической точности: {numeric_dict}")
-
-            # Форматируем результат для отображения
-            formatted_result = ', '.join(f'{var}={val}' for var, val in numeric_dict.items())
+            print(solution)
+            if isinstance(solution, list):
+                num = []  # Список для хранения результирующих словарей
+                
+                for x in solution:
+                    # Применяем точность к каждому решению
+                    numeric_dict = {var: dynamic_precision(sol) for var, sol in x.items()}
+                    
+                    # Добавляем полученный словарь в список
+                    num.append(numeric_dict)
+                
+                # Теперь мы имеем список словарей в переменной num
+                # Нам нужно объединить их в единую строку формата "var=value"
+                results = []
+                for dct in num:
+                    # Для каждого словаря создадим строки вида "var=value"
+                    for var, val in dct.items():
+                        results.append(f"{var}={val}")
+                
+                # Объединяем все полученные строки в одну общую строку
+                formatted_result = ", ".join(results)
+                
+                print(formatted_result)
+            else:
+                numeric_dict = {var: dynamic_precision(sol) for var, sol in solution.items()}
+                logging.info(f"Применение динамической точности: {numeric_dict}")
+                
+                # Форматируем результат для отображения
+                formatted_result = ', '.join(f'{var}={val}' for var, val in numeric_dict.items())
             logging.info(f"Форматированный результат: {formatted_result}")
             add_to_history(equations_str, formatted_result)
             update_history(window)
@@ -251,10 +274,12 @@ def solve_system_of_equations(window):
             clear_labels(window, "label_system_of_equations")
             logging.info("Решение не найдено.")
         clear_errors(window)
-
+    
     # Обновляем историю
-
+    
     except Exception as e:
-        handle_error(window=window, error_message=f"Ошибка: {e}\n", input_data=equations_str, function_name='solve_system_of_equations',
+        handle_error(window=window, error_message=f"Ошибка: {e}\n", input_data=equations_str,
+                     function_name='solve_system_of_equations',
                      lb="label_system_of_equations")
         logging.error(f"Исключительная ситуация в solve_system_of_equations: {e}")
+
