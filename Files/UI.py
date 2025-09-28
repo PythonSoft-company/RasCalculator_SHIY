@@ -113,7 +113,7 @@ class MyApp(QWidget):
 		
 		self.label_fractions_result = QLabel(self)
 		self.label_fractions_result.move(0, 363)
-		
+		self.label_fractions_result.resize(1000, 20)
 		self.history_text = QTextEdit(self)
 		self.history_text.move(0, 540)
 		self.history_text.resize(600, 150)
@@ -141,7 +141,7 @@ class MyApp(QWidget):
 		
 		self.trig_output = QLabel(self)
 		self.trig_output.move(cord_x + 135, cord_y + 20)
-		
+		self.trig_output.resize(1000, 30)
 		self.tgb = QPushButton(self, text='Перейти в официальный тгк Калькулятора')
 		self.tgb.move(750, 115)
 		
