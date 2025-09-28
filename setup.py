@@ -47,9 +47,17 @@ desktop_shortcut = Executable(
 # Параметры сборки
 options = {
     "build_exe": {
-        
+        "packages": [
+            "tkinter",      # Необходим для GUI
+            "sympy",        # Символьные вычисления
+            "PIL",          # Pillow для изображений
+            "configparser",  # Конфигурационные файлы
+            "settings_panel",  # ВАЖНО: добавляем ваш собственный модуль!
+            "matplotlib",   # Матплотлиб для графиков
+            "numpy"         # Нампай для массивов и математикиpython setup.py bdist_msi
+        ],
         "includes": [],                      # Дополнительные модули, если нужны
-        "include_files": [],# Добавляем файл version.txt
+        "include_files": ["version.txt", "settings_icon.png", 'settings_panel.py', 'preferences.txt', 'preferences2.txt', 'config.ini', 'cur_version.txt'],# Добавляем файл version.txt
         "optimize": 2,
         "excludes": ["PyQt6, PyQt5"]
          # Попробуйте добавить этот параметр# Уровень оптимизации байт-кода (может уменьшить размер)

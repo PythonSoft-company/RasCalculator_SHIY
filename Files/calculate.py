@@ -1,8 +1,6 @@
 from sympy import *
 from addings import *
-from fractions import Fraction
-import math
-from decimal import Decimal, getcontext
+
 def replace_caret_with_power(expression):
 	"""Заменяет символ ^ на оператор возведения в степень (**)."""
 	return expression.replace('^', '**')
@@ -13,7 +11,9 @@ def replace_z_t(expression):
 	return expression.replace(',', '.')
 
 
-
+import asyncio
+import math
+from decimal import Decimal
 
 
 
@@ -89,9 +89,9 @@ def calculate(windows):
 
 
 
+import math
 
-
-
+from decimal import Decimal, getcontext
 
 
 def factorial_scientific(n):
@@ -120,35 +120,36 @@ def factorial_scientific(n):
 	
 	return scientific_representation
 
-
-
-
-def arithmetic_operation_fractions(window, first_fraction, second_fraction, operation):
-	"""Производит арифметические операции с дробями."""
-	try:
-		frac1 = Fraction(first_fraction)
-		frac2 = Fraction(second_fraction)
-		if operation == "+":
-			result = frac1 + frac2
-		elif operation == "-":
-			result = frac1 - frac2
-		elif operation == "*":
-			result = frac1 * frac2
-		elif operation == "/":
-			result = frac1 / frac2
-		else:
-			raise ValueError("Операция не поддерживается.")
-		window.label_fractions_result.setText(f"Результат: {result}")
-		clear_errors(window)
-		add_to_history(f"{frac1} {operation} {frac2}", result)
-		update_history(window)
-		clear_labels(window, 'label_fractions_result')
-	except ZeroDivisionError:
-		handle_error(window, "Ошибка: деление на ноль.", input_data=(first_fraction, second_fraction),
-		             function_name='arithmetic_operation_fractions')
-	except ValueError as ve:
-		handle_error(window, f"Ошибка: {ve}", input_data=(first_fraction, second_fraction),
-		             function_name='arithmetic_operation_fractions')
-	except Exception as e:
-		handle_error(window, f"Ошибка: {e}", input_data=(first_fraction, second_fraction),
-		             function_name='arithmetic_operation_fractions')
+if __name__ == '__main__':
+	from PyQt6.QtWidgets import QApplication, QWidget, QPushButton, QLabel, QLineEdit, QTextEdit, QComboBox
+	import sys
+	from PyQt6.QtGui import QIcon
+	from PyQt6.QtCore import QSize
+	
+	
+	class MyApp(QWidget):
+		def __init__(self):
+			super().__init__()
+			
+			# Настройка окна
+			self.setWindowTitle("Расширенный калькулятор")
+			self.resize(1000, 1000)
+			label_basic_calc_text = QLabel(self)
+			label_basic_calc_text.setText("Введите числовое выражение (2+2):")
+			label_basic_calc_text.move(0, 0)
+			
+			self.msg_box = QMessageBox(self)
+	
+			self.entry = QLineEdit(self)
+			self.entry.move(0, 20)
+	
+			self.button_calc = QPushButton(self)
+	
+			self.button_calc.setText("Вычислить")
+			self.button_calc.move(216, 15)
+	
+			self.label = QLabel(self)
+			self.label.move(0, 40)
+			self.label.resize(1000, 16)
+	window = MyApp
+	calculate(window)
