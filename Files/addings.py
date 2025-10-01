@@ -1,10 +1,17 @@
 import logging
 from decimal import Decimal, getcontext
 import traceback
-from PyQt6.QtWidgets import QMessageBox
+from PyQt6.QtWidgets import QMessageBox, QInputDialog
 from sympy import Float
 history = []
 
+
+def get_root_degree(window):
+    degree, ok_pressed = QInputDialog.getInt(window, "Корень", "Какая степень корня?")
+    if ok_pressed:
+        window.entry.setText(f"{degree}√")
+    else:
+        print("Отмена")
 
 def dynamic_precision(value):
     getcontext().prec = 30
@@ -152,39 +159,15 @@ if __name__ == '__main__':
             # Настройка окна
             self.setWindowTitle("Расширенный калькулятор")
             self.resize(1000, 1000)
-            label_basic_calc_text = QLabel(self)
-            label_basic_calc_text.setText("Введите числовое выражение (2+2):")
-            label_basic_calc_text.move(0, 0)
-            
-            label_number_entry = QLabel(self, text="Введите числа через пробел:")
-            label_number_entry.move(0, 145)
-            
-            self.entry_numbers = QLineEdit(self)
-            self.entry_numbers.resize(245, 20)
-            self.entry_numbers.move(0, 165)
-            
-            self.button_mean = QPushButton(self, text="Среднее значение")
-            self.button_mean.move(305, 160)
-            
-            self.button_median = QPushButton(self, text="Медиана")
-            self.button_median.move(418, 160)
-            
-            self.button_max = QPushButton(self, text="Максимум")
-            self.button_max.move(484, 160)
-            
-            self.button_min = QPushButton(self, text="Минимум")
-            self.button_min.move(556, 160)
-            
-            self.button_range = QPushButton(self, text="Размах")
-            self.button_range.move(624, 160)
-            
-            self.button_variance = QPushButton(self, text="Дисперсия")
-            self.button_variance.move(690, 160)
+            self.button_cor = QPushButton(self, text='√')
+            self.button_cor.move(296, 15)
+            self.entry = QLineEdit(self)
+            self.entry.move(0, 20)
 
 
     app = QApplication(sys.argv)
 
     window = MyApp()
     window.show()
-    
+    get_root_degree(window)
     sys.exit(app.exec())

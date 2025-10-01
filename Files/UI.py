@@ -4,8 +4,6 @@ from PyQt6.QtGui import QIcon, QTextCursor
 from PyQt6.QtCore import QSize, Qt
 
 
-
-
 class MyApp(QWidget):
 	def __init__(self):
 		super().__init__()
@@ -78,25 +76,21 @@ class MyApp(QWidget):
 		self.button_variance = QPushButton(self, text="Дисперсия")
 		self.button_variance.move(690, 160)
 		
-		
-		
 		self.label_stat_result = QLabel(self)
 		self.label_stat_result.move(0, 200)
 		self.label_stat_result.resize(1000, 30)
 		self.button_exit = QPushButton(self, text="Выход")
 		self.button_exit.move(930, 85)
 		
-		
 		self.error_text = QTextEdit(self)
 		self.error_text.setReadOnly(True)
-		self.error_text.resize(500,150)
+		self.error_text.resize(500, 150)
 		self.error_text.move(0, 400)
 		
 		self.button_cor = QPushButton(self, text='√')
 		self.button_cor.move(296, 15)
 		label_fractions_text = QLabel(self, text="Арифметика дробей:")
 		label_fractions_text.move(0, 290)
-		
 		
 		self.entry_first_fraction = QLineEdit(self)
 		self.entry_first_fraction.move(0, 310)
@@ -147,7 +141,7 @@ class MyApp(QWidget):
 		
 		self.form_btn = QPushButton(self, text='Собщить об ошибке')
 		self.form_btn.move(870, 150)
-		
+	
 	def auto_scroll(self):
 		cursor = self.history_text.textCursor()
 		cursor.movePosition(QTextCursor.MoveOperation.End)
