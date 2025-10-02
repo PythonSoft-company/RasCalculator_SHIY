@@ -1,8 +1,10 @@
-2025-10-01 19:35:10,647 - DEBUG - Starting new HTTP connection (1): www.google.com:80
-2025-10-01 19:35:11,004 - DEBUG - http://www.google.com:80 "HEAD / HTTP/1.1" 200 0
-2025-10-01 19:35:11,008 - DEBUG - Starting new HTTPS connection (1): rascalck.pythonanywhere.com:443
-2025-10-01 19:35:12,105 - DEBUG - https://rascalck.pythonanywhere.com:443 "GET /version/ HTTP/1.1" 200 10
-2025-10-01 19:35:12,138 - INFO - У вас установлена актуальная версия.
-2025-10-01 19:35:12,141 - INFO - Файл 'preferences.txt' прочитан: False, интерпретировано как: False
-2025-10-01 19:35:12,141 - INFO - Это не первый запуск.
-2025-10-01 19:35:12,142 - INFO - Файл конфигурации 'config.ini' успешно открыт.
+2025-10-02 19:21:35,326 - DEBUG - Starting new HTTP connection (1): www.google.com:80
+2025-10-02 19:21:35,700 - DEBUG - http://www.google.com:80 "HEAD / HTTP/1.1" 200 0
+2025-10-02 19:21:35,703 - DEBUG - Starting new HTTPS connection (1): rascalck.pythonanywhere.com:443
+2025-10-02 19:21:38,384 - DEBUG - https://rascalck.pythonanywhere.com:443 "GET /version/ HTTP/1.1" 200 10
+2025-10-02 19:21:43,052 - INFO - У вас установлена актуальная версия.
+2025-10-02 19:21:43,061 - INFO - Файл 'preferences.txt' прочитан: False, интерпретировано как: False
+2025-10-02 19:21:43,061 - INFO - Это не первый запуск.
+2025-10-02 19:21:43,061 - INFO - Файл конфигурации 'config.ini' успешно открыт.
+2025-10-02 19:22:24,932 - INFO - 1.00000000000000
+2025-10-02 19:22:24,935 - INFO - 1

@@ -116,7 +116,7 @@ def update_history(window):
             window.history_text.insertPlainText(f"{i + 1}. {expr} = {res}\n")
         else:
             window.history_text.insertPlainText(f"{i + 1}. {expr} = {res}\n")
-        window.auto_scroll()
+    window.auto_scroll()
 
 def format_number(num):
     try:

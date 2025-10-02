@@ -123,7 +123,7 @@ def check_version():
         current_version_tuple = tuple(map(int, current_version.split('.')))
         
         if installed_version_tuple >= current_version_tuple:
-            QMessageBox.info(None,
+            QMessageBox.information(None,
                 "Все ок",
                 """
 Ладно живи у тебя актуальная версия :)

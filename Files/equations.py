@@ -29,7 +29,7 @@ def plot_linear_equation(a, b, c):
     if not "-" in b_str:
         center_y = -c / b
     else:
-        center_y = c / b
+        center_y = -c / b
     center_y = float(center_y)  # Убеждаемся, что center_y является числом
     center_x = float(center_x)
     ax.set_xlim(center_x - 10, center_x + 10)  # Центрирование по оси X
@@ -46,7 +46,7 @@ def plot_linear_equation(a, b, c):
     if not "-" in b_str:
         x_1 = -c / a
     else:
-        x_1 = c / a
+        x_1 = -c / a
     x_1 = float(x_1)
     ax.scatter(x_1, y_1, s=50, color='red', marker='o', label=f'({x_1}, 0)')
     ax.legend()
