@@ -45,9 +45,9 @@ def calculate(windows):
 			mantissa, exponent = final_result.split("E")
 			final_result = "{}*10^{}".format(float(mantissa), int(exponent))
 			add_to_history(expression, final_result)
-			update_history(windows)
+			update_history()
 			windows.label.setText(f"{final_result}")
-			clear_errors(windows)
+			clear_errors()
 			clear_labels(windows, 'label')
 			
 			return
@@ -66,21 +66,21 @@ def calculate(windows):
 		# Применение динамической точности
 		final_result = format_number(dynamic_precision(result))
 		add_to_history(expression, final_result)
-		update_history(windows)
+		update_history()
 		windows.label.setText(f"{final_result}")
-		clear_errors(windows)
+		clear_errors()
 		
-		clear_labels(windows, "label")
+		
 	
 	except ZeroDivisionError:
-		handle_error(window=windows, error_message="Ошибка: деление на ноль.", input_data=expression, function_name='calculate', lb="label")
+		handle_error(error_message="Ошибка: деление на ноль.", input_data=expression, function_name='calculate', lb="label")
 	except ValueError as ve:
-		handle_error(window=windows, error_message=f"Ошибка: {ve}", input_data=expression, function_name='calculate')
+		handle_error(error_message=f"Ошибка: {ve}", input_data=expression, function_name='calculate')
 	except SyntaxError:
-		handle_error(window=windows, error_message="Ошибка: синтаксическая ошибка в выражении.", function_name='calculate',
+		handle_error(error_message="Ошибка: синтаксическая ошибка в выражении.", function_name='calculate',
 		             )
 	except Exception as e:
-		handle_error(window=windows,error_message=f"Ошибка: {e}", function_name='calculate')
+		handle_error(error_message=f"Ошибка: {e}", function_name='calculate')
 
 
 
@@ -139,16 +139,16 @@ def arithmetic_operation_fractions(window, first_fraction, second_fraction, oper
 		else:
 			raise ValueError("Операция не поддерживается.")
 		window.label_fractions_result.setText(f"Результат: {result}")
-		clear_errors(window)
+		clear_errors()
 		add_to_history(f"{frac1} {operation} {frac2}", result)
-		update_history(window)
-		clear_labels(window, 'label_fractions_result')
+		update_history()
+		
 	except ZeroDivisionError:
-		handle_error(window, "Ошибка: деление на ноль.", input_data=(first_fraction, second_fraction),
+		handle_error("Ошибка: деление на ноль.", input_data=(first_fraction, second_fraction),
 		             function_name='arithmetic_operation_fractions')
 	except ValueError as ve:
-		handle_error(window, f"Ошибка: {ve}", input_data=(first_fraction, second_fraction),
+		handle_error(f"Ошибка: {ve}", input_data=(first_fraction, second_fraction),
 		             function_name='arithmetic_operation_fractions')
 	except Exception as e:
-		handle_error(window, f"Ошибка: {e}", input_data=(first_fraction, second_fraction),
+		handle_error(f"Ошибка: {e}", input_data=(first_fraction, second_fraction),
 		             function_name='arithmetic_operation_fractions')

@@ -3,7 +3,9 @@ from decimal import Decimal, getcontext
 import traceback
 from PyQt6.QtWidgets import QMessageBox, QInputDialog
 from sympy import Float
+from UI import HistoryandError
 history = []
+
 
 
 def get_root_degree(window):
@@ -61,7 +63,7 @@ def clear_labels(window, lb):
             lbl_widget.clear()
 
 
-def handle_error(window, error_message, input_data=None, function_name=None, lb=None):
+def handle_error(error_message, input_data=None, function_name=None, lb=None):
     """
     Функция для обработки ошибок с дополнительными параметрами.
     :param error_message: Сообщение об ошибке.
@@ -69,8 +71,8 @@ def handle_error(window, error_message, input_data=None, function_name=None, lb=
     :param function_name: Имя функции, в которой произошла ошибка.
     """
     # Вызывает ошибку
-
-    window.error_text.clear()
+    history_ui = HistoryandError()
+    history_ui.error_text.clear()
 
     # Добавляем дополнительную информацию в сообщение об ошибке
     full_error_message = f"{error_message}"
@@ -88,16 +90,12 @@ def handle_error(window, error_message, input_data=None, function_name=None, lb=
         full_error_message = "Ошибка: Вы не ввели знак '='. Пожалуйста, введите '=' и получите ответ."
     elif 'деление на ноль' in error_message:
         full_error_message = 'Ошибка: Вы реально поделили на ноль? Вы не знаете правило математики?!'
-    elif "Sympify of expression 'could not parse" in error_message:
-        full_error_message = 'Не выполняйте код'
-    window.error_text.setText(full_error_message)
-    if lb:
-        lbl_widget = getattr(window, lb)
     
-        lbl_widget.setText("Ошибка, взгляните на тектовое поле с ошибками")
+    history_ui.error_text.setText(full_error_message)
+    
     # Добавляем ошибку в историю
     history.append(("Ошибка:", full_error_message))
-    update_history(window)
+    update_history()
 
 def add_to_history(expression, result):
     if str(result).startswith("Ошибка:"):
@@ -108,15 +106,16 @@ def add_to_history(expression, result):
         history.append((expression, str(result)))
 
 
-def update_history(window):
+def update_history():
       # Временное разрешение редактирования
-    window.history_text.clear()  # Очищаем текущее содержимое
+    history_ui = HistoryandError()
+    history_ui.history_text.clear()  # Очищаем текущее содержимое
     for i, (expr, res) in enumerate(history):
         if str(res).startswith("Ошибка:"):
-            window.history_text.insertPlainText(f"{i + 1}. {expr} = {res}\n")
+            history_ui.history_text.insertPlainText(f"{i + 1}. {expr} = {res}\n")
         else:
-            window.history_text.insertPlainText(f"{i + 1}. {expr} = {res}\n")
-    window.auto_scroll()
+            history_ui.history_text.insertPlainText(f"{i + 1}. {expr} = {res}\n")
+    history_ui.auto_scroll()
 
 def format_number(num):
     try:
@@ -135,14 +134,14 @@ def format_number(num):
 
 def clear_errors(window):
     """Очищает поле ошибок."""
+    history_ui = HistoryandError()
+    history_ui.error_text.clear()
 
-    window.error_text.clear()
 
-
-def clear_history(window):
+def clear_history():
     """Очищает историю вычислений."""
     history.clear()
-    update_history(window)
+    update_history()
 
 
 if __name__ == '__main__':

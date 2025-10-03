@@ -97,7 +97,7 @@ def transform_equation(lhs, rhs):
     x = match.group('x')
     b = match.group('b') or '0'
     
-    transformed_eq = f"{y}-{k}*{x}={b}"
+    transformed_eq = f"-{k}*{x}+{y}={b}"
     return transformed_eq
 
 
@@ -262,23 +262,23 @@ def solve_system_of_equations(window):
                 formatted_result = ', '.join(f'{var}={val}' for var, val in numeric_dict.items())
             logging.info(f"Форматированный результат: {formatted_result}")
             add_to_history(equations_str, formatted_result)
-            update_history(window)
-            clear_labels(window, "label_system_of_equations")
+            update_history()
+            
             # Выводим решение
             window.label_system_of_equations.setText(f"Решение системы уравнений:\n{formatted_result}")
         else:
             # Если решение не найдено
             window.label_system_of_equations.setText("Решение не найдено.")
             add_to_history(equations_str, 'Решения нет')
-            update_history(window)
-            clear_labels(window, "label_system_of_equations")
+            update_history()
+            
             logging.info("Решение не найдено.")
-        clear_errors(window)
+        clear_errors()
     
     # Обновляем историю
     
     except Exception as e:
-        handle_error(window=window, error_message=f"Ошибка: {e}\n", input_data=equations_str,
+        handle_error(error_message=f"Ошибка: {e}\n", input_data=equations_str,
                      function_name='solve_system_of_equations',
                      lb="label_system_of_equations")
         logging.error(f"Исключительная ситуация в solve_system_of_equations: {e}")

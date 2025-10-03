@@ -17,11 +17,11 @@ def process_trigonometric_function(window, function_type):
 			raise ValueError(f"Неверный тип тригонометрической функции: {function_type}")
 		final_result = format_number(dynamic_precision(result))
 		window.trig_output.setText(f"{final_result}")
-		clear_errors(window)
+		clear_errors()
 		add_to_history(f"{function_type}({angle})", final_result)
-		update_history(window)
-		clear_labels(window, 'trig_output')
+		update_history()
+		
 	except ValueError as ve:
-		handle_error(window, f"Ошибка: {ve}", input_data=angle, function_name='process_trigonometric_function')
+		handle_error(f"Ошибка: {ve}", input_data=angle, function_name='process_trigonometric_function')
 	except Exception as e:
-		handle_error(window, f"Ошибка: {e}", input_data=angle, function_name='process_trigonometric_function')
+		handle_error( f"Ошибка: {e}", input_data=angle, function_name='process_trigonometric_function')

@@ -54,14 +54,14 @@ def calculate_statistics(window, stat_type):
 			add_to_history(", ".join(map(str, numbers)), f"Дисперсия: {final_result}")
 		else:
 			raise ValueError(f"Неподдерживаемый тип статистики: {stat_type}")
-		clear_errors(window)
-		clear_labels(window, "label_stat_result")
-		update_history(window)
+		clear_errors()
+		
+		update_history()
 		
 	except ValueError as ve:
-		handle_error(window, f"Ошибка: {ve}", input_data=window.entry_numbers.text(), function_name='calculate_statistics')
+		handle_error(f"Ошибка: {ve}", input_data=window.entry_numbers.text(), function_name='calculate_statistics')
 	except Exception as e:
-		handle_error(window, f"Ошибка: {e}", input_data=window.entry_numbers.text(), function_name='calculate_statistics')
+		handle_error(f"Ошибка: {e}", input_data=window.entry_numbers.text(), function_name='calculate_statistics')
 
 
 if __name__ == '__main__':
