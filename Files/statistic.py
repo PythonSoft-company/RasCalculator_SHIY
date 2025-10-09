@@ -1,4 +1,7 @@
-from addings import *
+try:
+	from addings import *
+except Exception as e:
+	print(e)
 
 
 def variance(numbers):
@@ -10,7 +13,9 @@ def variance(numbers):
 
 def calculate_statistics(window, stat_type):
 	"""Вычисляет статистику набора чисел (среднее, медиана, минимум, максимум, размах, дисперсия)."""
+	
 	try:
+		
 		numbers = list(map(float, window.entry_numbers.text().split()))
 		print(numbers)
 		if not numbers:
@@ -54,66 +59,14 @@ def calculate_statistics(window, stat_type):
 			add_to_history(", ".join(map(str, numbers)), f"Дисперсия: {final_result}")
 		else:
 			raise ValueError(f"Неподдерживаемый тип статистики: {stat_type}")
-		clear_errors()
+		clear_errors(window)
 		
 		update_history()
 		
 	except ValueError as ve:
-		handle_error(f"Ошибка: {ve}", input_data=window.entry_numbers.text(), function_name='calculate_statistics')
+		print(ve)
 	except Exception as e:
-		handle_error(f"Ошибка: {e}", input_data=window.entry_numbers.text(), function_name='calculate_statistics')
+		print(e)
 
 
-if __name__ == '__main__':
-	from PyQt6.QtWidgets import QApplication, QWidget, QPushButton, QLabel, QLineEdit, QTextEdit, QComboBox
-	import sys
-	from PyQt6.QtGui import QIcon
-	from PyQt6.QtCore import QSize
-	
-	
-	class MyApp(QWidget):
-		def __init__(self):
-			super().__init__()
-			
-			# Настройка окна
-			self.setWindowTitle("Расширенный калькулятор")
-			self.resize(1000, 1000)
-			label_basic_calc_text = QLabel(self)
-			label_basic_calc_text.setText("Введите числовое выражение (2+2):")
-			label_basic_calc_text.move(0, 0)
-			
-			
-			
-			self.entry_numbers = QLineEdit(self)
-			self.entry_numbers.resize(245, 20)
-			self.entry_numbers.move(0, 165)
-			
-			self.button_mean = QPushButton(self, text="Среднее значение")
-			self.button_mean.move(305, 160)
-			
-			self.button_median = QPushButton(self, text="Медиана")
-			self.button_median.move(418, 160)
-			
-			self.button_max = QPushButton(self, text="Максимум")
-			self.button_max.move(484, 160)
-			
-			self.button_min = QPushButton(self, text="Минимум")
-			self.button_min.move(556, 160)
-			
-			self.button_range = QPushButton(self, text="Размах")
-			self.button_range.move(624, 160)
-			
-			self.button_variance = QPushButton(self, text="Дисперсия")
-			self.button_variance.move(690, 160)
-			self.label_stat_result = QLabel(self)
-			self.label_stat_result.move(0, 200)
-	
-	
-	app = QApplication(sys.argv)
-	
-	window = MyApp()
-	window.entry_numbers.setText("5 34 12 34")
-	window.show()
-	calculate_statistics(window, 'mean')
-	sys.exit(app.exec())
 

@@ -3,7 +3,7 @@ from decimal import Decimal, getcontext
 import traceback
 from PyQt6.QtWidgets import QMessageBox, QInputDialog
 from sympy import Float
-from UI import HistoryandError
+
 history = []
 
 
