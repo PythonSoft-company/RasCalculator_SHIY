@@ -28,6 +28,7 @@ def nth_root(number, n):
 
 def calculate(windows):
 	try:
+		print("Выполнение")
 		expression = windows.entry.text()
 		expression = replace_z_t(expression)
 		expression = replace_caret_with_power(expression)
@@ -45,10 +46,9 @@ def calculate(windows):
 			mantissa, exponent = final_result.split("E")
 			final_result = "{}*10^{}".format(float(mantissa), int(exponent))
 			add_to_history(expression, final_result)
-			update_history()
+			
 			windows.label.setText(f"{final_result}")
-			clear_errors()
-			clear_labels(windows, 'label')
+			
 			
 			return
 		elif '√' in expression:
@@ -65,23 +65,21 @@ def calculate(windows):
 		
 		# Применение динамической точности
 		final_result = format_number(dynamic_precision(result))
-		add_to_history(expression, final_result)
-		update_history()
+		
 		windows.label.setText(f"{final_result}")
-		clear_errors()
+		
 		
 		
 	
 	except ZeroDivisionError:
-		handle_error(error_message="Ошибка: деление на ноль.", input_data=expression, function_name='calculate', lb="label")
+		print("Ошибка")
+		handle_error("деление на ноль")
 	except ValueError as ve:
-		handle_error(error_message=f"Ошибка: {ve}", input_data=expression, function_name='calculate')
+		handle_error(str(ve), input_data=windows.entry.text(), function_name="calculate")
 	except SyntaxError:
-		handle_error(error_message="Ошибка: синтаксическая ошибка в выражении.", function_name='calculate',
-		             )
+		handle_error("Синтаксическа ошибка", input_data=windows.entry.text(), function_name="calculate")
 	except Exception as e:
-		handle_error(error_message=f"Ошибка: {e}", function_name='calculate')
-
+		handle_error(str(e), input_data=windows.entry.text(), function_name="calculate")
 
 
 
@@ -126,7 +124,9 @@ def factorial_scientific(n):
 def arithmetic_operation_fractions(window, first_fraction, second_fraction, operation):
 	"""Производит арифметические операции с дробями."""
 	try:
+		print(type(first_fraction))
 		frac1 = Fraction(first_fraction)
+		print(type(second_fraction))
 		frac2 = Fraction(second_fraction)
 		if operation == "+":
 			result = frac1 + frac2
@@ -139,16 +139,11 @@ def arithmetic_operation_fractions(window, first_fraction, second_fraction, oper
 		else:
 			raise ValueError("Операция не поддерживается.")
 		window.label_fractions_result.setText(f"Результат: {result}")
-		clear_errors()
-		add_to_history(f"{frac1} {operation} {frac2}", result)
-		update_history()
+		
 		
 	except ZeroDivisionError:
-		handle_error("Ошибка: деление на ноль.", input_data=(first_fraction, second_fraction),
-		             function_name='arithmetic_operation_fractions')
+		handle_error("деление на ноль", input_data=windows.entry.text(), function_name="calculate")
 	except ValueError as ve:
-		handle_error(f"Ошибка: {ve}", input_data=(first_fraction, second_fraction),
-		             function_name='arithmetic_operation_fractions')
+		handle_error(str(ve), function_name="arithmetic_operation_fractions")
 	except Exception as e:
-		handle_error(f"Ошибка: {e}", input_data=(first_fraction, second_fraction),
-		             function_name='arithmetic_operation_fractions')
+		handle_error(str(e), function_name="arithmetic_operation_fractions")

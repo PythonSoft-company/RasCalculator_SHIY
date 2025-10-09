@@ -100,7 +100,7 @@ def transform_equation(lhs, rhs):
     transformed_eq = f"-{k}*{x}+{y}={b}"
     return transformed_eq
 
-
+from PyQt6.QtWidgets import QMessageBox
 def solve_system_of_equations(window):
     try:
         # Получаем уравнения из поля ввода
@@ -261,25 +261,21 @@ def solve_system_of_equations(window):
                 # Форматируем результат для отображения
                 formatted_result = ', '.join(f'{var}={val}' for var, val in numeric_dict.items())
             logging.info(f"Форматированный результат: {formatted_result}")
-            add_to_history(equations_str, formatted_result)
-            update_history()
+            
             
             # Выводим решение
             window.label_system_of_equations.setText(f"Решение системы уравнений:\n{formatted_result}")
         else:
             # Если решение не найдено
             window.label_system_of_equations.setText("Решение не найдено.")
-            add_to_history(equations_str, 'Решения нет')
-            update_history()
+            
             
             logging.info("Решение не найдено.")
-        clear_errors()
+        
     
     # Обновляем историю
     
     except Exception as e:
-        handle_error(error_message=f"Ошибка: {e}\n", input_data=equations_str,
-                     function_name='solve_system_of_equations',
-                     lb="label_system_of_equations")
+        handle_error(e, input_data=window.entry_system_of_equations.text(), function_name="solve_system_of_equations")
         logging.error(f"Исключительная ситуация в solve_system_of_equations: {e}")
 

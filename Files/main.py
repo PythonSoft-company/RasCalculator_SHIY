@@ -38,7 +38,6 @@ fractions = FractionUI()
 history_ui = HistoryandError()
 
 
-
 sys.exit(app.exec())
 
 

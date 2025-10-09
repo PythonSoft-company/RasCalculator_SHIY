@@ -64,9 +64,9 @@ def calculate_statistics(window, stat_type):
 		update_history()
 		
 	except ValueError as ve:
-		print(ve)
+		handle_error(ve, input_data=window.entry_numbers.text(), function_name="calculate_statistics")
 	except Exception as e:
-		print(e)
+		handle_error(e, input_data=window.entry_numbers.text(), function_name="calculate_statistics")
 
 
 

@@ -1,11 +1,11 @@
 import logging
+import sys
 from decimal import Decimal, getcontext
 import traceback
-from PyQt6.QtWidgets import QMessageBox, QInputDialog
+from PyQt6.QtWidgets import QInputDialog, QApplication
 from sympy import Float
-
+from PyQt6 import uic
 history = []
-
 
 
 def get_root_degree(window):
@@ -15,9 +15,10 @@ def get_root_degree(window):
     else:
         print("Отмена")
 
+
 def dynamic_precision(value):
     getcontext().prec = 30
-
+    
     if isinstance(value, (int, float)):
         decimal_value = Decimal(str(value))
         order = int(decimal_value.adjusted())
@@ -25,16 +26,16 @@ def dynamic_precision(value):
         precision = max(6, -order + 6)
         logging.info(format(rounded_value, f'.{precision}f').rstrip('0').rstrip('.'))
         return format(rounded_value, f'.{precision}f').rstrip('0').rstrip('.')
-
+    
     elif isinstance(value, complex):
         real_part = dynamic_precision(value.real)
         imag_part = dynamic_precision(value.imag)
         return complex(real_part, imag_part)
-
+    
     elif isinstance(value, str):
         logging.info(f'Это строка {value}')
         return value
-
+    
     elif isinstance(value, list) or isinstance(value, tuple):
         return type(value)(map(dynamic_precision, value))
     elif isinstance(value, Float):
@@ -51,19 +52,10 @@ def dynamic_precision(value):
         return value
 
 
-def clear_labels(window, lb):
-    labels = ["label_stat_result", "trig_output", "label_fractions_result", "label_system_of_equations", "label"]
-    for label_name in labels:
-        # Получаем элемент QLabel по имени
-        lbl_widget = getattr(window, label_name)
-        
-        # Проверяем, соответствует ли текущее имя метки значению lb
-        if label_name != lb:
-            # Очищаем содержание QLabel
-            lbl_widget.clear()
 
 
-def handle_error(error_message, input_data=None, function_name=None, lb=None):
+
+def handle_error(error_message, input_data=None, function_name=None):
     """
     Функция для обработки ошибок с дополнительными параметрами.
     :param error_message: Сообщение об ошибке.
@@ -71,31 +63,33 @@ def handle_error(error_message, input_data=None, function_name=None, lb=None):
     :param function_name: Имя функции, в которой произошла ошибка.
     """
     # Вызывает ошибку
-    history_ui = HistoryandError()
-    history_ui.error_text.clear()
+    try:
+        
+        error_box = uic.loadUi("error_box.ui")
 
-    # Добавляем дополнительную информацию в сообщение об ошибке
-    full_error_message = f"{error_message}"
-    if function_name:
-        full_error_message += f"\nФункция: {function_name}"
-    if input_data:
-        full_error_message += f"\nВвод: {input_data}"
 
-    # Включаем трассировку стека для получения полной картины ошибки
-    stack_trace = traceback.format_exc()
-    full_error_message += f"\nТрассировка стека:\n{stack_trace}"
+        error_box.show()
+        # Добавляем дополнительную информацию в сообщение об ошибке
+        full_error_message = f"{error_message}"
+        if function_name:
+            full_error_message += f"\nФункция: {function_name}"
+        if input_data:
+            full_error_message += f"\nВвод: {input_data}"
+        
+        # Включаем трассировку стека для получения полной картины ошибки
+        stack_trace = traceback.format_exc()
+        full_error_message += f"\nТрассировка стека:\n{stack_trace}"
+        
+        # Специальное сообщение для конкретной ошибки
+        if 'деление на ноль' in error_message:
+            full_error_message = 'Ошибка: Вы реально поделили на ноль? Вы не знаете правило математики?!'
+        
+        error_box.error_text.setText(full_error_message)
+        error_box.exec()
+        # Добавляем ошибку в историю
+    except Exception as e:
+        print(e)
 
-    # Специальное сообщение для конкретной ошибки
-    if "not enough values to unpack (expected 2, got 1)" in error_message:
-        full_error_message = "Ошибка: Вы не ввели знак '='. Пожалуйста, введите '=' и получите ответ."
-    elif 'деление на ноль' in error_message:
-        full_error_message = 'Ошибка: Вы реально поделили на ноль? Вы не знаете правило математики?!'
-    
-    history_ui.error_text.setText(full_error_message)
-    
-    # Добавляем ошибку в историю
-    history.append(("Ошибка:", full_error_message))
-    update_history()
 
 def add_to_history(expression, result):
     if str(result).startswith("Ошибка:"):
@@ -107,7 +101,7 @@ def add_to_history(expression, result):
 
 
 def update_history():
-      # Временное разрешение редактирования
+    # Временное разрешение редактирования
     history_ui = HistoryandError()
     history_ui.history_text.clear()  # Очищаем текущее содержимое
     for i, (expr, res) in enumerate(history):
@@ -116,6 +110,7 @@ def update_history():
         else:
             history_ui.history_text.insertPlainText(f"{i + 1}. {expr} = {res}\n")
     history_ui.auto_scroll()
+
 
 def format_number(num):
     try:
@@ -132,6 +127,7 @@ def format_number(num):
     except Exception as e:
         return num
 
+
 def clear_errors(window):
     """Очищает поле ошибок."""
     history_ui = HistoryandError()
@@ -145,28 +141,7 @@ def clear_history():
 
 
 if __name__ == '__main__':
-    from PyQt6.QtWidgets import QApplication, QWidget, QPushButton, QLabel, QLineEdit, QTextEdit, QComboBox
-    import sys
-    from PyQt6.QtGui import QIcon
-    from PyQt6.QtCore import QSize
-
-
-    class MyApp(QWidget):
-        def __init__(self):
-            super().__init__()
-
-            # Настройка окна
-            self.setWindowTitle("Расширенный калькулятор")
-            self.resize(1000, 1000)
-            self.button_cor = QPushButton(self, text='√')
-            self.button_cor.move(296, 15)
-            self.entry = QLineEdit(self)
-            self.entry.move(0, 20)
-
-
-    app = QApplication(sys.argv)
-
-    window = MyApp()
-    window.show()
-    get_root_degree(window)
-    sys.exit(app.exec())
+    try:
+        handle_error("Hello")
+    except Exception as e:
+        print(e)

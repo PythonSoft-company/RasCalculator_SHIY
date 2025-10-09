@@ -7,6 +7,7 @@ from calculate import *
 from equations import *
 from statistic import *
 from addings import *
+
 class Calculator(QWidget):
 
     def __init__(self):
@@ -41,9 +42,10 @@ class Calculator(QWidget):
         print(self.button_calc)
         self.button_calc.clicked.connect(lambda: self.on_click())
 
-
+        self.button_cor.clicked.connect(lambda: get_root_degree(self))
     def on_click(self):
         calculate(self)
+    
 
 
 
@@ -128,9 +130,61 @@ class StatisticUI(QWidget):
         self.button_range.clicked.connect(lambda: self.on_click('range'))
         self.button_variance.clicked.connect(lambda: self.on_click('variance'))
     def on_click(self, stat_type):
-        calculate_statistics(self, stat_type)
+        try:
+            
+            numbers = list(map(float, self.entry_numbers.text().split()))
+            print(numbers)
+            if not numbers:
+                return
+            if stat_type == "mean":
+                mean = sum(numbers) / len(numbers)
+                final_result = dynamic_precision(mean)
+                self.label_stat_result.setText(f"Среднее значение: {final_result}")
+                add_to_history(", ".join(map(str, numbers)), f"Среднее значение: {final_result}")
+            elif stat_type == "median":
+                sorted_numbers = sorted(numbers)
+                mid = len(sorted_numbers) // 2
+                median = (sorted_numbers[mid] + sorted_numbers[-mid - 1]) / 2 if len(sorted_numbers) % 2 == 0 else \
+                    sorted_numbers[mid]
+                final_result = dynamic_precision(median)
+                self.label_stat_result.setText(f"Медиана: {final_result}")
+                add_to_history(", ".join(map(str, numbers)), f"Медиана: {final_result}")
+            elif stat_type == "max":
+                maximum = max(numbers)
+                final_result = dynamic_precision(maximum)
+                
+                self.label_stat_result.setText(f"Максимальное значение: {final_result}")
+                add_to_history(", ".join(map(str, numbers)), f"Максимальное значение: {final_result}")
+            elif stat_type == "min":
+                minimum = min(numbers)
+                final_result = format_number(dynamic_precision(minimum))
+                
+                self.label_stat_result.setText(f"Минимальное значение: {final_result}")
+                add_to_history(", ".join(map(str, numbers)), f"Минимальное значение: {final_result}")
+            elif stat_type == "range":
+                rng = max(numbers) - min(numbers)
+                final_result = dynamic_precision(rng)
+                
+                self.label_stat_result.setText(f"Размах: {final_result}")
+                add_to_history(", ".join(map(str, numbers)), f"Размах: {final_result}")
+            elif stat_type == "variance":
+                var = variance(numbers)
+                final_result = dynamic_precision(var)
+                
+                self.label_stat_result.setText(f"Дисперсия: {final_result}")
+                add_to_history(", ".join(map(str, numbers)), f"Дисперсия: {final_result}")
+            else:
+                raise ValueError(f"Неподдерживаемый тип статистики: {stat_type}")
+            
+            
+            
         
-
+        except ValueError as ve:
+            handle_error(ve, input_data=self.entry_numbers.text(), function_name="statistic")
+        except Exception as e:
+            handle_error(e, input_data=self.entry_numbers.text(), function_name="statistic")
+        
+from trinogremetric import *
 class TrigonometryUI(QWidget):
     def __init__(self):
         super().__init__()
@@ -163,6 +217,11 @@ class TrigonometryUI(QWidget):
         self.box.addWidget(self.cos_button)
         self.box.addWidget(self.tan_button)
         self.box.addWidget(self.trig_output)
+        self.sin_button.clicked.connect(lambda: self.on_click('sin'))
+        self.cos_button.clicked.connect(lambda: self.on_click('cos'))
+        self.tan_button.clicked.connect(lambda: self.on_click('tan'))
+    def on_click(self, type):
+        process_trigonometric_function(self, type)
 
 
 class FractionUI(QWidget):
@@ -198,6 +257,9 @@ class FractionUI(QWidget):
         self.box.addWidget(self.button_fractions_calculate, 2, 0)
         self.box.addWidget(self.operator_variable, 1, 1)
         self.box.addWidget(self.label_fractions_result, 3, 0)
+        self.button_fractions_calculate.clicked.connect(lambda: self.on_click())
+    def on_click(self):
+        arithmetic_operation_fractions(self, self.entry_first_fraction.text(), self.entry_second_fraction.text(), self.operator_variable.currentText())
 
 
 

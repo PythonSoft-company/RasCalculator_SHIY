@@ -1,8 +1,10 @@
-2025-10-09 18:07:56,692 - DEBUG - Starting new HTTP connection (1): www.google.com:80
-2025-10-09 18:07:57,058 - DEBUG - http://www.google.com:80 "HEAD / HTTP/11" 200 0
-2025-10-09 18:07:57,061 - DEBUG - Starting new HTTPS connection (1): rascalck.pythonanywhere.com:443
-2025-10-09 18:07:57,790 - DEBUG - https://rascalck.pythonanywhere.com:443 "GET /version/ HTTP/11" 200 10
-2025-10-09 18:07:57,790 - INFO - РЈ РІР°СЃ СѓСЃС‚Р°РЅРѕРІР»РµРЅР° Р°РєС‚СѓР°Р»СЊРЅР°СЏ РІРµСЂСЃРёСЏ.
-2025-10-09 18:07:57,791 - INFO - Р¤Р°Р№Р» 'preferences.txt' РїСЂРѕС‡РёС‚Р°РЅ: False, РёРЅС‚РµСЂРїСЂРµС‚РёСЂРѕРІР°РЅРѕ РєР°Рє: False
-2025-10-09 18:07:57,791 - INFO - Р­С‚Рѕ РЅРµ РїРµСЂРІС‹Р№ Р·Р°РїСѓСЃРє.
-2025-10-09 18:07:57,791 - INFO - Р¤Р°Р№Р» РєРѕРЅС„РёРіСѓСЂР°С†РёРё 'config.ini' СѓСЃРїРµС€РЅРѕ РѕС‚РєСЂС‹С‚.
+2025-10-10 16:58:11,861 - DEBUG - Starting new HTTP connection (1): www.google.com:80
+2025-10-10 16:58:12,102 - DEBUG - http://www.google.com:80 "HEAD / HTTP/1.1" 200 0
+2025-10-10 16:58:12,105 - DEBUG - Starting new HTTPS connection (1): rascalck.pythonanywhere.com:443
+2025-10-10 16:58:13,477 - DEBUG - https://rascalck.pythonanywhere.com:443 "GET /version/ HTTP/1.1" 200 10
+2025-10-10 16:58:13,479 - INFO - У вас установлена актуальная версия.
+2025-10-10 16:58:13,485 - INFO - Файл 'preferences.txt' прочитан: False, интерпретировано как: False
+2025-10-10 16:58:13,485 - INFO - Это не первый запуск.
+2025-10-10 16:58:13,485 - INFO - Файл конфигурации 'config.ini' успешно открыт.
+2025-10-10 16:58:19,825 - INFO - 123.000000000000
+2025-10-10 16:58:19,825 - INFO - 123
