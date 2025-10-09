@@ -67,7 +67,8 @@ def calculate(windows):
 		final_result = format_number(dynamic_precision(result))
 		
 		windows.label.setText(f"{final_result}")
-		
+		add_to_history(expression, str(final_result))
+		update_history()
 		
 		
 	

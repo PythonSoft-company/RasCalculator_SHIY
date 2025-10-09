@@ -5,6 +5,7 @@ import traceback
 from PyQt6.QtWidgets import QInputDialog, QApplication
 from sympy import Float
 from PyQt6 import uic
+from UI import NewApp
 history = []
 
 
@@ -102,14 +103,18 @@ def add_to_history(expression, result):
 
 def update_history():
     # Временное разрешение редактирования
-    history_ui = HistoryandError()
-    history_ui.history_text.clear()  # Очищаем текущее содержимое
+    history_ui = NewApp()
+    
+    print(history_ui)
+    print(history_ui.history_text)
+    history_ui.history_text.clear()# Очищаем текущее содержимое
     for i, (expr, res) in enumerate(history):
         if str(res).startswith("Ошибка:"):
             history_ui.history_text.insertPlainText(f"{i + 1}. {expr} = {res}\n")
+            print(f"{i + 1}. {expr} = {res}\n")
         else:
-            history_ui.history_text.insertPlainText(f"{i + 1}. {expr} = {res}\n")
-    history_ui.auto_scroll()
+            history_ui.history_text.setText(f"{i + 1}. {expr} = {res}\n")
+            print(f"{i + 1}. {expr} = {res}\n")
 
 
 def format_number(num):

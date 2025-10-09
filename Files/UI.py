@@ -297,6 +297,7 @@ class NewApp(QWidget):
         super().__init__()
         tab = QTabWidget(self)
         self.page = QWidget(tab)
+        self.box = QHBoxLayout(self)
         calculator = Calculator()
         self.page.setLayout(calculator.box)
         tab.addTab(self.page, 'Калькулятор')
@@ -321,11 +322,12 @@ class NewApp(QWidget):
         page5.setLayout(frac.box)
         tab.addTab(page5, "Арифметика дробей")
 
-        page6 = QWidget(tab)
-        his = HistoryandError()
-        page6.setLayout(his.box)
-        tab.addTab(page6, "История")
-
+        self.history_text = QTextEdit(self)
+        self.box.addWidget(tab)
+        self.box.addWidget(self.history_text)
+        self.setGeometry(30, 30, 1200, 700)
+        
+        
 
 
 class Main(QWidget):
