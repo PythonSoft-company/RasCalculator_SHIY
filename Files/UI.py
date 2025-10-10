@@ -246,6 +246,7 @@ class NewApp(QWidget):
         tab = QTabWidget(self)
         self.page = QWidget(tab)
         self.box = QHBoxLayout(self)
+        self.setWindowTitle("Расширенный калькулятор")
         calculator = Calculator()
         self.page.setLayout(calculator.box)
         tab.addTab(self.page, 'Калькулятор')
@@ -452,8 +453,13 @@ class MyApp(QWidget):
 
 
 if __name__ == '__main__':
+    logging.basicConfig(level=logging.DEBUG, format='%(asctime)s - %(levelname)s - %(message)s', filename='logs.log')
+    with open("logs.log", "w") as f:
+        f.write("")
+    from start import *
     app = QApplication(sys.argv)
     print(sys.argv)
+    check_first_run_and_show_tutorial()
     app.setWindowIcon(QIcon("calculator.ico"))
     window = NewApp()
     window.show()

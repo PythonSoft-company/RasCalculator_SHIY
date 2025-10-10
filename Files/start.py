@@ -26,7 +26,7 @@ def is_first_run(preferences_file="preferences.txt"):
 def handle_first_run(preferences_file="preferences.txt"):
     """Выполняет действия, необходимые при первом запуске."""
     show_tutorial()  # Отображение приветственного сообщения
-    create_config_file('config.ini')  # Создание файла конфигурации
+    
      # Выбор цвета фона
     
     try:
@@ -46,7 +46,7 @@ def check_first_run_and_show_tutorial( preferences_file="preferences.txt"):
         handle_first_run(preferences_file)
     else:
         logging.info("Это не первый запуск.")
-        ensure_config_file_exists()
+        
 
 
 def show_tutorial(title="Добро пожаловать!", message=None):
@@ -81,7 +81,7 @@ QMessageBox.StandardButton.Ok)
 
 import os
 import webbrowser
-from tkinter import messagebox
+
 
 
 # Настройка логирования
@@ -179,58 +179,6 @@ def check_version():
     except Exception as exc:
         logging.error(f"Необработанная ошибка: {exc}")
 
-
-def create_config_file(filename):
-    """Создаёт файл конфигурации при его отсутствии."""
-    try:
-        with open(filename, 'r') as config_file:
-            logging.info(f"Файл конфигурации '{filename}' успешно открыт.")
-    except FileNotFoundError:
-        config = configparser.ConfigParser()
-        config['UserSettings'] = {'SelectedColor': DEFAULT_BG_COLOR}
-        with open(filename, 'w') as config_file:
-            config.write(config_file)
-            logging.info(f"Файл конфигурации '{filename}' успешно создан.")
-    except PermissionError as e:
-        logging.error(f"Ошибка при создании файла конфигурации '{filename}': {e}")
-    except Exception as e:
-        logging.error(f"Неожиданная ошибка при работе с файлом конфигурации '{filename}': {e}")
-
-
-
-
-
-def write_config(selected_color):
-    """Записывает выбранный цвет в файл конфигурации."""
-    config = configparser.ConfigParser()
-    config['PerviousSettings'] = {'SelectedColor': selected_color}
-    with open('config.ini', 'w') as configfile:
-        config.write(configfile)
-
-
-def read_config():
-    """Читает ранее сохранённый цвет из файла конфигурации."""
-    config = configparser.ConfigParser()
-    config.read('config.ini')
-    try:
-        selected_color = config['PerviousSettings']['SelectedColor']
-        return selected_color
-    except KeyError:
-        return DEFAULT_BG_COLOR
-
-
-def ensure_config_file_exists(filename='config.ini'):
-    """Гарантирует существование файла конфигурации."""
-    try:
-        with open(filename, 'r') as config_file:
-            logging.info(f"Файл конфигурации '{filename}' успешно открыт.")
-    except FileNotFoundError:
-        create_config_file(filename)
-        
-    except PermissionError as e:
-        logging.error(f"Ошибка при чтении файла конфигурации '{filename}': {e}")
-    except Exception as e:
-        logging.error(f"Неожиданная ошибка при открытии файла конфигурации '{filename}': {e}")
 
 
 

@@ -143,7 +143,7 @@ def arithmetic_operation_fractions(window, first_fraction, second_fraction, oper
 		
 		
 	except ZeroDivisionError:
-		handle_error("деление на ноль", input_data=windows.entry.text(), function_name="calculate")
+		handle_error("деление на ноль", function_name="calculate")
 	except ValueError as ve:
 		handle_error(str(ve), function_name="arithmetic_operation_fractions")
 	except Exception as e:

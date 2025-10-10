@@ -41,7 +41,7 @@ def calculate_statistics(window, stat_type):
 			addings.add_to_history(", ".join(map(str, numbers)), f"Максимальное значение: {final_result}")
 		elif stat_type == "min":
 			minimum = min(numbers)
-			final_result = addings.format_number(addings.dynamic_precision(minimum))
+			final_result = addings.dynamic_precision(minimum)
 			
 			window.label_stat_result.setText(f"Минимальное значение: {final_result}")
 			addings.add_to_history(", ".join(map(str, numbers)), f"Минимальное значение: {final_result}")

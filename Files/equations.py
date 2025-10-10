@@ -1,8 +1,8 @@
-from addings import *
+import addings
 from sympy import *
 import numpy as np
 import matplotlib.pyplot as plt
-
+import logging
 
 def plot_linear_equation(a, b, c):
     """
@@ -237,7 +237,7 @@ def solve_system_of_equations(window):
                 
                 for x in solution:
                     # Применяем точность к каждому решению
-                    numeric_dict = {var: dynamic_precision(sol) for var, sol in x.items()}
+                    numeric_dict = {var: addings.dynamic_precision(sol) for var, sol in x.items()}
                     
                     # Добавляем полученный словарь в список
                     num.append(numeric_dict)
@@ -255,7 +255,7 @@ def solve_system_of_equations(window):
                 
                 print(formatted_result)
             else:
-                numeric_dict = {var: dynamic_precision(sol) for var, sol in solution.items()}
+                numeric_dict = {var: addings.dynamic_precision(sol) for var, sol in solution.items()}
                 logging.info(f"Применение динамической точности: {numeric_dict}")
                 
                 # Форматируем результат для отображения
@@ -276,6 +276,7 @@ def solve_system_of_equations(window):
     # Обновляем историю
     
     except Exception as e:
-        handle_error(e, input_data=window.entry_system_of_equations.text(), function_name="solve_system_of_equations")
+        print(str(e))
+        handle_error(str(e), input_data=window.entry_system_of_equations.text(), function_name="solve_system_of_equations")
         logging.error(f"Исключительная ситуация в solve_system_of_equations: {e}")
 

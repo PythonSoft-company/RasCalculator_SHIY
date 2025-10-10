@@ -103,17 +103,17 @@ def add_to_history(expression, result):
 
 def update_history():
     # Временное разрешение редактирования
-    history_ui = NewApp()
+    # history_ui = NewApp()
     
-    print(history_ui)
-    print(history_ui.history_text)
-    history_ui.history_text.clear()# Очищаем текущее содержимое
+    # print(history_ui)
+    # print(history_ui.history_text)
+    # history_ui.history_text.clear()# Очищаем текущее содержимое
     for i, (expr, res) in enumerate(history):
         if str(res).startswith("Ошибка:"):
-            history_ui.history_text.insertPlainText(f"{i + 1}. {expr} = {res}\n")
+            # history_ui.history_text.insertPlainText(f"{i + 1}. {expr} = {res}\n")
             print(f"{i + 1}. {expr} = {res}\n")
         else:
-            history_ui.history_text.setText(f"{i + 1}. {expr} = {res}\n")
+            # history_ui.history_text.setText(f"{i + 1}. {expr} = {res}\n")
             print(f"{i + 1}. {expr} = {res}\n")
 
 
