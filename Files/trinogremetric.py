@@ -1,4 +1,4 @@
-from addings import *
+import addings
 import math
 
 
@@ -15,7 +15,7 @@ def process_trigonometric_function(window, function_type):
 			result = math.tan(radians)
 		else:
 			raise ValueError(f"Неверный тип тригонометрической функции: {function_type}")
-		final_result = format_number(dynamic_precision(result))
+		final_result = addings.format_number(addings.dynamic_precision(result))
 		window.trig_output.setText(f"{final_result}")
 		
 	except ValueError as ve:
