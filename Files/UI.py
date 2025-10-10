@@ -322,9 +322,9 @@ class NewApp(QWidget):
         page5.setLayout(frac.box)
         tab.addTab(page5, "Арифметика дробей")
 
-        self.history_text = QTextEdit(self)
+        # self.history_text = QTextEdit(self)
         self.box.addWidget(tab)
-        self.box.addWidget(self.history_text)
+        # self.box.addWidget(self.history_text)
         self.setGeometry(30, 30, 1200, 700)
         
         
