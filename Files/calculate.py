@@ -1,7 +1,8 @@
 from sympy import *
-from addings import *
+import addings
 from fractions import Fraction
 import math
+import logging
 from decimal import Decimal, getcontext
 def replace_caret_with_power(expression):
 	"""Заменяет символ ^ на оператор возведения в степень (**)."""
@@ -39,10 +40,10 @@ def calculate(windows):
 		if '!' in expression:
 			expression = expression.replace('!', '')
 			result = factorial_scientific(int(expression))
-			final_result = dynamic_precision(result)
+			final_result = addings.dynamic_precision(result)
 			mantissa, exponent = final_result.split("E")
 			final_result = "{}*10^{}".format(float(mantissa), int(exponent))
-			add_to_history(expression, final_result)
+			addings.add_to_history(expression, final_result)
 			
 			windows.label.setText(f"{final_result}")
 			
@@ -61,23 +62,24 @@ def calculate(windows):
 			result = float(result)
 		
 		# Применение динамической точности
-		final_result = format_number(dynamic_precision(result))
+		final_result = addings.format_number(addings.dynamic_precision(result))
 		
 		windows.label.setText(f"{final_result}")
-		add_to_history(expression, str(final_result))
-		update_history()
+		addings.add_to_history(expression, str(final_result))
+		addings.update_history()
 		
 		
 	
 	except ZeroDivisionError:
 		print("Ошибка")
-		handle_error("деление на ноль")
+		addings.handle_error("деление на ноль")
 	except ValueError as ve:
-		handle_error(str(ve), input_data=windows.entry.text(), function_name="calculate")
+		addings.handle_error(str(ve), input_data=windows.entry.text(), function_name="calculate")
 	except SyntaxError:
-		handle_error("Синтаксическа ошибка", input_data=windows.entry.text(), function_name="calculate")
+		addings.handle_error("Синтаксическа ошибка", input_data=windows.entry.text(), function_name="calculate")
 	except Exception as e:
-		handle_error(str(e), input_data=windows.entry.text(), function_name="calculate")
+		print(e)
+		addings.handle_error(str(e), input_data=windows.entry.text(), function_name="calculate")
 
 
 

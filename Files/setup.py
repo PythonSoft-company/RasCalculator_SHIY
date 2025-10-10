@@ -51,7 +51,7 @@ options = {
         "includes": [],                      # Дополнительные модули, если нужны
         "include_files": ["calculator.ico", "version.txt", "settings_icon.png", 'error_box.ui', 'preferences.txt', 'preferences2.txt', 'cur_version.txt'],# Добавляем файл version.txt
         "optimize": 2,
-        "excludes": ["PyQt5", "tkinter"]
+        "excludes": ["PyQt5", "tkinter", "PIL"]
          # Попробуйте добавить этот параметр# Уровень оптимизации байт-кода (может уменьшить размер)
     },
     "bdist_msi": {

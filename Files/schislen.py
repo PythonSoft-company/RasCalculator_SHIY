@@ -9,7 +9,7 @@ def to_10(n, ss):
         return int(str(n), ss)
     except Exception as e:
         print(type(e), e)
-        print(f"Для {ss} системы счисления можно использовать только символы {printable[:ss]}")
+        raise ValueError(f"Для {ss} системы счисления можно использовать только символы {printable[:ss]}")
 
 
 from string import ascii_uppercase
@@ -41,12 +41,14 @@ def calculate_sch(window, type, ss):
             result = a*b
         elif type == "/":
             result = a/b
+            result = int(result)
         else:
             raise ValueError("Такого нет")
         result = to_2_36(result, ss)
-
+        print(result)
         window.label_sch_result.setText(f"{result}")
         addings.add_to_history(f"{a}{type}{b} в {ss} сс", str(result))
+        print(window.label_sch_result.text())
         # update_history()
 
     except ValueError as ve:

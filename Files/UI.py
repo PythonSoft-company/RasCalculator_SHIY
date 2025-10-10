@@ -8,6 +8,7 @@ from calculate import *
 from equations import *
 from statistic import *
 from addings import *
+import logging
 class SistemSchileniy(QWidget):
     def __init__(self):
         super().__init__()
@@ -330,7 +331,7 @@ class NewApp(QWidget):
 
 
 if __name__ == '__main__':
-    logging.basicConfig(level=logging.DEBUG, format='%(asctime)s - %(levelname)s - %(message)s', filename='logs.log')
+    logging.basicConfig(level=logging.DEBUG, format='%(asctime)s - %(levelname)s - %(message)s', filename='logs.log', encoding="UTF-8")
     with open("logs.log", "w") as f:
         f.write("")
     from start import *

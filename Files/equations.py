@@ -277,6 +277,6 @@ def solve_system_of_equations(window):
     
     except Exception as e:
         print(str(e))
-        handle_error(str(e), input_data=window.entry_system_of_equations.text(), function_name="solve_system_of_equations")
+        addings.handle_error(str(e), input_data=window.entry_system_of_equations.text(), function_name="solve_system_of_equations")
         logging.error(f"Исключительная ситуация в solve_system_of_equations: {e}")
 

@@ -3,7 +3,7 @@ import sys
 from decimal import Decimal, getcontext
 import traceback
 from PyQt6.QtWidgets import QInputDialog, QApplication
-from sympy import Float
+from sympy import Float, Integer
 from PyQt6 import uic
 from UI import NewApp
 history = []
@@ -40,6 +40,14 @@ def dynamic_precision(value):
     elif isinstance(value, list) or isinstance(value, tuple):
         return type(value)(map(dynamic_precision, value))
     elif isinstance(value, Float):
+        value = float(value)
+        decimal_value = Decimal(str(value))
+        order = int(decimal_value.adjusted())
+        rounded_value = decimal_value.normalize()
+        precision = max(2, -order + 2)
+        logging.info(format(rounded_value, f'.{precision}f').rstrip('0').rstrip('.'))
+        return format(rounded_value, f'.{precision}f').rstrip('0').rstrip('.')
+    elif isinstance(value, Integer):
         value = float(value)
         decimal_value = Decimal(str(value))
         order = int(decimal_value.adjusted())
