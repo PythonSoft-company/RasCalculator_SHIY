@@ -16,9 +16,6 @@ def replace_z_t(expression):
 
 
 
-
-
-
 def nth_root(number, n):
 	"""Вычисляет корень n-й степени из числа."""
 	if number < 0 and n % 2 == 0:

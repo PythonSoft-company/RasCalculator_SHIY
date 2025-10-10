@@ -20,7 +20,7 @@ def process_trigonometric_function(window, function_type):
 		
 	except ValueError as ve:
 		print(ve)
-		handle_error(ve, input_data=window.trig_input.text(), function_name="process_trigonometric_function")
+		addings.handle_error(ve, input_data=window.trig_input.text(), function_name="process_trigonometric_function")
 	except Exception as e:
 		print(e)
-		handle_error(e, input_data=window.trig_input.text(), function_name="process_trigonometric_function")
+		addings.handle_error(e, input_data=window.trig_input.text(), function_name="process_trigonometric_function")
