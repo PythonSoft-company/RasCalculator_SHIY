@@ -325,7 +325,7 @@ class NewApp(QWidget):
         # self.history_text = QTextEdit(self)
         self.box.addWidget(tab)
         # self.box.addWidget(self.history_text)
-        # self.setGeometry(30, 30, 1200, 700)
+        self.setGeometry(30, 30, 800, 300)
         
         
 
