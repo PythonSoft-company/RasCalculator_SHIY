@@ -2,7 +2,7 @@ from schislen import *
 from PyQt6.QtWidgets import QApplication, QWidget, QPushButton, QLabel, QLineEdit, QTextEdit, QComboBox, QMessageBox, \
     QTabWidget, QVBoxLayout, QGridLayout, QHBoxLayout
 import sys
-from PyQt6.QtGui import QIcon, QTextCursor
+from PyQt6.QtGui import QIcon, QTextCursor, QFont
 from PyQt6.QtCore import QSize, Qt
 from calculate import *
 from equations import *
@@ -28,7 +28,7 @@ class SistemSchileniy(QWidget):
         self.button_sch_calculate = QPushButton(self, text="Выполнить операцию")
         self.button_sch_calculate.move(0, 50)
 
-        self.label_sch_result = QLabel(self)
+        self.label_sch_result = QLineEdit(self)
         self.label_sch_result.move(0, 80)
         self.label_sch_result.resize(300, 20)
         self.ss = QLineEdit(self)
@@ -38,10 +38,10 @@ class SistemSchileniy(QWidget):
         self.box.addWidget(self.entry_first_num, 1, 0)
 
         self.box.addWidget(self.entry_second_num, 1, 2)
-        self.box.addWidget(label_sch_text, 0, 0)
-        self.box.addWidget(self.button_sch_calculate, 3, 0)
+        self.box.addWidget(label_sch_text, 0, 0, 1, 4)
+        self.box.addWidget(self.button_sch_calculate, 3, 0, 1, 4)
         self.box.addWidget(self.operator_variabl, 1, 1)
-        self.box.addWidget(self.label_sch_result, 4, 0)
+        self.box.addWidget(self.label_sch_result, 4, 0, 1, 4)
         self.box.addWidget(self.ss, 2, 3)
         self.box.addWidget(self.lbl, 2, 4)
         self.button_sch_calculate.clicked.connect(lambda: self.on_click())
@@ -68,7 +68,7 @@ class Calculator(QWidget):
         self.button_calc.move(216, 15)
 
 
-        self.label = QLabel()
+        self.label = QLineEdit(self)
         self.label.move(0, 40)
         self.label.resize(1000, 16)
 
@@ -106,7 +106,7 @@ class EqualationUI(QWidget):
         self.button_system_of_equations.move(305, 80)
         self.entry_system_of_equations.resize(250, 20)
 
-        self.label_system_of_equations = QLabel(self)
+        self.label_system_of_equations = QLineEdit(self)
         self.label_system_of_equations.move(0, 105)
         self.label_system_of_equations.resize(1000, 40)
 
@@ -151,7 +151,7 @@ class StatisticUI(QWidget):
         self.button_variance = QPushButton(self, text="Дисперсия")
         self.button_variance.move(690, 160)
 
-        self.label_stat_result = QLabel(self)
+        self.label_stat_result =QLineEdit(self)
         self.label_stat_result.move(0, 200)
         self.label_stat_result.resize(1000, 30)
         self.box = QVBoxLayout(self)
@@ -234,7 +234,7 @@ class FractionUI(QWidget):
         self.button_fractions_calculate = QPushButton(self, text="Выполнить операцию")
         self.button_fractions_calculate.move(0, 50)
 
-        self.label_fractions_result = QLabel(self)
+        self.label_fractions_result = QLineEdit(self)
         self.label_fractions_result.move(0, 80)
         self.label_fractions_result.resize(300, 20)
 
@@ -243,10 +243,10 @@ class FractionUI(QWidget):
         self.box.addWidget(self.entry_first_fraction, 1, 0)
 
         self.box.addWidget(self.entry_second_fraction, 1, 2)
-        self.box.addWidget(label_fractions_text, 0, 0)
-        self.box.addWidget(self.button_fractions_calculate, 2, 0)
+        self.box.addWidget(label_fractions_text, 0, 0, 1, 3)
+        self.box.addWidget(self.button_fractions_calculate, 2, 0, 1, 3)
         self.box.addWidget(self.operator_variable, 1, 1)
-        self.box.addWidget(self.label_fractions_result, 3, 0)
+        self.box.addWidget(self.label_fractions_result, 3, 0, 1, 3)
         self.button_fractions_calculate.clicked.connect(lambda: self.on_click())
     def on_click(self):
         arithmetic_operation_fractions(self, self.entry_first_fraction.text(), self.entry_second_fraction.text(), self.operator_variable.currentText())
@@ -282,12 +282,13 @@ class HistoryandError(QWidget):
         cursor = self.history_text.textCursor()
         cursor.movePosition(QTextCursor.MoveOperation.End)
         self.history_text.setTextCursor(cursor)
+
 class NewApp(QWidget):
     def __init__(self):
         super().__init__()
         tab = QTabWidget(self)
         self.page = QWidget(tab)
-        self.box = QHBoxLayout(self)
+        self.box = QVBoxLayout(self)
         self.setWindowTitle("Расширенный калькулятор")
         calculator = Calculator()
         self.page.setLayout(calculator.box)
@@ -321,6 +322,14 @@ class NewApp(QWidget):
         self.box.addWidget(tab)
         # self.box.addWidget(self.history_text)
         self.setGeometry(30, 30, 850, 300)
+        
+        self.reklam = QPushButton("Калькулятор по формулам", self)
+        self.box.addWidget(self.reklam)
+        
+        self.reklam.clicked.connect(self.on_click)
+    def on_click(self):
+        webbrowser.open_new_tab("https://kostyaramensky.pythonanywhere.com/")
+        
         
         
 
