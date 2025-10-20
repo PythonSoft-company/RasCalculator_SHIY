@@ -76,11 +76,12 @@ class Calculator(QWidget):
         self.button_cor.move(296, 15)
         self.box.addWidget(label_basic_calc_text)
         self.box.addWidget(self.entry)
-        self.box.addWidget(self.label)
+        
         self.box.addWidget(self.button_calc)
         
         self.box.addWidget(self.button_cor)
         self.box.addWidget(self.button_calc)
+        self.box.addWidget(self.label)
         print(self.button_calc)
         self.button_calc.clicked.connect(lambda: self.on_click())
 
@@ -196,7 +197,7 @@ class TrigonometryUI(QWidget):
         self.tan_button = QPushButton(self, text="tan")
         self.tan_button.move(cord_x + 200, cord_y + 40)
 
-        self.trig_output = QLabel(self)
+        self.trig_output = QLineEdit(self)
         self.trig_output.move(cord_x + 135, cord_y + 20)
         self.trig_output.resize(1000, 30)
         
