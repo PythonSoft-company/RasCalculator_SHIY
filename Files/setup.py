@@ -56,7 +56,7 @@ options = {
     "build_exe": {
         
         "includes": [],                      # Дополнительные модули, если нужны
-        "include_files": ["calculator.ico", "version.txt", "settings_icon.png", 'error_box.ui', 'preferences.txt', 'preferences2.txt', 'cur_version.txt'],# Добавляем файл version.txt
+        "include_files": ["calculator.ico", "version.txt", "settings_icon.png", 'error_box.ui', 'preferences.txt', 'preferences2.txt', 'cur_version.txt', "logs.log"],# Добавляем файл version.txt
         "optimize": 2,
         "excludes": ["PyQt5", "tkinter"]
          # Попробуйте добавить этот параметр# Уровень оптимизации байт-кода (может уменьшить размер)
