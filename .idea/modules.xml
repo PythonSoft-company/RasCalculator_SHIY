@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/.idea/RasCalculator_SHIY.iml" filepath="$PROJECT_DIR$/.idea/RasCalculator_SHIY.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/RasCalculator.iml" filepath="$PROJECT_DIR$/.idea/RasCalculator.iml" />
     </modules>
   </component>
 </project>
