@@ -1,0 +1,149 @@
+from sympy import *
+import addings
+from fractions import Fraction
+import math
+import logging
+from decimal import Decimal, getcontext
+def replace_caret_with_power(expression):
+	"""Заменяет символ ^ на оператор возведения в степень (**)."""
+	return expression.replace('^', '**')
+
+
+def replace_z_t(expression):
+	"""Заменяет запятую на точку в числе."""
+	return expression.replace(',', '.')
+
+
+
+
+
+def nth_root(number, n):
+	"""Вычисляет корень n-й степени из числа."""
+	if number < 0 and n % 2 == 0:
+		raise ValueError("Корень четной степени из отрицательного числа невозможен.")
+	return number ** (1 / n)
+
+
+def calculate(windows):
+	try:
+		print("Выполнение")
+		expression = windows.entry.text()
+		expression = replace_z_t(expression)
+		expression = replace_caret_with_power(expression)
+		print(expression)
+		if expression == "":
+			return
+		if '0' in expression and '/' in expression:
+			parts = expression.split('/')
+			if parts[1].strip() == '0':
+				raise ZeroDivisionError
+		if '!' in expression:
+			expression = expression.replace('!', '')
+			result = factorial_scientific(int(expression))
+			final_result = addings.dynamic_precision(result)
+			mantissa, exponent = final_result.split("E")
+			final_result = "{}*10^{}".format(float(mantissa), int(exponent))
+			addings.add_to_history(expression, final_result)
+			
+			windows.label.setText(f"{final_result}")
+			
+			
+			return
+		elif '√' in expression:
+			parts = expression.split('√')
+			if len(parts) != 2:
+				raise ValueError("Неверный формат корня")
+			n = int(parts[0])
+			x = int(parts[1])
+			result = nth_root(x, n)
+		else:
+			result = sympify(expression).evalf()
+			logging.info(result)
+			result = float(result)
+		
+		# Применение динамической точности
+		final_result = addings.format_number(addings.dynamic_precision(result))
+		print(final_result)
+		windows.label.setText(f"{final_result}")
+		addings.add_to_history(expression, str(final_result))
+		addings.update_history()
+		
+		
+	
+	except ZeroDivisionError:
+		print("Ошибка")
+		addings.handle_error("деление на ноль")
+	except ValueError as ve:
+		addings.handle_error(str(ve), input_data=windows.entry.text(), function_name="calculate")
+	except SyntaxError:
+		addings.handle_error("Синтаксическа ошибка", input_data=windows.entry.text(), function_name="calculate")
+	except Exception as e:
+		print(e)
+		addings.handle_error(str(e), input_data=windows.entry.text(), function_name="calculate")
+
+
+
+
+
+
+
+
+
+
+
+
+def factorial_scientific(n):
+	"""
+	Представляет факториал числа в научной форме.
+
+	Параметры:
+	- n: Число, факториал которого нужно представить.
+
+	Возвращает:
+	Строку с представлением факториала в научной форме.
+	"""
+	if not isinstance(n, int) or n < 0:
+		raise ValueError("Факториал определен только для неотрицательных целых чисел")
+	
+	# Устанавливаем высокую точность для работы с большими числами
+	getcontext().prec = 100  # Можно увеличить точность при необходимости
+	
+	# Рассчитываем факториал
+	fact = Decimal(1)
+	for i in range(1, n + 1):
+		fact *= Decimal(i)
+	
+	# Представляем в научной форме
+	scientific_representation = "{:.5E}".format(fact.normalize())
+	
+	return scientific_representation
+
+
+
+
+def arithmetic_operation_fractions(window, first_fraction, second_fraction, operation):
+	"""Производит арифметические операции с дробями."""
+	try:
+		print(type(first_fraction))
+		frac1 = Fraction(first_fraction)
+		print(type(second_fraction))
+		frac2 = Fraction(second_fraction)
+		if operation == "+":
+			result = frac1 + frac2
+		elif operation == "-":
+			result = frac1 - frac2
+		elif operation == "*":
+			result = frac1 * frac2
+		elif operation == "/":
+			result = frac1 / frac2
+		else:
+			raise ValueError("Операция не поддерживается.")
+		window.label_fractions_result.setText(f"Результат: {result}")
+		
+		
+	except ZeroDivisionError:
+		addings.handle_error("деление на ноль", function_name="calculate")
+	except ValueError as ve:
+		addings.handle_error(str(ve), function_name="arithmetic_operation_fractions")
+	except Exception as e:
+		addings.handle_error(str(e), function_name="arithmetic_operation_fractions")

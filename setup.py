@@ -26,7 +26,7 @@ icon_path = "calculator.ico"      # Путь к иконке приложени�
 # Скрипт главного модуля
 # Ярлык в меню "Пуск"
 start_menu_shortcut = Executable(
-    script="The_mainest.py",
+    script="UI.py",
     base=base_executable,
     icon=icon_path,
     target_name="calculator.exe",
@@ -36,30 +36,29 @@ start_menu_shortcut = Executable(
 
 # Ярлык на рабочем столе
 desktop_shortcut = Executable(
-    script="The_mainest.py",
+    script="UI.py",
     base=base_executable,
     icon=icon_path,
     target_name="calculator.exe",
     shortcut_name='Рас.Калькулятор',
     shortcut_dir='DesktopFolder'
 )
-
+Panel_shortcut = Executable(
+    script="UI.py",
+    base=base_executable,
+    icon=icon_path,
+    target_name="calculator.exe",
+    shortcut_name='Рас.Калькулятор',
+    shortcut_dir='TaskBar'
+)
 # Параметры сборки
 options = {
     "build_exe": {
-        "packages": [
-            "tkinter",      # Необходим для GUI
-            "sympy",        # Символьные вычисления
-            "PIL",          # Pillow для изображений
-            "configparser",  # Конфигурационные файлы
-            "settings_panel",  # ВАЖНО: добавляем ваш собственный модуль!
-            "matplotlib",   # Матплотлиб для графиков
-            "numpy"         # Нампай для массивов и математикиpython setup.py bdist_msi
-        ],
+        
         "includes": [],                      # Дополнительные модули, если нужны
-        "include_files": ["version.txt", "settings_icon.png", 'settings_panel.py', 'preferences.txt', 'preferences2.txt', 'config.ini', 'cur_version.txt'],# Добавляем файл version.txt
+        "include_files": ["calculator.ico", "version.txt", "settings_icon.png", 'error_box.ui', 'preferences.txt', 'preferences2.txt', 'cur_version.txt', "logs.log"],# Добавляем файл version.txt
         "optimize": 2,
-        "excludes": ["PyQt6, PyQt5"]
+        "excludes": ["PyQt5", "tkinter"]
          # Попробуйте добавить этот параметр# Уровень оптимизации байт-кода (может уменьшить размер)
     },
     "bdist_msi": {
@@ -79,4 +78,5 @@ setup(
     executables=[start_menu_shortcut, desktop_shortcut],  # Два разных ярлык,
     options=options,
     author='PythonSoft'
+    
 )

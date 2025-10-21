@@ -1,21 +1,26 @@
-2025-10-20 18:50:18,905 - DEBUG - Starting new HTTP connection (1): www.google.com:80
-2025-10-20 18:50:18,980 - DEBUG - http://www.google.com:80 "HEAD / HTTP/1.1" 200 0
-2025-10-20 18:50:18,983 - DEBUG - Starting new HTTPS connection (1): rascalck.pythonanywhere.com:443
-2025-10-20 18:50:20,235 - DEBUG - https://rascalck.pythonanywhere.com:443 "GET /version/ HTTP/1.1" 200 10
-2025-10-20 18:50:20,237 - INFO - У вас установлена актуальная версия.
-2025-10-20 18:50:20,241 - INFO - Файл 'preferences.txt' прочитан: False, интерпретировано как: False
-2025-10-20 18:50:20,241 - INFO - Это не первый запуск.
-2025-10-20 18:50:30,468 - INFO - 4.00000000000000
-2025-10-20 18:50:30,471 - INFO - 4
-2025-10-20 18:50:43,349 - INFO - Полученная строка уравнений: x+y=9
-2025-10-20 18:50:43,349 - INFO - Разбито на уравнения: ['x+y=9']
-2025-10-20 18:50:43,349 - INFO - Преобразование уравнения: x+y=9
-2025-10-20 18:50:43,460 - INFO - Добавлено уравнение: Eq(x + y, 9)
-2025-10-20 18:50:43,460 - INFO - Переменные, задействованные в уравнениях: {x, y}
-2025-10-20 18:50:43,460 - INFO - Количество уравнений меньше количества переменных, система недоопределена.
-2025-10-20 18:50:45,019 - INFO - Выбор пользователя: нет, график не нужен.
-2025-10-20 18:50:45,036 - INFO - Решение системы уравнений: {x: 9 - y}
-2025-10-20 18:50:45,036 - INFO - Не определён тип <class 'sympy.core.add.Add'>
-2025-10-20 18:50:45,036 - INFO - Применение динамической точности: {x: 9 - y}
-2025-10-20 18:50:45,037 - INFO - Форматированный результат: x=9 - y
-2025-10-20 18:51:09,599 - INFO - 0.5
+2025-10-21 21:11:49,923 - DEBUG - Starting new HTTP connection (1): www.google.com:80
+2025-10-21 21:11:54,496 - DEBUG - http://www.google.com:80 "HEAD / HTTP/1.1" 200 0
+2025-10-21 21:11:54,500 - DEBUG - Starting new HTTPS connection (1): rascalck.pythonanywhere.com:443
+2025-10-21 21:11:55,483 - DEBUG - https://rascalck.pythonanywhere.com:443 "GET /version/ HTTP/1.1" 200 10
+2025-10-21 21:11:55,501 - INFO - У вас установлена актуальная версия.
+2025-10-21 21:11:55,504 - INFO - Файл 'preferences.txt' прочитан: False, интерпретировано как: False
+2025-10-21 21:11:55,504 - INFO - Это не первый запуск.
+2025-10-21 21:12:05,408 - DEBUG - toplevel widget is QDialog
+2025-10-21 21:12:05,408 - DEBUG - setting property geometry
+2025-10-21 21:12:05,409 - DEBUG - setting property windowTitle
+2025-10-21 21:12:05,409 - DEBUG - setting property toolTipDuration
+2025-10-21 21:12:05,412 - DEBUG - push QDialog Dialog
+2025-10-21 21:12:05,414 - DEBUG - setting property geometry
+2025-10-21 21:12:05,414 - DEBUG - setting property orientation
+2025-10-21 21:12:05,416 - DEBUG - setting property standardButtons
+2025-10-21 21:12:05,416 - DEBUG - setting property centerButtons
+2025-10-21 21:12:05,418 - DEBUG - push QDialogButtonBox buttonBox
+2025-10-21 21:12:05,418 - DEBUG - pop widget QDialogButtonBox buttonBox
+2025-10-21 21:12:05,418 - DEBUG - new topwidget <PyQt6.QtWidgets.QDialog object at 0x000002175403C0F0>
+2025-10-21 21:12:05,428 - DEBUG - setting property geometry
+2025-10-21 21:12:05,428 - DEBUG - setting property readOnly
+2025-10-21 21:12:05,431 - DEBUG - push QTextEdit error_text
+2025-10-21 21:12:05,431 - DEBUG - pop widget QTextEdit error_text
+2025-10-21 21:12:05,431 - DEBUG - new topwidget <PyQt6.QtWidgets.QDialog object at 0x000002175403C0F0>
+2025-10-21 21:12:05,431 - DEBUG - pop widget QDialog Dialog
+2025-10-21 21:12:05,431 - DEBUG - new topwidget None

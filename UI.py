@@ -1,0 +1,354 @@
+from schislen import *
+from PyQt6.QtWidgets import QApplication, QWidget, QPushButton, QLabel, QLineEdit, QTextEdit, QComboBox, QMessageBox, \
+    QTabWidget, QVBoxLayout, QGridLayout, QHBoxLayout
+import sys
+from PyQt6.QtGui import QIcon, QTextCursor, QFont
+from PyQt6.QtCore import QSize, Qt
+from calculate import *
+from equations import *
+from statistic import *
+from addings import *
+import logging
+class SistemSchileniy(QWidget):
+    def __init__(self):
+        super().__init__()
+        label_sch_text = QLabel(self, text="Арифметика систем счислений:")
+        label_sch_text.move(0, 0)
+
+        self.entry_first_num = QLineEdit(self)
+        self.entry_first_num.move(0, 25)
+
+        self.entry_second_num = QLineEdit(self)
+        self.entry_second_num.move(165, 25)
+
+        self.operator_variabl = QComboBox(self)
+        self.operator_variabl.addItems(["+", "-", "*", "/"])
+        self.operator_variabl.move(135, 25)
+
+        self.button_sch_calculate = QPushButton(self, text="Выполнить операцию")
+        self.button_sch_calculate.move(0, 50)
+
+        self.label_sch_result = QLineEdit(self)
+        self.label_sch_result.move(0, 80)
+        self.label_sch_result.resize(300, 20)
+        self.ss = QLineEdit(self)
+
+        self.box = QGridLayout(self)
+        self.lbl = QLabel("с.с", self)
+        self.box.addWidget(self.entry_first_num, 1, 0)
+
+        self.box.addWidget(self.entry_second_num, 1, 2)
+        self.box.addWidget(label_sch_text, 0, 0, 1, 4)
+        self.box.addWidget(self.button_sch_calculate, 3, 0, 1, 4)
+        self.box.addWidget(self.operator_variabl, 1, 1)
+        self.box.addWidget(self.label_sch_result, 4, 0, 1, 4)
+        self.box.addWidget(self.ss, 2, 3)
+        self.box.addWidget(self.lbl, 2, 4)
+        self.button_sch_calculate.clicked.connect(lambda: self.on_click())
+
+    def on_click(self):
+        calculate_sch(self, self.operator_variabl.currentText(), self.ss.text())
+
+
+class Calculator(QWidget):
+
+    def __init__(self):
+        super().__init__()
+        self.box = QVBoxLayout(self)
+        label_basic_calc_text = QLabel(self)
+        label_basic_calc_text.setText("Введите числовое выражение (2+2):")
+        label_basic_calc_text.move(0, 0)
+
+        self.entry = QLineEdit()
+        self.entry.move(0, 20)
+
+        self.button_calc = QPushButton()
+
+        self.button_calc.setText("Вычислить")
+        self.button_calc.move(216, 15)
+
+
+        self.label = QLineEdit(self)
+        self.label.move(0, 40)
+        self.label.resize(1000, 16)
+
+        self.button_cor = QPushButton(text='√')
+        self.button_cor.move(296, 15)
+        self.box.addWidget(label_basic_calc_text)
+        self.box.addWidget(self.entry)
+        
+        self.box.addWidget(self.button_calc)
+        
+        self.box.addWidget(self.button_cor)
+        self.box.addWidget(self.button_calc)
+        self.box.addWidget(self.label)
+        print(self.button_calc)
+        self.button_calc.clicked.connect(lambda: self.on_click())
+
+        self.button_cor.clicked.connect(lambda: get_root_degree(self))
+    def on_click(self):
+        calculate(self)
+    
+
+
+
+
+class EqualationUI(QWidget):
+    def __init__(self):
+        super().__init__()
+        self.box = QVBoxLayout(self)
+        label_system_of_equations_text = QLabel(self, text="Введите систему уравнений (через пробел):")
+        label_system_of_equations_text.move(0, 60)
+
+        self.entry_system_of_equations = QLineEdit(self)
+        self.entry_system_of_equations.move(0, 80)
+
+        self.button_system_of_equations = QPushButton(self, text="Решить систему уравнений")
+        self.button_system_of_equations.move(305, 80)
+        self.entry_system_of_equations.resize(250, 20)
+
+        self.label_system_of_equations = QLineEdit(self)
+        self.label_system_of_equations.move(0, 105)
+        self.label_system_of_equations.resize(1000, 40)
+
+        self.box.addWidget(label_system_of_equations_text)
+        self.box.addWidget(self.entry_system_of_equations)
+        self.box.addWidget(self.button_system_of_equations)
+        self.box.addWidget(self.label_system_of_equations)
+        self.button_system_of_equations.clicked.connect(lambda: self.on_click())
+    def on_click(self):
+        solve_system_of_equations(self)
+
+
+
+
+
+class StatisticUI(QWidget):
+    def __init__(self):
+        super().__init__()
+
+        label_number_entry = QLabel(self, text="Введите числа через пробел:")
+        label_number_entry.move(0, 145)
+
+        self.entry_numbers = QLineEdit(self)
+        self.entry_numbers.resize(245, 20)
+        self.entry_numbers.move(0, 165)
+
+        self.button_mean = QPushButton(self, text="Среднее значение")
+        self.button_mean.move(305, 160)
+
+        self.button_median = QPushButton(self, text="Медиана")
+        self.button_median.move(418, 160)
+
+        self.button_max = QPushButton(self, text="Максимум")
+        self.button_max.move(484, 160)
+
+        self.button_min = QPushButton(self, text="Минимум")
+        self.button_min.move(556, 160)
+
+        self.button_range = QPushButton(self, text="Размах")
+        self.button_range.move(624, 160)
+
+        self.button_variance = QPushButton(self, text="Дисперсия")
+        self.button_variance.move(690, 160)
+
+        self.label_stat_result =QLineEdit(self)
+        self.label_stat_result.move(0, 200)
+        self.label_stat_result.resize(1000, 30)
+        self.box = QVBoxLayout(self)
+        
+        self.box.addWidget(label_number_entry)
+        self.box.addWidget(self.entry_numbers)
+        self.box.addWidget(self.button_mean)
+        self.box.addWidget(self.button_median)
+        self.box.addWidget(self.button_max)
+        self.box.addWidget(self.button_min)
+        self.box.addWidget(self.button_range)
+        self.box.addWidget(self.button_variance)
+        self.box.addWidget(self.label_stat_result)
+        self.button_mean.clicked.connect(lambda: self.on_click('mean'))
+        self.button_median.clicked.connect(lambda: self.on_click('median'))
+        self.button_max.clicked.connect(lambda: self.on_click('max'))
+        self.button_min.clicked.connect(lambda: self.on_click('min'))
+        self.button_range.clicked.connect(lambda: self.on_click('range'))
+        self.button_variance.clicked.connect(lambda: self.on_click('variance'))
+    def on_click(self, stat_type):
+        calculate_statistics(self, stat_type)
+        
+from trinogremetric import *
+class TrigonometryUI(QWidget):
+    def __init__(self):
+        super().__init__()
+
+        cord_x = 0
+        cord_y = 220
+        self.label_trig_text = QLabel(self, text="Введите угол синус, косинус или тангенс которого вы хотите найти:")
+        self.label_trig_text.move(cord_x, cord_y)
+
+        self.trig_input = QLineEdit(self)
+        self.trig_input.move(cord_x, cord_y + 20)
+
+        self.sin_button = QPushButton(self, text="sin")
+        self.sin_button.move(cord_x, cord_y + 40)
+
+        self.cos_button = QPushButton(self, text="cos")
+        self.cos_button.move(cord_x + 100, cord_y + 40)
+
+        self.tan_button = QPushButton(self, text="tan")
+        self.tan_button.move(cord_x + 200, cord_y + 40)
+
+        self.trig_output = QLineEdit(self)
+        self.trig_output.move(cord_x + 135, cord_y + 20)
+        self.trig_output.resize(1000, 30)
+        
+        self.box = QVBoxLayout(self)
+        self.box.addWidget(self.label_trig_text)
+        self.box.addWidget(self.trig_input)
+        self.box.addWidget(self.sin_button)
+        self.box.addWidget(self.cos_button)
+        self.box.addWidget(self.tan_button)
+        self.box.addWidget(self.trig_output)
+        self.sin_button.clicked.connect(lambda: self.on_click('sin'))
+        self.cos_button.clicked.connect(lambda: self.on_click('cos'))
+        self.tan_button.clicked.connect(lambda: self.on_click('tan'))
+    def on_click(self, type):
+        process_trigonometric_function(self, type)
+
+
+class FractionUI(QWidget):
+    def __init__(self):
+        super().__init__()
+
+        label_fractions_text = QLabel(self, text="Арифметика дробей:")
+        label_fractions_text.move(0, 0)
+
+        self.entry_first_fraction = QLineEdit(self)
+        self.entry_first_fraction.move(0, 25)
+
+        self.entry_second_fraction = QLineEdit(self)
+        self.entry_second_fraction.move(165, 25)
+
+        self.operator_variable = QComboBox(self)
+        self.operator_variable.addItems(["+", "-", "*", "/"])
+        self.operator_variable.move(135, 25)
+
+        self.button_fractions_calculate = QPushButton(self, text="Выполнить операцию")
+        self.button_fractions_calculate.move(0, 50)
+
+        self.label_fractions_result = QLineEdit(self)
+        self.label_fractions_result.move(0, 80)
+        self.label_fractions_result.resize(300, 20)
+
+        self.box = QGridLayout(self)
+
+        self.box.addWidget(self.entry_first_fraction, 1, 0)
+
+        self.box.addWidget(self.entry_second_fraction, 1, 2)
+        self.box.addWidget(label_fractions_text, 0, 0, 1, 3)
+        self.box.addWidget(self.button_fractions_calculate, 2, 0, 1, 3)
+        self.box.addWidget(self.operator_variable, 1, 1)
+        self.box.addWidget(self.label_fractions_result, 3, 0, 1, 3)
+        self.button_fractions_calculate.clicked.connect(lambda: self.on_click())
+    def on_click(self):
+        arithmetic_operation_fractions(self, self.entry_first_fraction.text(), self.entry_second_fraction.text(), self.operator_variable.currentText())
+
+
+
+
+
+class HistoryandError(QWidget):
+    def __init__(self):
+        
+        super().__init__()
+
+        self.error_text = QTextEdit(self)
+        self.error_text.setReadOnly(True)
+        self.error_text.resize(500, 150)
+        
+        self.history_text = QTextEdit(self)
+        
+        self.history_text.resize(600, 150)
+        self.label_of_errors = QLabel(self, text='Поле с ошибками при вычислении:')
+        
+        self.cl_b = QPushButton(self, text="Очистить историю")
+        
+        self.box = QHBoxLayout(self)
+        self.box.addWidget(self.label_of_errors)
+        self.box.addWidget(self.error_text)
+        self.box.addWidget(self.history_text)
+        self.box.addWidget(self.cl_b)
+
+        
+    def auto_scroll(self):
+        cursor = self.history_text.textCursor()
+        cursor.movePosition(QTextCursor.MoveOperation.End)
+        self.history_text.setTextCursor(cursor)
+
+class NewApp(QWidget):
+    def __init__(self):
+        super().__init__()
+        tab = QTabWidget(self)
+        self.page = QWidget(tab)
+        self.box = QVBoxLayout(self)
+        self.setWindowTitle("Расширенный калькулятор")
+        calculator = Calculator()
+        self.page.setLayout(calculator.box)
+        tab.addTab(self.page, 'Калькулятор')
+        page2 = QWidget(tab)
+        equate = EqualationUI()
+        page2.setLayout(equate.box)
+        tab.addTab(page2, 'Решение уравнений')
+
+        stati = StatisticUI()
+        page3 = QWidget(tab)
+        page3.setLayout(stati.box)
+        tab.addTab(page3, 'Статистика')
+        tab.setGeometry(0, 0, 800, 300)
+
+        page4 = QWidget(tab)
+        trigo = TrigonometryUI()
+        page4.setLayout(trigo.box)
+        tab.addTab(page4, "Тригонометрия")
+
+        page5 = QWidget(tab)
+        frac = FractionUI()
+        page5.setLayout(frac.box)
+        tab.addTab(page5, "Арифметика дробей")
+        page6 = QWidget(tab)
+
+        sch = SistemSchileniy()
+        page6.setLayout(sch.box)
+        tab.addTab(page6, "Системы счисления")
+        # self.history_text = QTextEdit(self)
+        self.box.addWidget(tab)
+        # self.box.addWidget(self.history_text)
+        self.setGeometry(30, 30, 850, 300)
+        
+        self.reklam = QPushButton("Калькулятор по формулам", self)
+        self.box.addWidget(self.reklam)
+        
+        self.reklam.clicked.connect(self.on_click)
+    def on_click(self):
+        webbrowser.open_new_tab("https://kostyaramensky.pythonanywhere.com/")
+        
+        
+        
+
+
+
+
+    
+
+
+if __name__ == '__main__':
+    logging.basicConfig(level=logging.DEBUG, format='%(asctime)s - %(levelname)s - %(message)s', filename='logs.log', encoding="UTF-8")
+    with open("logs.log", "w") as f:
+        f.write("")
+    from start import *
+    app = QApplication(sys.argv)
+    print(sys.argv)
+    check_first_run_and_show_tutorial()
+    app.setWindowIcon(QIcon("calculator.ico"))
+    window = NewApp()
+    window.show()
+    sys.exit(app.exec())
