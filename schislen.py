@@ -44,10 +44,27 @@ def calculate_sch(window, type, ss):
             result = int(result)
         else:
             raise ValueError("Такого нет")
+        print(result)
         result = to_2_36(result, ss)
         print(result)
         window.label_sch_result.setText(f"{result}")
         addings.add_to_history(f"{a}{type}{b} в {ss} сс", str(result))
+        print(window.label_sch_result.text())
+        # update_history()
+
+    except ValueError as ve:
+        addings.handle_error(str(ve), function_name="calculate_sch")
+    except Exception as e:
+        addings.handle_error(str(e), function_name="calculate_sch")
+
+def perevod_to(window, ss1, ss2):
+    try:
+        a = to_10(window.entry_first_num.text(), ss1)
+        
+        result = to_2_36(a, ss2)
+        print(result)
+        window.label_sch_result.setText(f"{result}")
+        
         print(window.label_sch_result.text())
         # update_history()
 

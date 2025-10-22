@@ -35,6 +35,7 @@ class SistemSchileniy(QWidget):
 
         self.box = QGridLayout(self)
         self.lbl = QLabel("с.с", self)
+        
         self.box.addWidget(self.entry_first_num, 1, 0)
 
         self.box.addWidget(self.entry_second_num, 1, 2)
@@ -49,7 +50,40 @@ class SistemSchileniy(QWidget):
     def on_click(self):
         calculate_sch(self, self.operator_variabl.currentText(), self.ss.text())
 
+class SistemSchileniyPerevod(QWidget):
+    def __init__(self):
+        super().__init__()
+        label_sch_text = QLabel(self, text="Перевод и одной системы счисления в другую")
+        label_sch_text.move(0, 0)
 
+        self.entry_first_num = QLineEdit(self)
+        self.entry_first_num.move(0, 25)
+
+        self.ss_1 = QLineEdit(self)        
+
+        self.button_sch_calculate = QPushButton(self, text="Выполнить операцию")
+        self.button_sch_calculate.move(0, 50)
+
+        self.label_sch_result = QLineEdit(self)
+        self.label_sch_result.move(0, 80)
+        self.label_sch_result.resize(300, 20)
+        self.ss_2 = QLineEdit(self)
+
+        self.box = QGridLayout(self)
+        self.lbl = QLabel("с.с", self)
+        self.operator_variabl = QLabel(self)
+        self.box.addWidget(label_sch_text, 0, 0, 1, 4)
+        self.box.addWidget(self.entry_first_num, 1, 0)
+        self.box.addWidget(self.ss_1, 2, 1)
+        self.box.addWidget(self.operator_variabl, 2, 2)
+        self.box.addWidget(self.ss_2, 2, 3)
+        self.box.addWidget(self.lbl, 2, 4)
+        self.box.addWidget(self.button_sch_calculate, 3, 0, 1, 4)
+        self.box.addWidget(self.label_sch_result, 4, 0, 1, 4)
+        self.button_sch_calculate.clicked.connect(lambda: self.on_click())
+        
+    def on_click(self):
+        perevod_to(self, self.ss_1.text(), self.ss_2.text())
 class Calculator(QWidget):
 
     def __init__(self):
@@ -196,7 +230,11 @@ class TrigonometryUI(QWidget):
 
         self.tan_button = QPushButton(self, text="tan")
         self.tan_button.move(cord_x + 200, cord_y + 40)
-
+        self.arcsin_button = QPushButton(self, text="arcsin")
+        self.arcsin_button.move(cord_x + 200, cord_y + 60)
+        self.arccos_button = QPushButton(self, text="arccos")
+        self.arccos_button.move(cord_x + 200, cord_y + 80)
+        self.arctan_button = QPushButton(self, text='arctan')
         self.trig_output = QLineEdit(self)
         self.trig_output.move(cord_x + 135, cord_y + 20)
         self.trig_output.resize(1000, 30)
@@ -207,10 +245,16 @@ class TrigonometryUI(QWidget):
         self.box.addWidget(self.sin_button)
         self.box.addWidget(self.cos_button)
         self.box.addWidget(self.tan_button)
+        self.box.addWidget(self.arcsin_button)
+        self.box.addWidget(self.arccos_button)
+        self.box.addWidget(self.arctan_button)
         self.box.addWidget(self.trig_output)
         self.sin_button.clicked.connect(lambda: self.on_click('sin'))
         self.cos_button.clicked.connect(lambda: self.on_click('cos'))
         self.tan_button.clicked.connect(lambda: self.on_click('tan'))
+        self.arcsin_button.clicked.connect(lambda: self.on_click('arcsin'))
+        self.arccos_button.clicked.connect(lambda: self.on_click('arccos'))
+        self.arctan_button.clicked.connect(lambda: self.on_click('arctan'))
     def on_click(self, type):
         process_trigonometric_function(self, type)
 
@@ -322,8 +366,11 @@ class NewApp(QWidget):
         # self.history_text = QTextEdit(self)
         self.box.addWidget(tab)
         # self.box.addWidget(self.history_text)
-        self.setGeometry(30, 30, 850, 300)
-        
+        self.setGeometry(30, 30, 1000, 300)
+        page7 = QWidget(tab)
+        schp = SistemSchileniyPerevod()
+        page7.setLayout(schp.box)
+        tab.addTab(page7, "Перевод в сс")
         self.reklam = QPushButton("Калькулятор по формулам", self)
         self.box.addWidget(self.reklam)
         
@@ -331,14 +378,6 @@ class NewApp(QWidget):
     def on_click(self):
         webbrowser.open_new_tab("https://kostyaramensky.pythonanywhere.com/")
         
-        
-        
-
-
-
-
-    
-
 
 if __name__ == '__main__':
     logging.basicConfig(level=logging.DEBUG, format='%(asctime)s - %(levelname)s - %(message)s', filename='logs.log', encoding="UTF-8")
