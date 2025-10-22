@@ -1,0 +1,8 @@
+2025-11-09 18:47:18,798 - DEBUG - Starting new HTTP connection (1): www.google.com:80
+2025-11-09 18:47:19,289 - DEBUG - http://www.google.com:80 "HEAD / HTTP/1.1" 200 0
+2025-11-09 18:47:19,293 - DEBUG - Starting new HTTPS connection (1): rascalck.pythonanywhere.com:443
+2025-11-09 18:47:20,902 - DEBUG - https://rascalck.pythonanywhere.com:443 "GET /version/ HTTP/1.1" 200 10
+2025-11-09 18:47:20,949 - INFO - Обнаружена новая версия: 9.20.39.19. Текущая версия: 9.19.39.19.
+2025-11-09 18:47:28,420 - INFO - Файл 'preferences.txt' прочитан: True, интерпретировано как: True
+2025-11-09 18:47:30,673 - INFO - Обучающее сообщение отображено.
+2025-11-09 18:47:30,676 - INFO - Файл 'preferences.txt' обновлён.
