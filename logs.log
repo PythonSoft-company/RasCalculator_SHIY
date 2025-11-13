@@ -1,0 +1,10 @@
+2025-11-15 20:49:40,388 - DEBUG - Starting new HTTP connection (1): www.google.com:80
+2025-11-15 20:49:40,457 - DEBUG - http://www.google.com:80 "HEAD / HTTP/1.1" 200 0
+2025-11-15 20:49:40,460 - DEBUG - Starting new HTTPS connection (1): rascalck.pythonanywhere.com:443
+2025-11-15 20:49:41,615 - DEBUG - https://rascalck.pythonanywhere.com:443 "GET /version/ HTTP/1.1" 200 10
+2025-11-15 20:49:41,662 - INFO - У вас установлена актуальная версия.
+2025-11-15 20:49:41,665 - INFO - Файл 'preferences.txt' прочитан: False, интерпретировано как: False
+2025-11-15 20:49:41,665 - INFO - Это не первый запуск.
+2025-11-15 20:50:02,275 - INFO - 91203.0000000000
+2025-11-15 20:50:02,276 - INFO - <class 'sympy.core.numbers.Float'>
+2025-11-15 20:50:02,276 - INFO - 91203

@@ -21,6 +21,7 @@ def dynamic_precision(value):
     getcontext().prec = 30
     
     if isinstance(value, (int, float)):
+        
         decimal_value = Decimal(str(value))
         order = int(decimal_value.adjusted())
         rounded_value = decimal_value.normalize()

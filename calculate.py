@@ -59,7 +59,7 @@ def calculate(windows):
 		else:
 			result = sympify(expression).evalf()
 			logging.info(result)
-			result = float(result)
+			logging.info(type(result))
 		
 		# Применение динамической точности
 		final_result = addings.format_number(addings.dynamic_precision(result))
