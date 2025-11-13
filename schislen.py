@@ -1,4 +1,4 @@
-from string import printable
+from string import printable, ascii_uppercase
 import addings
 
 def to_10(n, ss):
@@ -12,12 +12,12 @@ def to_10(n, ss):
         raise ValueError(f"Для {ss} системы счисления можно использовать только символы {printable[:ss]}")
 
 
-from string import ascii_uppercase
+
 
 
 def to_2_36(n,ss):
-    # Функция принимает число n
-    # Переводит в систему счисления равной ss
+    # Функция принимает число n,
+    # переводит в систему счисления равной ss
     # И возвращает число в виде строки
     ss = int(ss)
     alph = "0123456789" + ascii_uppercase
