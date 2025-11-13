@@ -1,10 +1,45 @@
-2025-11-15 20:49:40,388 - DEBUG - Starting new HTTP connection (1): www.google.com:80
-2025-11-15 20:49:40,457 - DEBUG - http://www.google.com:80 "HEAD / HTTP/1.1" 200 0
-2025-11-15 20:49:40,460 - DEBUG - Starting new HTTPS connection (1): rascalck.pythonanywhere.com:443
-2025-11-15 20:49:41,615 - DEBUG - https://rascalck.pythonanywhere.com:443 "GET /version/ HTTP/1.1" 200 10
-2025-11-15 20:49:41,662 - INFO - У вас установлена актуальная версия.
-2025-11-15 20:49:41,665 - INFO - Файл 'preferences.txt' прочитан: False, интерпретировано как: False
-2025-11-15 20:49:41,665 - INFO - Это не первый запуск.
-2025-11-15 20:50:02,275 - INFO - 91203.0000000000
-2025-11-15 20:50:02,276 - INFO - <class 'sympy.core.numbers.Float'>
-2025-11-15 20:50:02,276 - INFO - 91203
+2025-11-20 20:00:26,549 - DEBUG - Starting new HTTP connection (1): www.google.com:80
+2025-11-20 20:00:26,898 - DEBUG - http://www.google.com:80 "HEAD / HTTP/1.1" 200 0
+2025-11-20 20:00:26,901 - DEBUG - Starting new HTTPS connection (1): rascalck.pythonanywhere.com:443
+2025-11-20 20:00:28,562 - DEBUG - https://rascalck.pythonanywhere.com:443 "GET /version/ HTTP/1.1" 200 10
+2025-11-20 20:00:28,570 - INFO - У вас установлена актуальная версия.
+2025-11-20 20:00:28,575 - INFO - Файл 'preferences.txt' прочитан: False, интерпретировано как: False
+2025-11-20 20:00:28,575 - INFO - Это не первый запуск.
+2025-11-20 20:01:20,291 - DEBUG - toplevel widget is QDialog
+2025-11-20 20:01:20,291 - DEBUG - setting property geometry
+2025-11-20 20:01:20,291 - DEBUG - setting property windowTitle
+2025-11-20 20:01:20,294 - DEBUG - setting property toolTipDuration
+2025-11-20 20:01:20,297 - DEBUG - push QDialog Dialog
+2025-11-20 20:01:20,305 - DEBUG - setting property geometry
+2025-11-20 20:01:20,309 - DEBUG - setting property orientation
+2025-11-20 20:01:20,310 - DEBUG - setting property standardButtons
+2025-11-20 20:01:20,316 - DEBUG - setting property centerButtons
+2025-11-20 20:01:20,316 - DEBUG - push QDialogButtonBox buttonBox
+2025-11-20 20:01:20,316 - DEBUG - pop widget QDialogButtonBox buttonBox
+2025-11-20 20:01:20,316 - DEBUG - new topwidget <PyQt6.QtWidgets.QDialog object at 0x0000024A1597CF50>
+2025-11-20 20:01:20,367 - DEBUG - setting property geometry
+2025-11-20 20:01:20,367 - DEBUG - setting property readOnly
+2025-11-20 20:01:20,371 - DEBUG - push QTextEdit error_text
+2025-11-20 20:01:20,372 - DEBUG - pop widget QTextEdit error_text
+2025-11-20 20:01:20,372 - DEBUG - new topwidget <PyQt6.QtWidgets.QDialog object at 0x0000024A1597CF50>
+2025-11-20 20:01:20,372 - DEBUG - pop widget QDialog Dialog
+2025-11-20 20:01:20,372 - DEBUG - new topwidget None
+2025-11-20 20:36:54,714 - DEBUG - toplevel widget is QDialog
+2025-11-20 20:36:54,714 - DEBUG - setting property geometry
+2025-11-20 20:36:54,715 - DEBUG - setting property windowTitle
+2025-11-20 20:36:54,715 - DEBUG - setting property toolTipDuration
+2025-11-20 20:36:54,715 - DEBUG - push QDialog Dialog
+2025-11-20 20:36:54,715 - DEBUG - setting property geometry
+2025-11-20 20:36:54,715 - DEBUG - setting property orientation
+2025-11-20 20:36:54,716 - DEBUG - setting property standardButtons
+2025-11-20 20:36:54,716 - DEBUG - setting property centerButtons
+2025-11-20 20:36:54,716 - DEBUG - push QDialogButtonBox buttonBox
+2025-11-20 20:36:54,717 - DEBUG - pop widget QDialogButtonBox buttonBox
+2025-11-20 20:36:54,717 - DEBUG - new topwidget <PyQt6.QtWidgets.QDialog object at 0x0000024A1597E210>
+2025-11-20 20:36:54,717 - DEBUG - setting property geometry
+2025-11-20 20:36:54,717 - DEBUG - setting property readOnly
+2025-11-20 20:36:54,718 - DEBUG - push QTextEdit error_text
+2025-11-20 20:36:54,718 - DEBUG - pop widget QTextEdit error_text
+2025-11-20 20:36:54,718 - DEBUG - new topwidget <PyQt6.QtWidgets.QDialog object at 0x0000024A1597E210>
+2025-11-20 20:36:54,718 - DEBUG - pop widget QDialog Dialog
+2025-11-20 20:36:54,718 - DEBUG - new topwidget None
