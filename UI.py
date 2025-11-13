@@ -333,7 +333,7 @@ class NewApp(QWidget):
         super().__init__()
         tab = QTabWidget(self)
         self.page = QWidget(tab)
-        self.box = QVBoxLayout(self)
+        self.box = QGridLayout(self)
         self.setWindowTitle("Расширенный калькулятор")
         calculator = Calculator()
         self.page.setLayout(calculator.box)
@@ -364,7 +364,7 @@ class NewApp(QWidget):
         page6.setLayout(sch.box)
         tab.addTab(page6, "Системы счисления")
         # self.history_text = QTextEdit(self)
-        self.box.addWidget(tab)
+        self.box.addWidget(tab, 0, 0)
         # self.box.addWidget(self.history_text)
         self.setGeometry(30, 30, 1000, 300)
         page7 = QWidget(tab)
@@ -372,11 +372,13 @@ class NewApp(QWidget):
         page7.setLayout(schp.box)
         tab.addTab(page7, "Перевод в сс")
         self.reklam = QPushButton("Калькулятор по формулам", self)
-        self.box.addWidget(self.reklam)
-        
-        self.reklam.clicked.connect(self.on_click)
-    def on_click(self):
-        webbrowser.open_new_tab("https://kostyaramensky.pythonanywhere.com/")
+        self.box.addWidget(self.reklam, 1, 0, 1, 2)
+        self.tg = QPushButton("Телеграм канал", self)
+        self.tg.clicked.connect(lambda: self.on_click("https://t.me/Ras_Kakulator_official"))
+        self.box.addWidget(self.tg, 0, 1)
+        self.reklam.clicked.connect(lambda: self.on_click("https://kostyaramensky.pythonanywhere.com/"))
+    def on_click(self, link):
+        webbrowser.open_new_tab(link)
         
 
 if __name__ == '__main__':

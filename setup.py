@@ -43,20 +43,20 @@ desktop_shortcut = Executable(
     shortcut_name='Рас.Калькулятор',
     shortcut_dir='DesktopFolder'
 )
-Panel_shortcut = Executable(
-    script="UI.py",
-    base=base_executable,
-    icon=icon_path,
-    target_name="calculator.exe",
-    shortcut_name='Рас.Калькулятор',
-    shortcut_dir='TaskBar'
-)
+# Panel_shortcut = Executable(
+#     script="UI.py",
+#     base=base_executable,
+#     icon=icon_path,
+#     target_name="calculator.exe",
+#     shortcut_name='Рас.Калькулятор',
+#     shortcut_dir='TaskBar'
+# )
 # Параметры сборки
 options = {
     "build_exe": {
         
         "includes": [],                      # Дополнительные модули, если нужны
-        "include_files": ["calculator.ico", "version.txt", "settings_icon.png", 'error_box.ui', 'preferences.txt', 'preferences2.txt', 'cur_version.txt', "logs.log"],# Добавляем файл version.txt
+        "include_files": ["calculator.ico", "version.txt", 'error_box.ui', 'preferences.txt', 'cur_version.txt', "logs.log"],# Добавляем файл version.txt
         "optimize": 2,
         "excludes": ["PyQt5", "tkinter"]
          # Попробуйте добавить этот параметр# Уровень оптимизации байт-кода (может уменьшить размер)
@@ -77,6 +77,6 @@ setup(
     description="Рас. Калькулятор",
     executables=[start_menu_shortcut, desktop_shortcut],  # Два разных ярлык,
     options=options,
-    author='PythonSoft'
-    
+    author='PythonSoft',
+    #icon=icon_path
 )
