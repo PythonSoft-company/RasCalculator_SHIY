@@ -382,9 +382,9 @@ class NewApp(QWidget):
         
 
 if __name__ == '__main__':
-    logging.basicConfig(level=logging.DEBUG, format='%(asctime)s - %(levelname)s - %(message)s', filename='logs.log', encoding="UTF-8")
     with open("logs.log", "w") as f:
         f.write("")
+    logging.basicConfig(level=logging.DEBUG, format='%(asctime)s - %(levelname)s - %(message)s', filename='logs.log', encoding="UTF-8")
     from start import *
     app = QApplication(sys.argv)
     print(sys.argv)
