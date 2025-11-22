@@ -1,7 +1,341 @@
-2025-11-20 21:40:22,186 - DEBUG - Starting new HTTP connection (1): www.google.com:80
-2025-11-20 21:40:22,276 - DEBUG - http://www.google.com:80 "HEAD / HTTP/1.1" 200 0
-2025-11-20 21:40:22,279 - DEBUG - Starting new HTTPS connection (1): rascalck.pythonanywhere.com:443
-2025-11-20 21:40:23,750 - DEBUG - https://rascalck.pythonanywhere.com:443 "GET /version/ HTTP/1.1" 200 10
-2025-11-20 21:40:23,762 - INFO - У вас установлена актуальная версия.
-2025-11-20 21:40:23,767 - INFO - Файл 'preferences.txt' прочитан: False, интерпретировано как: False
-2025-11-20 21:40:23,767 - INFO - Это не первый запуск.
+2025-11-22 12:48:06,150 - DEBUG - Starting new HTTPS connection (1): www.google.com:443
+2025-11-22 12:48:06,917 - DEBUG - https://www.google.com:443 "HEAD / HTTP/1.1" 200 0
+2025-11-22 12:48:06,923 - DEBUG - Starting new HTTPS connection (1): rascalck.pythonanywhere.com:443
+2025-11-22 12:48:07,983 - DEBUG - https://rascalck.pythonanywhere.com:443 "GET /version/ HTTP/1.1" 200 10
+2025-11-22 12:48:07,993 - INFO - У вас установлена актуальная версия.
+2025-11-22 12:48:07,997 - INFO - Файл 'preferences.txt' прочитан: False, интерпретировано как: False
+2025-11-22 12:48:07,997 - INFO - Это не первый запуск.
+2025-11-22 12:48:51,644 - INFO - 4.00000000000000
+2025-11-22 12:48:51,644 - INFO - <class 'sympy.core.numbers.Float'>
+2025-11-22 12:48:51,647 - INFO - 4
+2025-11-22 12:49:02,923 - DEBUG - toplevel widget is QDialog
+2025-11-22 12:49:02,923 - DEBUG - setting property geometry
+2025-11-22 12:49:02,923 - DEBUG - setting property windowTitle
+2025-11-22 12:49:02,926 - DEBUG - setting property toolTipDuration
+2025-11-22 12:49:02,928 - DEBUG - push QDialog Dialog
+2025-11-22 12:49:02,935 - DEBUG - setting property geometry
+2025-11-22 12:49:02,938 - DEBUG - setting property orientation
+2025-11-22 12:49:02,940 - DEBUG - setting property standardButtons
+2025-11-22 12:49:02,942 - DEBUG - setting property centerButtons
+2025-11-22 12:49:02,942 - DEBUG - push QDialogButtonBox buttonBox
+2025-11-22 12:49:02,942 - DEBUG - pop widget QDialogButtonBox buttonBox
+2025-11-22 12:49:02,942 - DEBUG - new topwidget <PyQt6.QtWidgets.QDialog object at 0x0000021B6612CFF0>
+2025-11-22 12:49:02,994 - DEBUG - setting property geometry
+2025-11-22 12:49:02,994 - DEBUG - setting property readOnly
+2025-11-22 12:49:02,998 - DEBUG - push QTextEdit error_text
+2025-11-22 12:49:02,998 - DEBUG - pop widget QTextEdit error_text
+2025-11-22 12:49:02,998 - DEBUG - new topwidget <PyQt6.QtWidgets.QDialog object at 0x0000021B6612CFF0>
+2025-11-22 12:49:02,998 - DEBUG - pop widget QDialog Dialog
+2025-11-22 12:49:02,998 - DEBUG - new topwidget None
+2025-11-22 12:51:06,538 - INFO - 14.0000000000000
+2025-11-22 12:51:06,538 - INFO - <class 'sympy.core.numbers.Float'>
+2025-11-22 12:51:06,538 - INFO - 14
+2025-11-22 12:51:21,702 - INFO - 22.0000000000000
+2025-11-22 12:51:21,702 - INFO - <class 'sympy.core.numbers.Float'>
+2025-11-22 12:51:21,702 - INFO - 22
+2025-11-22 12:51:34,595 - INFO - 30.0000000000000
+2025-11-22 12:51:34,595 - INFO - <class 'sympy.core.numbers.Float'>
+2025-11-22 12:51:34,595 - INFO - 30
+2025-11-22 12:51:47,056 - INFO - Полученная строка уравнений: 2ч+5=9
+2025-11-22 12:51:47,057 - INFO - Разбито на уравнения: ['2ч+5=9']
+2025-11-22 12:51:47,057 - INFO - Преобразование уравнения: 2ч+5=9
+2025-11-22 12:51:47,214 - INFO - Добавлено уравнение: Eq(2*ч + 5, 9)
+2025-11-22 12:51:47,214 - INFO - Переменные, задействованные в уравнениях: {ч}
+2025-11-22 12:51:47,223 - INFO - Решение системы уравнений: {ч: 2}
+2025-11-22 12:51:47,224 - INFO - 2
+2025-11-22 12:51:47,224 - INFO - Применение динамической точности: {ч: '2'}
+2025-11-22 12:51:47,224 - INFO - Форматированный результат: ч=2
+2025-11-22 12:52:28,264 - INFO - Полученная строка уравнений: x**2+7x+6=9
+2025-11-22 12:52:28,264 - INFO - Разбито на уравнения: ['x**2+7x+6=9']
+2025-11-22 12:52:28,264 - INFO - Преобразование уравнения: x**2+7x+6=9
+2025-11-22 12:52:28,281 - INFO - Добавлено уравнение: Eq(x**2 + 7*x + 6, 9)
+2025-11-22 12:52:28,281 - INFO - Переменные, задействованные в уравнениях: {x}
+2025-11-22 12:52:28,615 - INFO - Решение системы уравнений: [{x: -7/2 + sqrt(61)/2}, {x: -sqrt(61)/2 - 7/2}]
+2025-11-22 12:52:28,616 - INFO - Не определён тип <class 'sympy.core.add.Add'>
+2025-11-22 12:52:28,616 - INFO - Не определён тип <class 'sympy.core.add.Add'>
+2025-11-22 12:52:28,617 - INFO - Форматированный результат: x=-7/2 + sqrt(61)/2, x=-sqrt(61)/2 - 7/2
+2025-11-22 12:54:18,826 - INFO - 0.405124837953327
+2025-11-22 12:54:18,827 - INFO - <class 'sympy.core.numbers.Float'>
+2025-11-22 12:54:18,827 - INFO - 0.405
+2025-11-22 12:55:22,769 - INFO - -7.40512483795333
+2025-11-22 12:55:22,769 - INFO - <class 'sympy.core.numbers.Float'>
+2025-11-22 12:55:22,769 - INFO - -7.41
+2025-11-22 12:55:32,709 - INFO - Полученная строка уравнений: x**2+7x+6=7
+2025-11-22 12:55:32,709 - INFO - Разбито на уравнения: ['x**2+7x+6=7']
+2025-11-22 12:55:32,709 - INFO - Преобразование уравнения: x**2+7x+6=7
+2025-11-22 12:55:32,716 - INFO - Добавлено уравнение: Eq(x**2 + 7*x + 6, 7)
+2025-11-22 12:55:32,716 - INFO - Переменные, задействованные в уравнениях: {x}
+2025-11-22 12:55:32,732 - INFO - Решение системы уравнений: [{x: -7/2 + sqrt(53)/2}, {x: -sqrt(53)/2 - 7/2}]
+2025-11-22 12:55:32,733 - INFO - Не определён тип <class 'sympy.core.add.Add'>
+2025-11-22 12:55:32,734 - INFO - Не определён тип <class 'sympy.core.add.Add'>
+2025-11-22 12:55:32,735 - INFO - Форматированный результат: x=-7/2 + sqrt(53)/2, x=-sqrt(53)/2 - 7/2
+2025-11-22 12:55:33,480 - INFO - Полученная строка уравнений: x**2+7x+6=7
+2025-11-22 12:55:33,481 - INFO - Разбито на уравнения: ['x**2+7x+6=7']
+2025-11-22 12:55:33,481 - INFO - Преобразование уравнения: x**2+7x+6=7
+2025-11-22 12:55:33,483 - INFO - Добавлено уравнение: Eq(x**2 + 7*x + 6, 7)
+2025-11-22 12:55:33,484 - INFO - Переменные, задействованные в уравнениях: {x}
+2025-11-22 12:55:33,494 - INFO - Решение системы уравнений: [{x: -7/2 + sqrt(53)/2}, {x: -sqrt(53)/2 - 7/2}]
+2025-11-22 12:55:33,495 - INFO - Не определён тип <class 'sympy.core.add.Add'>
+2025-11-22 12:55:33,495 - INFO - Не определён тип <class 'sympy.core.add.Add'>
+2025-11-22 12:55:33,496 - INFO - Форматированный результат: x=-7/2 + sqrt(53)/2, x=-sqrt(53)/2 - 7/2
+2025-11-22 12:55:34,143 - INFO - Полученная строка уравнений: x**2+7x+6=7
+2025-11-22 12:55:34,143 - INFO - Разбито на уравнения: ['x**2+7x+6=7']
+2025-11-22 12:55:34,143 - INFO - Преобразование уравнения: x**2+7x+6=7
+2025-11-22 12:55:34,146 - INFO - Добавлено уравнение: Eq(x**2 + 7*x + 6, 7)
+2025-11-22 12:55:34,146 - INFO - Переменные, задействованные в уравнениях: {x}
+2025-11-22 12:55:34,156 - INFO - Решение системы уравнений: [{x: -7/2 + sqrt(53)/2}, {x: -sqrt(53)/2 - 7/2}]
+2025-11-22 12:55:34,157 - INFO - Не определён тип <class 'sympy.core.add.Add'>
+2025-11-22 12:55:34,157 - INFO - Не определён тип <class 'sympy.core.add.Add'>
+2025-11-22 12:55:34,159 - INFO - Форматированный результат: x=-7/2 + sqrt(53)/2, x=-sqrt(53)/2 - 7/2
+2025-11-22 12:55:34,782 - INFO - Полученная строка уравнений: x**2+7x+6=7
+2025-11-22 12:55:34,782 - INFO - Разбито на уравнения: ['x**2+7x+6=7']
+2025-11-22 12:55:34,782 - INFO - Преобразование уравнения: x**2+7x+6=7
+2025-11-22 12:55:34,785 - INFO - Добавлено уравнение: Eq(x**2 + 7*x + 6, 7)
+2025-11-22 12:55:34,785 - INFO - Переменные, задействованные в уравнениях: {x}
+2025-11-22 12:55:34,795 - INFO - Решение системы уравнений: [{x: -7/2 + sqrt(53)/2}, {x: -sqrt(53)/2 - 7/2}]
+2025-11-22 12:55:34,797 - INFO - Не определён тип <class 'sympy.core.add.Add'>
+2025-11-22 12:55:34,797 - INFO - Не определён тип <class 'sympy.core.add.Add'>
+2025-11-22 12:55:34,799 - INFO - Форматированный результат: x=-7/2 + sqrt(53)/2, x=-sqrt(53)/2 - 7/2
+2025-11-22 12:55:40,790 - INFO - Полученная строка уравнений: x**2+7x+6=67
+2025-11-22 12:55:40,790 - INFO - Разбито на уравнения: ['x**2+7x+6=67']
+2025-11-22 12:55:40,790 - INFO - Преобразование уравнения: x**2+7x+6=67
+2025-11-22 12:55:40,799 - INFO - Добавлено уравнение: Eq(x**2 + 7*x + 6, 67)
+2025-11-22 12:55:40,800 - INFO - Переменные, задействованные в уравнениях: {x}
+2025-11-22 12:55:40,821 - INFO - Решение системы уравнений: [{x: -7/2 + sqrt(293)/2}, {x: -sqrt(293)/2 - 7/2}]
+2025-11-22 12:55:40,822 - INFO - Не определён тип <class 'sympy.core.add.Add'>
+2025-11-22 12:55:40,822 - INFO - Не определён тип <class 'sympy.core.add.Add'>
+2025-11-22 12:55:40,823 - INFO - Форматированный результат: x=-7/2 + sqrt(293)/2, x=-sqrt(293)/2 - 7/2
+2025-11-22 12:56:02,156 - INFO - Полученная строка уравнений: x=-7/2 + sqrt(293)/2 x=-sqrt(293)/2 - 7/2
+2025-11-22 12:56:02,156 - INFO - Разбито на уравнения: ['x=-7/2', '+', 'sqrt(293)/2', 'x=-sqrt(293)/2', '-', '7/2']
+2025-11-22 12:56:02,156 - INFO - Преобразование уравнения: x=-7/2
+2025-11-22 12:56:02,164 - INFO - Добавлено уравнение: Eq(x, -7/2)
+2025-11-22 12:56:02,165 - INFO - Преобразование уравнения: +
+2025-11-22 12:56:02,179 - DEBUG - toplevel widget is QDialog
+2025-11-22 12:56:02,179 - DEBUG - setting property geometry
+2025-11-22 12:56:02,179 - DEBUG - setting property windowTitle
+2025-11-22 12:56:02,179 - DEBUG - setting property toolTipDuration
+2025-11-22 12:56:02,179 - DEBUG - push QDialog Dialog
+2025-11-22 12:56:02,180 - DEBUG - setting property geometry
+2025-11-22 12:56:02,180 - DEBUG - setting property orientation
+2025-11-22 12:56:02,180 - DEBUG - setting property standardButtons
+2025-11-22 12:56:02,180 - DEBUG - setting property centerButtons
+2025-11-22 12:56:02,180 - DEBUG - push QDialogButtonBox buttonBox
+2025-11-22 12:56:02,181 - DEBUG - pop widget QDialogButtonBox buttonBox
+2025-11-22 12:56:02,181 - DEBUG - new topwidget <PyQt6.QtWidgets.QDialog object at 0x0000021B665AE0D0>
+2025-11-22 12:56:02,181 - DEBUG - setting property geometry
+2025-11-22 12:56:02,182 - DEBUG - setting property readOnly
+2025-11-22 12:56:02,182 - DEBUG - push QTextEdit error_text
+2025-11-22 12:56:02,182 - DEBUG - pop widget QTextEdit error_text
+2025-11-22 12:56:02,182 - DEBUG - new topwidget <PyQt6.QtWidgets.QDialog object at 0x0000021B665AE0D0>
+2025-11-22 12:56:02,182 - DEBUG - pop widget QDialog Dialog
+2025-11-22 12:56:02,182 - DEBUG - new topwidget None
+2025-11-22 12:56:04,559 - ERROR - Исключительная ситуация в solve_system_of_equations: not enough values to unpack (expected 2, got 1)
+2025-11-22 12:56:08,686 - INFO - Полученная строка уравнений: x=-7/2 + sqrt(293)/2 x=-sqrt(293)/2 - 7/2
+2025-11-22 12:56:08,687 - INFO - Разбито на уравнения: ['x=-7/2', '+', 'sqrt(293)/2', 'x=-sqrt(293)/2', '-', '7/2']
+2025-11-22 12:56:08,687 - INFO - Преобразование уравнения: x=-7/2
+2025-11-22 12:56:08,689 - INFO - Добавлено уравнение: Eq(x, -7/2)
+2025-11-22 12:56:08,689 - INFO - Преобразование уравнения: +
+2025-11-22 12:56:08,693 - DEBUG - toplevel widget is QDialog
+2025-11-22 12:56:08,693 - DEBUG - setting property geometry
+2025-11-22 12:56:08,693 - DEBUG - setting property windowTitle
+2025-11-22 12:56:08,693 - DEBUG - setting property toolTipDuration
+2025-11-22 12:56:08,693 - DEBUG - push QDialog Dialog
+2025-11-22 12:56:08,693 - DEBUG - setting property geometry
+2025-11-22 12:56:08,694 - DEBUG - setting property orientation
+2025-11-22 12:56:08,694 - DEBUG - setting property standardButtons
+2025-11-22 12:56:08,694 - DEBUG - setting property centerButtons
+2025-11-22 12:56:08,694 - DEBUG - push QDialogButtonBox buttonBox
+2025-11-22 12:56:08,694 - DEBUG - pop widget QDialogButtonBox buttonBox
+2025-11-22 12:56:08,694 - DEBUG - new topwidget <PyQt6.QtWidgets.QDialog object at 0x0000021B665AE0D0>
+2025-11-22 12:56:08,695 - DEBUG - setting property geometry
+2025-11-22 12:56:08,695 - DEBUG - setting property readOnly
+2025-11-22 12:56:08,695 - DEBUG - push QTextEdit error_text
+2025-11-22 12:56:08,695 - DEBUG - pop widget QTextEdit error_text
+2025-11-22 12:56:08,695 - DEBUG - new topwidget <PyQt6.QtWidgets.QDialog object at 0x0000021B665AE0D0>
+2025-11-22 12:56:08,696 - DEBUG - pop widget QDialog Dialog
+2025-11-22 12:56:08,696 - DEBUG - new topwidget None
+2025-11-22 12:56:10,213 - ERROR - Исключительная ситуация в solve_system_of_equations: not enough values to unpack (expected 2, got 1)
+2025-11-22 12:56:20,759 - INFO - Полученная строка уравнений: x=-7/2 + sqrt(293)/2 x=-sqrt(293)/2 - 7/2
+2025-11-22 12:56:20,759 - INFO - Разбито на уравнения: ['x=-7/2', '+', 'sqrt(293)/2', 'x=-sqrt(293)/2', '-', '7/2']
+2025-11-22 12:56:20,759 - INFO - Преобразование уравнения: x=-7/2
+2025-11-22 12:56:20,761 - INFO - Добавлено уравнение: Eq(x, -7/2)
+2025-11-22 12:56:20,762 - INFO - Преобразование уравнения: +
+2025-11-22 12:56:20,765 - DEBUG - toplevel widget is QDialog
+2025-11-22 12:56:20,765 - DEBUG - setting property geometry
+2025-11-22 12:56:20,765 - DEBUG - setting property windowTitle
+2025-11-22 12:56:20,765 - DEBUG - setting property toolTipDuration
+2025-11-22 12:56:20,765 - DEBUG - push QDialog Dialog
+2025-11-22 12:56:20,766 - DEBUG - setting property geometry
+2025-11-22 12:56:20,766 - DEBUG - setting property orientation
+2025-11-22 12:56:20,766 - DEBUG - setting property standardButtons
+2025-11-22 12:56:20,766 - DEBUG - setting property centerButtons
+2025-11-22 12:56:20,766 - DEBUG - push QDialogButtonBox buttonBox
+2025-11-22 12:56:20,767 - DEBUG - pop widget QDialogButtonBox buttonBox
+2025-11-22 12:56:20,767 - DEBUG - new topwidget <PyQt6.QtWidgets.QDialog object at 0x0000021B665AE0D0>
+2025-11-22 12:56:20,767 - DEBUG - setting property geometry
+2025-11-22 12:56:20,768 - DEBUG - setting property readOnly
+2025-11-22 12:56:20,768 - DEBUG - push QTextEdit error_text
+2025-11-22 12:56:20,768 - DEBUG - pop widget QTextEdit error_text
+2025-11-22 12:56:20,768 - DEBUG - new topwidget <PyQt6.QtWidgets.QDialog object at 0x0000021B665AE0D0>
+2025-11-22 12:56:20,768 - DEBUG - pop widget QDialog Dialog
+2025-11-22 12:56:20,768 - DEBUG - new topwidget None
+2025-11-22 12:56:23,204 - ERROR - Исключительная ситуация в solve_system_of_equations: not enough values to unpack (expected 2, got 1)
+2025-11-22 12:57:13,599 - INFO - Полученная строка уравнений: x=-7/2+sqrt(293)/2 x=-sqrt(293)/2 - 7/2
+2025-11-22 12:57:13,600 - INFO - Разбито на уравнения: ['x=-7/2+sqrt(293)/2', 'x=-sqrt(293)/2', '-', '7/2']
+2025-11-22 12:57:13,600 - INFO - Преобразование уравнения: x=-7/2+sqrt(293)/2
+2025-11-22 12:57:13,610 - INFO - Добавлено уравнение: Eq(x, -7/2 + sqrt(293)/2)
+2025-11-22 12:57:13,611 - INFO - Преобразование уравнения: x=-sqrt(293)/2
+2025-11-22 12:57:13,615 - INFO - Добавлено уравнение: Eq(x, -sqrt(293)/2)
+2025-11-22 12:57:13,615 - INFO - Преобразование уравнения: -
+2025-11-22 12:57:13,619 - DEBUG - toplevel widget is QDialog
+2025-11-22 12:57:13,620 - DEBUG - setting property geometry
+2025-11-22 12:57:13,620 - DEBUG - setting property windowTitle
+2025-11-22 12:57:13,620 - DEBUG - setting property toolTipDuration
+2025-11-22 12:57:13,620 - DEBUG - push QDialog Dialog
+2025-11-22 12:57:13,620 - DEBUG - setting property geometry
+2025-11-22 12:57:13,623 - DEBUG - setting property orientation
+2025-11-22 12:57:13,623 - DEBUG - setting property standardButtons
+2025-11-22 12:57:13,623 - DEBUG - setting property centerButtons
+2025-11-22 12:57:13,624 - DEBUG - push QDialogButtonBox buttonBox
+2025-11-22 12:57:13,624 - DEBUG - pop widget QDialogButtonBox buttonBox
+2025-11-22 12:57:13,624 - DEBUG - new topwidget <PyQt6.QtWidgets.QDialog object at 0x0000021B665AE0D0>
+2025-11-22 12:57:13,624 - DEBUG - setting property geometry
+2025-11-22 12:57:13,624 - DEBUG - setting property readOnly
+2025-11-22 12:57:13,625 - DEBUG - push QTextEdit error_text
+2025-11-22 12:57:13,625 - DEBUG - pop widget QTextEdit error_text
+2025-11-22 12:57:13,625 - DEBUG - new topwidget <PyQt6.QtWidgets.QDialog object at 0x0000021B665AE0D0>
+2025-11-22 12:57:13,625 - DEBUG - pop widget QDialog Dialog
+2025-11-22 12:57:13,625 - DEBUG - new topwidget None
+2025-11-22 12:57:17,603 - ERROR - Исключительная ситуация в solve_system_of_equations: not enough values to unpack (expected 2, got 1)
+2025-11-22 12:57:22,770 - INFO - Полученная строка уравнений: x=-7/2+sqrt(293)/2 x=-sqrt(293)/2-7/2
+2025-11-22 12:57:22,770 - INFO - Разбито на уравнения: ['x=-7/2+sqrt(293)/2', 'x=-sqrt(293)/2-7/2']
+2025-11-22 12:57:22,770 - INFO - Преобразование уравнения: x=-7/2+sqrt(293)/2
+2025-11-22 12:57:22,773 - INFO - Добавлено уравнение: Eq(x, -7/2 + sqrt(293)/2)
+2025-11-22 12:57:22,773 - INFO - Преобразование уравнения: x=-sqrt(293)/2-7/2
+2025-11-22 12:57:22,782 - INFO - Добавлено уравнение: Eq(x, -sqrt(293)/2 - 7/2)
+2025-11-22 12:57:22,782 - INFO - Переменные, задействованные в уравнениях: {x}
+2025-11-22 12:57:22,813 - INFO - Решение системы уравнений: []
+2025-11-22 12:57:22,813 - INFO - Решение не найдено.
+2025-11-22 12:58:56,299 - INFO - 41.875
+2025-11-22 12:58:56,875 - INFO - 38.5
+2025-11-22 12:58:57,405 - INFO - 85
+2025-11-22 12:58:57,959 - INFO - 4
+2025-11-22 12:58:58,559 - INFO - 81
+2025-11-22 12:58:59,111 - INFO - 521.859375
+2025-11-22 12:59:02,800 - DEBUG - toplevel widget is QDialog
+2025-11-22 12:59:02,801 - DEBUG - setting property geometry
+2025-11-22 12:59:02,801 - DEBUG - setting property windowTitle
+2025-11-22 12:59:02,801 - DEBUG - setting property toolTipDuration
+2025-11-22 12:59:02,801 - DEBUG - push QDialog Dialog
+2025-11-22 12:59:02,801 - DEBUG - setting property geometry
+2025-11-22 12:59:02,801 - DEBUG - setting property orientation
+2025-11-22 12:59:02,801 - DEBUG - setting property standardButtons
+2025-11-22 12:59:02,802 - DEBUG - setting property centerButtons
+2025-11-22 12:59:02,802 - DEBUG - push QDialogButtonBox buttonBox
+2025-11-22 12:59:02,802 - DEBUG - pop widget QDialogButtonBox buttonBox
+2025-11-22 12:59:02,802 - DEBUG - new topwidget <PyQt6.QtWidgets.QDialog object at 0x0000021B665AF110>
+2025-11-22 12:59:02,803 - DEBUG - setting property geometry
+2025-11-22 12:59:02,803 - DEBUG - setting property readOnly
+2025-11-22 12:59:02,803 - DEBUG - push QTextEdit error_text
+2025-11-22 12:59:02,803 - DEBUG - pop widget QTextEdit error_text
+2025-11-22 12:59:02,803 - DEBUG - new topwidget <PyQt6.QtWidgets.QDialog object at 0x0000021B665AF110>
+2025-11-22 12:59:02,803 - DEBUG - pop widget QDialog Dialog
+2025-11-22 12:59:02,804 - DEBUG - new topwidget None
+2025-11-22 12:59:05,995 - DEBUG - toplevel widget is QDialog
+2025-11-22 12:59:05,995 - DEBUG - setting property geometry
+2025-11-22 12:59:05,995 - DEBUG - setting property windowTitle
+2025-11-22 12:59:05,995 - DEBUG - setting property toolTipDuration
+2025-11-22 12:59:05,995 - DEBUG - push QDialog Dialog
+2025-11-22 12:59:05,996 - DEBUG - setting property geometry
+2025-11-22 12:59:05,996 - DEBUG - setting property orientation
+2025-11-22 12:59:05,996 - DEBUG - setting property standardButtons
+2025-11-22 12:59:05,997 - DEBUG - setting property centerButtons
+2025-11-22 12:59:05,997 - DEBUG - push QDialogButtonBox buttonBox
+2025-11-22 12:59:05,997 - DEBUG - pop widget QDialogButtonBox buttonBox
+2025-11-22 12:59:05,997 - DEBUG - new topwidget <PyQt6.QtWidgets.QDialog object at 0x0000021B665AF7F0>
+2025-11-22 12:59:05,998 - DEBUG - setting property geometry
+2025-11-22 12:59:05,998 - DEBUG - setting property readOnly
+2025-11-22 12:59:05,998 - DEBUG - push QTextEdit error_text
+2025-11-22 12:59:05,998 - DEBUG - pop widget QTextEdit error_text
+2025-11-22 12:59:05,999 - DEBUG - new topwidget <PyQt6.QtWidgets.QDialog object at 0x0000021B665AF7F0>
+2025-11-22 12:59:05,999 - DEBUG - pop widget QDialog Dialog
+2025-11-22 12:59:05,999 - DEBUG - new topwidget None
+2025-11-22 12:59:11,353 - INFO - 0.9902681
+2025-11-22 12:59:12,652 - INFO - -0.1391731
+2025-11-22 12:59:13,363 - INFO - -7.11537
+2025-11-22 12:59:13,881 - DEBUG - toplevel widget is QDialog
+2025-11-22 12:59:13,881 - DEBUG - setting property geometry
+2025-11-22 12:59:13,881 - DEBUG - setting property windowTitle
+2025-11-22 12:59:13,881 - DEBUG - setting property toolTipDuration
+2025-11-22 12:59:13,881 - DEBUG - push QDialog Dialog
+2025-11-22 12:59:13,882 - DEBUG - setting property geometry
+2025-11-22 12:59:13,882 - DEBUG - setting property orientation
+2025-11-22 12:59:13,882 - DEBUG - setting property standardButtons
+2025-11-22 12:59:13,882 - DEBUG - setting property centerButtons
+2025-11-22 12:59:13,882 - DEBUG - push QDialogButtonBox buttonBox
+2025-11-22 12:59:13,882 - DEBUG - pop widget QDialogButtonBox buttonBox
+2025-11-22 12:59:13,883 - DEBUG - new topwidget <PyQt6.QtWidgets.QDialog object at 0x0000021B665AF110>
+2025-11-22 12:59:13,883 - DEBUG - setting property geometry
+2025-11-22 12:59:13,883 - DEBUG - setting property readOnly
+2025-11-22 12:59:13,883 - DEBUG - push QTextEdit error_text
+2025-11-22 12:59:13,883 - DEBUG - pop widget QTextEdit error_text
+2025-11-22 12:59:13,884 - DEBUG - new topwidget <PyQt6.QtWidgets.QDialog object at 0x0000021B665AF110>
+2025-11-22 12:59:13,884 - DEBUG - pop widget QDialog Dialog
+2025-11-22 12:59:13,884 - DEBUG - new topwidget None
+2025-11-22 13:00:03,434 - DEBUG - toplevel widget is QDialog
+2025-11-22 13:00:03,434 - DEBUG - setting property geometry
+2025-11-22 13:00:03,434 - DEBUG - setting property windowTitle
+2025-11-22 13:00:03,434 - DEBUG - setting property toolTipDuration
+2025-11-22 13:00:03,434 - DEBUG - push QDialog Dialog
+2025-11-22 13:00:03,435 - DEBUG - setting property geometry
+2025-11-22 13:00:03,435 - DEBUG - setting property orientation
+2025-11-22 13:00:03,435 - DEBUG - setting property standardButtons
+2025-11-22 13:00:03,435 - DEBUG - setting property centerButtons
+2025-11-22 13:00:03,435 - DEBUG - push QDialogButtonBox buttonBox
+2025-11-22 13:00:03,435 - DEBUG - pop widget QDialogButtonBox buttonBox
+2025-11-22 13:00:03,436 - DEBUG - new topwidget <PyQt6.QtWidgets.QDialog object at 0x0000021B665AF7F0>
+2025-11-22 13:00:03,436 - DEBUG - setting property geometry
+2025-11-22 13:00:03,437 - DEBUG - setting property readOnly
+2025-11-22 13:00:03,437 - DEBUG - push QTextEdit error_text
+2025-11-22 13:00:03,437 - DEBUG - pop widget QTextEdit error_text
+2025-11-22 13:00:03,437 - DEBUG - new topwidget <PyQt6.QtWidgets.QDialog object at 0x0000021B665AF7F0>
+2025-11-22 13:00:03,437 - DEBUG - pop widget QDialog Dialog
+2025-11-22 13:00:03,437 - DEBUG - new topwidget None
+2025-11-22 13:00:11,562 - DEBUG - toplevel widget is QDialog
+2025-11-22 13:00:11,562 - DEBUG - setting property geometry
+2025-11-22 13:00:11,562 - DEBUG - setting property windowTitle
+2025-11-22 13:00:11,562 - DEBUG - setting property toolTipDuration
+2025-11-22 13:00:11,562 - DEBUG - push QDialog Dialog
+2025-11-22 13:00:11,562 - DEBUG - setting property geometry
+2025-11-22 13:00:11,562 - DEBUG - setting property orientation
+2025-11-22 13:00:11,563 - DEBUG - setting property standardButtons
+2025-11-22 13:00:11,563 - DEBUG - setting property centerButtons
+2025-11-22 13:00:11,563 - DEBUG - push QDialogButtonBox buttonBox
+2025-11-22 13:00:11,563 - DEBUG - pop widget QDialogButtonBox buttonBox
+2025-11-22 13:00:11,563 - DEBUG - new topwidget <PyQt6.QtWidgets.QDialog object at 0x0000021B665AF110>
+2025-11-22 13:00:11,564 - DEBUG - setting property geometry
+2025-11-22 13:00:11,564 - DEBUG - setting property readOnly
+2025-11-22 13:00:11,564 - DEBUG - push QTextEdit error_text
+2025-11-22 13:00:11,564 - DEBUG - pop widget QTextEdit error_text
+2025-11-22 13:00:11,564 - DEBUG - new topwidget <PyQt6.QtWidgets.QDialog object at 0x0000021B665AF110>
+2025-11-22 13:00:11,565 - DEBUG - pop widget QDialog Dialog
+2025-11-22 13:00:11,566 - DEBUG - new topwidget None
+2025-11-22 13:00:19,299 - DEBUG - toplevel widget is QDialog
+2025-11-22 13:00:19,299 - DEBUG - setting property geometry
+2025-11-22 13:00:19,299 - DEBUG - setting property windowTitle
+2025-11-22 13:00:19,300 - DEBUG - setting property toolTipDuration
+2025-11-22 13:00:19,300 - DEBUG - push QDialog Dialog
+2025-11-22 13:00:19,300 - DEBUG - setting property geometry
+2025-11-22 13:00:19,300 - DEBUG - setting property orientation
+2025-11-22 13:00:19,300 - DEBUG - setting property standardButtons
+2025-11-22 13:00:19,300 - DEBUG - setting property centerButtons
+2025-11-22 13:00:19,301 - DEBUG - push QDialogButtonBox buttonBox
+2025-11-22 13:00:19,301 - DEBUG - pop widget QDialogButtonBox buttonBox
+2025-11-22 13:00:19,301 - DEBUG - new topwidget <PyQt6.QtWidgets.QDialog object at 0x0000021B665AF7F0>
+2025-11-22 13:00:19,302 - DEBUG - setting property geometry
+2025-11-22 13:00:19,302 - DEBUG - setting property readOnly
+2025-11-22 13:00:19,303 - DEBUG - push QTextEdit error_text
+2025-11-22 13:00:19,303 - DEBUG - pop widget QTextEdit error_text
+2025-11-22 13:00:19,303 - DEBUG - new topwidget <PyQt6.QtWidgets.QDialog object at 0x0000021B665AF7F0>
+2025-11-22 13:00:19,303 - DEBUG - pop widget QDialog Dialog
+2025-11-22 13:00:19,303 - DEBUG - new topwidget None

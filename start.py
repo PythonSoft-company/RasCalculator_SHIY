@@ -93,7 +93,7 @@ def has_internet_connection():
     """
     try:
         # Пробуем соединиться с внешним сервисом
-        response = requests.head("http://www.google.com/", timeout=5)
+        response = requests.head("https://www.google.com/", timeout=5)
         return response.status_code == 200
     except requests.ConnectionError:
         
