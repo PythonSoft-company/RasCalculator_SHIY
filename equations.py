@@ -237,7 +237,7 @@ def solve_system_of_equations(window):
                 
                 for x in solution:
                     # Применяем точность к каждому решению
-                    numeric_dict = {var: addings.dynamic_precision(sol) for var, sol in x.items()}
+                    numeric_dict = {var: addings.dynamic_precision(sol.evalf) for var, sol in x.items()}
                     
                     # Добавляем полученный словарь в список
                     num.append(numeric_dict)
@@ -255,7 +255,7 @@ def solve_system_of_equations(window):
                 
                 print(formatted_result)
             else:
-                numeric_dict = {var: addings.dynamic_precision(sol) for var, sol in solution.items()}
+                numeric_dict = {var: addings.dynamic_precision(sol.evalf()) for var, sol in solution.items()}
                 logging.info(f"Применение динамической точности: {numeric_dict}")
                 
                 # Форматируем результат для отображения
