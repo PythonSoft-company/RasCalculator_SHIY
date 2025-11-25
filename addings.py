@@ -5,7 +5,7 @@ import traceback
 from PyQt6.QtWidgets import QInputDialog, QApplication
 from sympy import Float, Integer
 from PyQt6 import uic
-from UI import NewApp
+# from UI import NewApp
 history = []
 
 
@@ -16,7 +16,7 @@ def get_root_degree(window):
     else:
         print("Отмена")
 
-
+# def
 def dynamic_precision(value):
     getcontext().prec = 30
     
@@ -25,6 +25,7 @@ def dynamic_precision(value):
         decimal_value = Decimal(str(value))
         order = int(decimal_value.adjusted())
         rounded_value = decimal_value.normalize()
+        
         precision = max(6, -order + 6)
         logging.info(format(rounded_value, f'.{precision}f').rstrip('0').rstrip('.'))
         return format(rounded_value, f'.{precision}f').rstrip('0').rstrip('.')
@@ -45,7 +46,7 @@ def dynamic_precision(value):
         decimal_value = Decimal(str(value))
         order = int(decimal_value.adjusted())
         rounded_value = decimal_value.normalize()
-        precision = max(2, -order + 2)
+        precision = max(6, -order + 6)
         logging.info(format(rounded_value, f'.{precision}f').rstrip('0').rstrip('.'))
         return format(rounded_value, f'.{precision}f').rstrip('0').rstrip('.')
     elif isinstance(value, Integer):
@@ -53,7 +54,7 @@ def dynamic_precision(value):
         decimal_value = Decimal(str(value))
         order = int(decimal_value.adjusted())
         rounded_value = decimal_value.normalize()
-        precision = max(2, -order + 2)
+        precision = max(6, -order + 6)
         logging.info(format(rounded_value, f'.{precision}f').rstrip('0').rstrip('.'))
         return format(rounded_value, f'.{precision}f').rstrip('0').rstrip('.')
     else:

@@ -54,8 +54,8 @@ def calculate(windows):
             parts = expression.split('√')
             if len(parts) != 2:
                 raise ValueError("Неверный формат корня")
-            n = int(parts[0])
-            x = int(parts[1])
+            n = float(parts[0])
+            x = float(parts[1])
             result = nth_root(x, n)
         else:
             result = sympify(expression).evalf()
