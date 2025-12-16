@@ -135,11 +135,12 @@ class Functionsympy(QWidget):
     def __init__(self, window):
         try:
             super().__init__()
+            self.setWindowTitle("Функции")
             box = QGridLayout(self)
             x = 0
             y = 0
             list_f = ['pi','sqrt', 'exp', 'ln', 'log', 'sin', 'cos', 'tan', 'asin', 'acos', 'atan',
-            'rad', 'deg', 'sinh', 'cosh', 'tanh', 'besselj', 'bessely', 'besseli', 'besselk',
+            'rad', 'deg', 'sinh', 'cosh', 'tanh',
                       'Si', 'Ci', 'Ei', ]
             for func in list_f:
                 
