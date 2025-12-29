@@ -1,7 +1,0 @@
-2025-12-16 18:32:06,761 - DEBUG - Starting new HTTPS connection (1): www.google.com:443
-2025-12-16 18:32:07,578 - DEBUG - https://www.google.com:443 "HEAD / HTTP/1.1" 200 0
-2025-12-16 18:32:07,584 - DEBUG - Starting new HTTPS connection (1): rascalck.pythonanywhere.com:443
-2025-12-16 18:32:08,671 - DEBUG - https://rascalck.pythonanywhere.com:443 "GET /version/ HTTP/1.1" 200 10
-2025-12-16 18:32:08,690 - INFO - У вас установлена актуальная версия.
-2025-12-16 18:32:08,697 - INFO - Файл 'preferences.txt' прочитан: False, интерпретировано как: False
-2025-12-16 18:32:08,697 - INFO - Это не первый запуск.

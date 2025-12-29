@@ -26,8 +26,8 @@ def process_trigonometric_function(window, function_type):
 		window.trig_output.setText(f"{final_result}")
 		
 	except ValueError as ve:
-		print(ve)
+		logging.error(ve)
 		addings.handle_error(str(ve), input_data=window.trig_input.text(), function_name="process_trigonometric_function")
 	except Exception as e:
-		print(e)
+		logging.error(e)
 		addings.handle_error(str(e), input_data=window.trig_input.text(), function_name="process_trigonometric_function")

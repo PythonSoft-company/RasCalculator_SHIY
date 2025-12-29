@@ -104,7 +104,7 @@ from PyQt6.QtWidgets import QMessageBox
 def solve_system_of_equations(window):
     try:
         # Получаем уравнения из поля ввода
-        equations_str = window.entry_system_of_equations.text()
+        equations_str = window.entry.text()
         logging.info(f"Полученная строка уравнений: {equations_str}")
         if equations_str == "":
             return
@@ -122,8 +122,8 @@ def solve_system_of_equations(window):
             equation = equation.replace('=', '==')
             equation = re.sub(r'(\d+)([A-Za-zА-ЯЁа-яё])', r'\1*\2', equation)
             lhs, rhs = equation.split('==')
-            print(lhs)
-            print(rhs)
+            logging.info(str(lhs))
+            logging.info(str(rhs))
             expressions.append(Eq(sympify(lhs), sympify(rhs)))
             logging.info(f"Добавлено уравнение: {expressions[-1]}")
             
@@ -133,46 +133,46 @@ def solve_system_of_equations(window):
         logging.info(f"Переменные, задействованные в уравнениях: {used_variables}")
         
         # Проверка на недоопределённость системы
-        if len(expressions) < len(used_variables) and len(used_variables) <= 2:
+        if len(expressions) < len(used_variables) <= 2:
             logging.info("Количество уравнений меньше количества переменных, система недоопределена.")
             response = QMessageBox.question(None,
                                             'Выбор',
                                             'Бесконечное количество решений.\nВы хотите увидеть график или уравнение функции?',
                                             QMessageBox.StandardButton.Yes | QMessageBox.StandardButton.No)
             
-            print(response)
+            logging.info(str(response))
             if response == QMessageBox.StandardButton.Yes:
                 variable = re.findall('[A-Za-zА-ЯЁа-яё]', lhs)
-                print(variable)
+                logging.info(str(variable))
                 variables = [Symbol(name) for name in variable]
-                print(variables)
+                logging.info(str(variables))
                 
                 if len(variables) < len(used_variables):
                     
                     equation = transform_equation(lhs, rhs)
-                    print(equation)
+                    logging.info(str(equation))
                     equation = equation.replace('=', '==')
                     lhs, rhs = equation.split('==')
-                    print(lhs)
-                    print(rhs)
+                    logging.info(str(lhs))
+                    logging.info(str(rhs))
                     equ = Eq(sympify(lhs), sympify(rhs))
-                    print(equ)
+                    logging.info(str(equ))
                     variable = re.findall('[A-Za-zА-ЯЁа-яё]', lhs)
-                    print(variable)
+                    logging.info(variable)
                     variables = [Symbol(name) for name in variable]
-                    print(variables)
+                    logging.info(str(variables))
                     eq = expressions[0]
-                    print(variables)
-                    print(iter(variables))
-                    print(next(iter(variables)))
+                    logging.info(str(variables))
+                    logging.info(str(iter(variables)))
+                    logging.info(str(next(iter(variables))))
                     first_var = next(iter(variables))
                     # Автоматически определяем первые две переменные
                     second_var = next(var for var in variables if var != first_var)
-                    print(first_var)
-                    print(second_var)
+                    logging.info(str(first_var))
+                    logging.info(str(second_var))
                     # Используя все свободные символы
                     collected_expr = equ.lhs.collect([first_var, second_var])
-                    print(collected_expr)
+                    logging.info(str(collected_expr))
                     collected_expr_str = str(collected_expr)
                     collected_expr_str = collected_expr_str.replace(' ', '')
                     if str(lhs) == collected_expr_str:
@@ -180,32 +180,32 @@ def solve_system_of_equations(window):
                         a = collected_expr.coeff(first_var)  # Коэффициент при первой переменной
                         b = collected_expr.coeff(second_var)  # Коэффициент при второй переменной
                         c = -equ.rhs
-                        print(a)
-                        print(b)
-                        print(c)
+                        logging.info(str(a))
+                        logging.info(str(b))
+                        logging.info(str(c))
                     else:
                         a = collected_expr.coeff(second_var)  # Коэффициент при первой переменной
                         b = collected_expr.coeff(first_var)  # Коэффициент при второй переменной
                         c = -equ.rhs
-                        print(a)
-                        print(b)
-                        print(c)
+                        logging.info(str(a))
+                        logging.info(str(b))
+                        logging.info(str(c))
                     # Строим график
                     plot_linear_equation(a, b, c)
                     return
                 logging.info("Выбор пользователя: да, строить график.")
                 eq = expressions[0]
-                print(variables)
-                print(iter(variables))
-                print(next(iter(variables)))
+                logging.info(str(variables))
+                logging.info(str(iter(variables)))
+                logging.info(str(next(iter(variables))))
                 first_var = next(iter(variables))
                 # Автоматически определяем первые две переменные
                 second_var = next(var for var in variables if var != first_var)
-                print(first_var)
-                print(second_var)
+                logging.info(str(first_var))
+                logging.info(str(second_var))
                 # Используя все свободные символы
                 collected_expr = eq.lhs.collect([first_var, second_var])
-                print(collected_expr)
+                logging.info(str(collected_expr))
                 collected_expr_str = str(collected_expr)
                 collected_expr_str = collected_expr_str.replace(' ', '')
                 if str(lhs) == collected_expr_str:
@@ -213,12 +213,12 @@ def solve_system_of_equations(window):
                     a = collected_expr.coeff(first_var)  # Коэффициент при первой переменной
                     b = collected_expr.coeff(second_var)  # Коэффициент при второй переменной
                     c = -eq.rhs
-                    print(a, b, c)
+                    logging.info(f"{a}, {b}, {c}")
                 else:
                     a = collected_expr.coeff(second_var)  # Коэффициент при первой переменной
                     b = collected_expr.coeff(first_var)  # Коэффициент при второй переменной
                     c = -eq.rhs
-                    print(a, b, c)
+                    logging.info(f"{a}, {b}, {c}")
                 # Строим график
                 plot_linear_equation(a, b, c)
                 return
@@ -231,7 +231,7 @@ def solve_system_of_equations(window):
         
         if solution:
             # Применяем dynamic_precision к каждому значению
-            print(solution)
+            logging.info(str(solution))
             if isinstance(solution, list):
                 num = []  # Список для хранения результирующих словарей
                 
@@ -253,7 +253,7 @@ def solve_system_of_equations(window):
                 # Объединяем все полученные строки в одну общую строку
                 formatted_result = ", ".join(results)
                 
-                print(formatted_result)
+                logging.info(str(formatted_result))
             else:
                 numeric_dict = {var: addings.dynamic_precision(sol.evalf()) for var, sol in solution.items()}
                 logging.info(f"Применение динамической точности: {numeric_dict}")
@@ -276,7 +276,7 @@ def solve_system_of_equations(window):
     # Обновляем историю
     
     except Exception as e:
-        print(str(e))
+        logging.error(str(e))
         addings.handle_error(str(e), input_data=window.entry_system_of_equations.text(), function_name="solve_system_of_equations")
         logging.error(f"Исключительная ситуация в solve_system_of_equations: {e}")
 

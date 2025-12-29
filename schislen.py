@@ -4,11 +4,11 @@ import addings
 def to_10(n, ss):
     print(n, ss)
     ss = int(ss)
-    print(type(n), type(ss))
+    logging.error(type(n), type(ss))
     try:
         return int(str(n), ss)
     except Exception as e:
-        print(type(e), e)
+        logging.error(type(e), e)
         raise ValueError(f"Для {ss} системы счисления можно использовать только символы {printable[:ss]}")
 
 
@@ -30,9 +30,9 @@ def to_2_36(n,ss):
 def calculate_sch(window, type, ss):
     try:
         a = to_10(window.entry_first_num.text(), ss)
-        print(a)
+        logging.info(a)
         b = to_10(window.entry_second_num.text(), ss)
-        print(b)
+        logging.info(b)
         if type == "+":
             result = a+b
         elif type == "-":
@@ -44,12 +44,12 @@ def calculate_sch(window, type, ss):
             result = int(result)
         else:
             raise ValueError("Такого нет")
-        print(result)
+        logging.info(result)
         result = to_2_36(result, ss)
-        print(result)
+        logging.info(result)
         window.label_sch_result.setText(f"{result}")
         addings.add_to_history(f"{a}{type}{b} в {ss} сс", str(result))
-        print(window.label_sch_result.text())
+        logging.info(window.label_sch_result.text())
         # update_history()
 
     except ValueError as ve:
@@ -62,10 +62,10 @@ def perevod_to(window, ss1, ss2):
         a = to_10(window.entry_first_num.text(), ss1)
         
         result = to_2_36(a, ss2)
-        print(result)
+        logging.info(result)
         window.label_sch_result.setText(f"{result}")
         
-        print(window.label_sch_result.text())
+        logging.info(window.label_sch_result.text())
         # update_history()
 
     except ValueError as ve:

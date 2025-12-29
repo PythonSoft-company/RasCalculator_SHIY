@@ -1,7 +1,7 @@
 try:
 	import addings
 except Exception as e:
-	print(e)
+	logging.error(e)
 
 
 def variance(numbers):
@@ -17,7 +17,7 @@ def calculate_statistics(window, stat_type):
 	try:
 		
 		numbers = list(map(float, window.entry_numbers.text().split()))
-		print(numbers)
+		logging.info(numbers)
 		if not numbers:
 			return
 		if stat_type == "mean":
@@ -64,10 +64,10 @@ def calculate_statistics(window, stat_type):
 		
 		
 	except ValueError as ve:
-		print(ve)
+		logging.error(ve)
 		addings.handle_error(ve, input_data=window.entry_numbers.text(), function_name="calculate_statistics")
 	except Exception as e:
-		print(e)
+		logging.error(e)
 		addings.handle_error(e, input_data=window.entry_numbers.text(), function_name="calculate_statistics")
 
 

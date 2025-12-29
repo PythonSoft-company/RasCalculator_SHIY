@@ -26,12 +26,12 @@ def nth_root(number, n):
 
 def calculate(windows):
     try:
-        print("Выполнение")
+        logging.debug("Выполнение")
         expression = windows.entry.text()
         expression = replace_z_t(expression)
         expression = replace_caret_with_power(expression)
         
-        print(expression)
+        logging.info(expression)
         if expression == "":
             return
         if '0' in expression and '/' in expression:
@@ -61,12 +61,12 @@ def calculate(windows):
             result = sympify(expression).evalf()
             # result = eval(expression)
             logging.info(result)
-            print(result)
+            logging.info(result)
             logging.info(type(result))
         
         # Применение динамической точности
         final_result = addings.format_number(addings.dynamic_precision(result))
-        print(final_result)
+        logging.info(final_result)
         windows.label.setText(f"{final_result}")
         addings.add_to_history(expression, str(final_result))
         addings.update_history()
@@ -74,14 +74,14 @@ def calculate(windows):
         
     
     except ZeroDivisionError:
-        print("Ошибка")
+        logging.error("Ошибка")
         addings.handle_error("деление на ноль")
     except ValueError as ve:
         addings.handle_error(str(ve), input_data=windows.entry.text(), function_name="calculate")
     except SyntaxError:
         addings.handle_error("Синтаксическа ошибка", input_data=windows.entry.text(), function_name="calculate")
     except Exception as e:
-        print(e)
+        logging.error(e)
         addings.handle_error(str(e), input_data=windows.entry.text(), function_name="calculate")
 
 
@@ -127,9 +127,9 @@ def factorial_scientific(n):
 def arithmetic_operation_fractions(window, first_fraction, second_fraction, operation):
     """Производит арифметические операции с дробями."""
     try:
-        print(type(first_fraction))
+        logging.info(type(first_fraction))
         frac1 = Fraction(first_fraction)
-        print(type(second_fraction))
+        logging.info(type(second_fraction))
         frac2 = Fraction(second_fraction)
         if operation == "+":
             result = frac1 + frac2

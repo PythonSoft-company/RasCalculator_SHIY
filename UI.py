@@ -119,7 +119,7 @@ class Calculator(QWidget):
         
         self.box.addWidget(self.label)
         self.box.addWidget(self.button)
-        print(self.button_calc)
+        logging.info(self.button_calc)
         self.button_calc.clicked.connect(lambda: self.on_click())
         self.button.clicked.connect(lambda: self.functions())
         self.button_cor.clicked.connect(lambda: get_root_degree(self))
@@ -149,19 +149,24 @@ class Functionsympy(QWidget):
                 
                 box.addWidget(button, y, x)
                 x += 1
-                if x == 10:
+                if x == 3:
                     y += 1
                     x = 0
             self.window = window
         except Exception as e:
-            print(e)
+            logging.error(str(e))
         
     def on_click(self, func):
-        print(func)
-        if func != 'pi':
-            self.window.entry.insert(func+'(')
-        else:
-            self.window.entry.insert(func)
+        try:
+            logging.info(func)
+            
+            if func != 'pi':
+                self.window.entry.insert(func+'(')
+            else:
+                self.window.entry.insert(func)
+            
+        except Exception as e:
+            print(e)
         
         
 
@@ -173,12 +178,12 @@ class EqualationUI(QWidget):
         label_system_of_equations_text = QLabel(parent=self, text="Введите систему уравнений (через пробел):")
         label_system_of_equations_text.move(0, 60)
 
-        self.entry_system_of_equations = QLineEdit(self)
-        self.entry_system_of_equations.move(0, 80)
+        self.entry = QLineEdit(self)
+        self.entry.move(0, 80)
 
         self.button_system_of_equations = QPushButton(parent=self, text="Решить систему уравнений")
         self.button_system_of_equations.move(305, 80)
-        self.entry_system_of_equations.resize(250, 20)
+        self.entry.resize(250, 20)
 
         self.label_system_of_equations = QLineEdit(self)
         self.label_system_of_equations.move(0, 105)
@@ -187,7 +192,7 @@ class EqualationUI(QWidget):
         self.button.clicked.connect(lambda: self.functions())
         self.label_system_of_equations.setReadOnly(True)
         self.box.addWidget(label_system_of_equations_text)
-        self.box.addWidget(self.entry_system_of_equations)
+        self.box.addWidget(self.entry)
         self.box.addWidget(self.button_system_of_equations)
         self.box.addWidget(self.label_system_of_equations)
         self.button_system_of_equations.clicked.connect(lambda: self.on_click())
@@ -434,7 +439,7 @@ if __name__ == '__main__':
     logging.basicConfig(level=logging.DEBUG, format='%(asctime)s - %(levelname)s - %(message)s', filename='logs.log', encoding="UTF-8")
     from start import *
     app = QApplication(sys.argv)
-    print(sys.argv)
+    logging.info(sys.argv)
     check_first_run_and_show_tutorial()
     app.setWindowIcon(QIcon("calculator.ico"))
     window = NewApp()
