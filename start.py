@@ -65,7 +65,7 @@ def show_tutorial(title="Добро пожаловать!", message=None):
 Если же хотите опубликовать программу где-то во-первых напишите мне чтобы я знал что вы хотите где-то опубликовать приложение
 Использование программы осуществляется исключительно на риск пользователя.
 Разработчики не несут ответственности за любые убытки, вызванные неправильным использованием данной программы.
-Сайт разработчика: https://rascalculator.pythonanywhere.com
+Сайт разработчика: https://ras-calc-site.onrender.com
 Продолжая работу с программой, вы принимаете вышеуказанное лицензионное соглашение.
 
         """,
@@ -102,7 +102,7 @@ def has_internet_connection():
 
 def check_version():
     version_file = "version.txt"
-    server_url = "https://rascalck.pythonanywhere.com/version/"
+    server_url = "https://ras-calc-site.onrender.com/version_check/"
     curent_vers_file = "cur_version.txt"
     if not has_internet_connection():
         QMessageBox.warning(None,
@@ -120,6 +120,7 @@ def check_version():
             with open(version_file, "r") as file:
                 installed_version = file.read().strip()
         installed_version_tuple = tuple(map(int, installed_version.split('.')))
+        print(current_version)
         current_version_tuple = tuple(map(int, current_version.split('.')))
         
         if installed_version_tuple >= current_version_tuple:
@@ -140,8 +141,10 @@ def check_version():
                                 QMessageBox.StandartButton.Ok)
     try:
         response = requests.get(server_url)
+        print(response)
         response.raise_for_status()
         current_version = response.text.strip()
+        print(current_version)
         with open(curent_vers_file, 'w') as f1:
             f1.write(current_version)
         if not os.path.exists(version_file):
@@ -162,12 +165,12 @@ def check_version():
                                             'Выбор',
                                             f"Ваша версия {installed_version} устарела.\n"
                 f"Рекомендуется установить последнюю версию с официального сайта Расширенного Калькулятора:\n"
-                f"https://rascalculator.pythonanywhere.com/download\n\n"
+                f"https://ras-calc-site.onrender.com/download\n\n"
                 f"Эту страницу подтверждаю я как единственное официальное место для скачивания нашего калькулятора.\n\n"
                 f"Желаете перейти на страницу загрузки?",                                            QMessageBox.StandardButton.Yes | QMessageBox.StandardButton.No)
             if response == QMessageBox.StandardButton.Yes:
                 # Открываем ссылку на скачивание
-                webbrowser.open_new_tab("https://rascalculator.pythonanywhere.com/download")
+                webbrowser.open_new_tab("https://ras-calc-site.onrender.com/download")
         else:
             logging.info("У вас установлена актуальная версия.")
     except requests.RequestException as req_err:
