@@ -428,7 +428,7 @@ class NewApp(QWidget):
         self.tg.clicked.connect(lambda: self.on_click("https://t.me/Ras_Kakulator_official"))
         self.box.addWidget(self.tg, 0, 1)
         self.reklam.clicked.connect(lambda: self.on_click("https://kostyaramensky.pythonanywhere.com/"))
-    
+        
     def on_click(self, link):
         webbrowser.open_new_tab(link)
         

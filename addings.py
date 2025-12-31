@@ -4,7 +4,7 @@ from decimal import Decimal, getcontext
 import traceback
 from PyQt6.QtWidgets import QInputDialog, QApplication
 from sympy import Float, Integer
-from PyQt6 import uic
+from PyQt6.uic import loadUi
 # from UI import NewApp
 history = []
 
@@ -76,7 +76,7 @@ def handle_error(error_message, input_data=None, function_name=None):
     # Вызывает ошибку
     try:
         
-        error_box = uic.loadUi("error_box.ui")
+        error_box = loadUi("error_box.ui")
 
 
         error_box.show()
@@ -99,7 +99,7 @@ def handle_error(error_message, input_data=None, function_name=None):
         error_box.exec()
         # Добавляем ошибку в историю
     except Exception as e:
-        print(e)
+        print(str(e))
 
 
 def add_to_history(expression, result):
@@ -157,6 +157,7 @@ def clear_history():
 
 if __name__ == '__main__':
     try:
+        
         handle_error("Hello")
     except Exception as e:
         print(e)
