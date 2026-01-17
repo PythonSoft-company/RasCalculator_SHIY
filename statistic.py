@@ -1,9 +1,7 @@
-try:
-	import addings
-except Exception as e:
-	logging.error(e)
 
+import addings
 
+import logging
 def variance(numbers):
 	"""Вычисляет дисперсию списка чисел."""
 	mean = sum(numbers) / len(numbers)
@@ -64,11 +62,11 @@ def calculate_statistics(window, stat_type):
 		
 		
 	except ValueError as ve:
-		logging.error(ve)
-		addings.handle_error(ve, input_data=window.entry_numbers.text(), function_name="calculate_statistics")
+		logging.error(str(ve))
+		addings.handle_error(str(ve), input_data=window.entry_numbers.text(), function_name="calculate_statistics")
 	except Exception as e:
-		logging.error(e)
-		addings.handle_error(e, input_data=window.entry_numbers.text(), function_name="calculate_statistics")
+		logging.error(str(e))
+		addings.handle_error(str(e), input_data=window.entry_numbers.text(), function_name="calculate_statistics")
 
 
 

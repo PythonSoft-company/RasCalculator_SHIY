@@ -146,6 +146,7 @@ def solve_system_of_equations(window):
             logging.info(str(response))
             if response == QMessageBox.StandardButton.Yes:
                 variable = re.findall('[A-Za-zА-ЯЁа-яё]', lhs)
+                
                 logging.info(str(variable))
                 variables = [Symbol(name) for name in variable]
                 logging.info(str(variables))
@@ -198,6 +199,13 @@ def solve_system_of_equations(window):
                     return
                 logging.info("Выбор пользователя: да, строить график.")
                 eq = expressions[0]
+                if len(variables) > len(used_variables):
+                    print("Длина больше чем в sympy")
+                    for i in range(3):
+                        for variable in variables:
+                            if variable not in used_variables:
+                                print(variable)
+                                variables.remove(variable)
                 logging.info(str(variables))
                 logging.info(str(iter(variables)))
                 logging.info(str(next(iter(variables))))

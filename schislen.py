@@ -1,14 +1,14 @@
 from string import printable, ascii_uppercase
 import addings
-
+import logging
 def to_10(n, ss):
     print(n, ss)
     ss = int(ss)
-    logging.error(type(n), type(ss))
+ #   logging.error(f"{type(n)}, {type(ss)}")#
     try:
         return int(str(n), ss)
     except Exception as e:
-        logging.error(type(e), e)
+#        logging.error(type(e), str(e))
         raise ValueError(f"Для {ss} системы счисления можно использовать только символы {printable[:ss]}")
 
 
@@ -40,16 +40,16 @@ def calculate_sch(window, type, ss):
         elif type == "*":
             result = a*b
         elif type == "/":
-            result = a/b
+            result = a//b
             result = int(result)
         else:
             raise ValueError("Такого нет")
-        logging.info(result)
+#        logging.info(result)
         result = to_2_36(result, ss)
         logging.info(result)
         window.label_sch_result.setText(f"{result}")
         addings.add_to_history(f"{a}{type}{b} в {ss} сс", str(result))
-        logging.info(window.label_sch_result.text())
+ #       logging.info(window.label_sch_result.text())
         # update_history()
 
     except ValueError as ve:
@@ -62,10 +62,10 @@ def perevod_to(window, ss1, ss2):
         a = to_10(window.entry_first_num.text(), ss1)
         
         result = to_2_36(a, ss2)
-        logging.info(result)
+ #       logging.info(result)
         window.label_sch_result.setText(f"{result}")
         
-        logging.info(window.label_sch_result.text())
+  #      logging.info(window.label_sch_result.text())
         # update_history()
 
     except ValueError as ve:
