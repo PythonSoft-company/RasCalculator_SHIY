@@ -257,7 +257,21 @@ class StatisticUI(QWidget):
         self.button_range.clicked.connect(lambda: self.on_click('range'))
         self.button_variance.clicked.connect(lambda: self.on_click('variance'))
     def on_click(self, stat_type):
-        calculate_statistics(self, stat_type)
+        try:
+            url = "https://calculator-api-mm7b.onrender.com/statistic/"
+            payload = {"numbers": list(map(float, self.entry_numbers.text().split())), "stat_type": stat_type}
+            headers = {"Content-Type": "application/json"}
+        
+            response = requests.post(url, json=payload, headers=headers)
+        
+            if response.status_code == 200:
+                print("Результат:", response.json())
+                
+                self.label_stat_result.setText(f"{stat_type}: {response.json()['result']}")
+            else:
+                print("Ошибка:", response.text)
+        except Exception as e:
+            print(e)
         
 from trinogremetric import *
 class TrigonometryUI(QWidget):
@@ -436,7 +450,7 @@ class NewApp(QWidget):
 if __name__ == '__main__':
     with open("logs.log", "w") as f:
         f.write("")
-    logging.basicConfig(level=logging.DEBUG, format='%(asctime)s - %(levelname)s - %(message)s', filename='logs.log', encoding="UTF-8")
+    logging.basicConfig(level=logging.DEBUG, format='%(asctime)s - %(levelname)s - %(message)s', filename='logs.log', )
     from start import *
     app = QApplication(sys.argv)
     logging.info(sys.argv)

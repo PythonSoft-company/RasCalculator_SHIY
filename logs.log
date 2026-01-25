@@ -1,0 +1,21 @@
+2026-01-25 15:33:29,670 - INFO - ['D:\\RasCalculator\\UI.py']
+2026-01-25 15:33:29,674 - DEBUG - Starting new HTTPS connection (1): www.google.com:443
+2026-01-25 15:33:30,285 - DEBUG - https://www.google.com:443 "HEAD / HTTP/1.1" 200 0
+2026-01-25 15:33:30,290 - DEBUG - Starting new HTTPS connection (1): ras-calc-site.onrender.com:443
+2026-01-25 15:33:31,313 - DEBUG - https://ras-calc-site.onrender.com:443 "GET /version_check/ HTTP/1.1" 200 None
+2026-01-25 15:33:31,328 - INFO - У вас установлена актуальная версия.
+2026-01-25 15:33:31,332 - INFO - Файл 'preferences.txt' прочитан: False, интерпретировано как: False
+2026-01-25 15:33:31,332 - INFO - Это не первый запуск.
+2026-01-25 15:33:31,399 - INFO - <PyQt6.QtWidgets.QPushButton object at 0x000001F62878DB30>
+2026-01-25 15:33:44,200 - DEBUG - Starting new HTTPS connection (1): calculator-api-mm7b.onrender.com:443
+2026-01-25 15:33:45,015 - DEBUG - https://calculator-api-mm7b.onrender.com:443 "POST /statistic/ HTTP/1.1" 200 None
+2026-01-25 15:35:28,063 - DEBUG - Starting new HTTPS connection (1): calculator-api-mm7b.onrender.com:443
+2026-01-25 15:35:29,071 - DEBUG - https://calculator-api-mm7b.onrender.com:443 "POST /statistic/ HTTP/1.1" 200 None
+2026-01-25 15:35:31,892 - DEBUG - Starting new HTTPS connection (1): calculator-api-mm7b.onrender.com:443
+2026-01-25 15:35:33,864 - DEBUG - https://calculator-api-mm7b.onrender.com:443 "POST /statistic/ HTTP/1.1" 200 None
+2026-01-25 15:35:37,210 - DEBUG - Starting new HTTPS connection (1): calculator-api-mm7b.onrender.com:443
+2026-01-25 15:35:37,963 - DEBUG - https://calculator-api-mm7b.onrender.com:443 "POST /statistic/ HTTP/1.1" 200 None
+2026-01-25 15:35:46,119 - DEBUG - Starting new HTTPS connection (1): calculator-api-mm7b.onrender.com:443
+2026-01-25 15:35:47,097 - DEBUG - https://calculator-api-mm7b.onrender.com:443 "POST /statistic/ HTTP/1.1" 200 None
+2026-01-25 15:35:49,187 - DEBUG - Starting new HTTPS connection (1): calculator-api-mm7b.onrender.com:443
+2026-01-25 15:35:49,897 - DEBUG - https://calculator-api-mm7b.onrender.com:443 "POST /statistic/ HTTP/1.1" 200 None
