@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>501</width>
-    <height>400</height>
+    <height>398</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -16,25 +16,6 @@
   <property name="toolTipDuration">
    <number>-12</number>
   </property>
-  <widget class="QDialogButtonBox" name="buttonBox">
-   <property name="geometry">
-    <rect>
-     <x>10</x>
-     <y>360</y>
-     <width>491</width>
-     <height>32</height>
-    </rect>
-   </property>
-   <property name="orientation">
-    <enum>Qt::Horizontal</enum>
-   </property>
-   <property name="standardButtons">
-    <set>QDialogButtonBox::Cancel|QDialogButtonBox::Ok</set>
-   </property>
-   <property name="centerButtons">
-    <bool>true</bool>
-   </property>
-  </widget>
   <widget class="QTextEdit" name="error_text">
    <property name="geometry">
     <rect>
@@ -47,6 +28,38 @@
    <property name="readOnly">
     <bool>true</bool>
    </property>
+  </widget>
+  <widget class="QWidget" name="horizontalLayoutWidget">
+   <property name="geometry">
+    <rect>
+     <x>10</x>
+     <y>360</y>
+     <width>491</width>
+     <height>31</height>
+    </rect>
+   </property>
+   <layout class="QHBoxLayout" name="horizontalLayout">
+    <item>
+     <widget class="QDialogButtonBox" name="buttonBox">
+      <property name="orientation">
+       <enum>Qt::Horizontal</enum>
+      </property>
+      <property name="standardButtons">
+       <set>QDialogButtonBox::Cancel|QDialogButtonBox::Ok</set>
+      </property>
+      <property name="centerButtons">
+       <bool>true</bool>
+      </property>
+     </widget>
+    </item>
+    <item>
+     <widget class="QPushButton" name="send_error">
+      <property name="text">
+       <string>Отправить ошибку</string>
+      </property>
+     </widget>
+    </item>
+   </layout>
   </widget>
  </widget>
  <resources/>

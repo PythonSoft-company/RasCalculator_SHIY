@@ -1,21 +1,44 @@
-2026-01-25 15:33:29,670 - INFO - ['D:\\RasCalculator\\UI.py']
-2026-01-25 15:33:29,674 - DEBUG - Starting new HTTPS connection (1): www.google.com:443
-2026-01-25 15:33:30,285 - DEBUG - https://www.google.com:443 "HEAD / HTTP/1.1" 200 0
-2026-01-25 15:33:30,290 - DEBUG - Starting new HTTPS connection (1): ras-calc-site.onrender.com:443
-2026-01-25 15:33:31,313 - DEBUG - https://ras-calc-site.onrender.com:443 "GET /version_check/ HTTP/1.1" 200 None
-2026-01-25 15:33:31,328 - INFO - У вас установлена актуальная версия.
-2026-01-25 15:33:31,332 - INFO - Файл 'preferences.txt' прочитан: False, интерпретировано как: False
-2026-01-25 15:33:31,332 - INFO - Это не первый запуск.
-2026-01-25 15:33:31,399 - INFO - <PyQt6.QtWidgets.QPushButton object at 0x000001F62878DB30>
-2026-01-25 15:33:44,200 - DEBUG - Starting new HTTPS connection (1): calculator-api-mm7b.onrender.com:443
-2026-01-25 15:33:45,015 - DEBUG - https://calculator-api-mm7b.onrender.com:443 "POST /statistic/ HTTP/1.1" 200 None
-2026-01-25 15:35:28,063 - DEBUG - Starting new HTTPS connection (1): calculator-api-mm7b.onrender.com:443
-2026-01-25 15:35:29,071 - DEBUG - https://calculator-api-mm7b.onrender.com:443 "POST /statistic/ HTTP/1.1" 200 None
-2026-01-25 15:35:31,892 - DEBUG - Starting new HTTPS connection (1): calculator-api-mm7b.onrender.com:443
-2026-01-25 15:35:33,864 - DEBUG - https://calculator-api-mm7b.onrender.com:443 "POST /statistic/ HTTP/1.1" 200 None
-2026-01-25 15:35:37,210 - DEBUG - Starting new HTTPS connection (1): calculator-api-mm7b.onrender.com:443
-2026-01-25 15:35:37,963 - DEBUG - https://calculator-api-mm7b.onrender.com:443 "POST /statistic/ HTTP/1.1" 200 None
-2026-01-25 15:35:46,119 - DEBUG - Starting new HTTPS connection (1): calculator-api-mm7b.onrender.com:443
-2026-01-25 15:35:47,097 - DEBUG - https://calculator-api-mm7b.onrender.com:443 "POST /statistic/ HTTP/1.1" 200 None
-2026-01-25 15:35:49,187 - DEBUG - Starting new HTTPS connection (1): calculator-api-mm7b.onrender.com:443
-2026-01-25 15:35:49,897 - DEBUG - https://calculator-api-mm7b.onrender.com:443 "POST /statistic/ HTTP/1.1" 200 None
+2026-01-29 20:57:04,277 - INFO - ['D:\\RasCalculator\\UI.py']
+2026-01-29 20:57:04,294 - DEBUG - Starting new HTTPS connection (1): www.google.com:443
+2026-01-29 20:57:05,390 - DEBUG - https://www.google.com:443 "HEAD / HTTP/1.1" 200 0
+2026-01-29 20:57:05,396 - DEBUG - Starting new HTTPS connection (1): ras-calc-site.onrender.com:443
+2026-01-29 20:57:07,065 - DEBUG - https://ras-calc-site.onrender.com:443 "GET /version_check/ HTTP/1.1" 200 None
+2026-01-29 20:57:07,084 - INFO - У вас установлена актуальная версия.
+2026-01-29 20:57:07,100 - INFO - Файл 'preferences.txt' прочитан: False, интерпретировано как: False
+2026-01-29 20:57:07,100 - INFO - Это не первый запуск.
+2026-01-29 20:57:08,356 - INFO - <PyQt6.QtWidgets.QPushButton object at 0x0000021E3953DC70>
+2026-01-29 20:57:29,268 - DEBUG - toplevel widget is QDialog
+2026-01-29 20:57:29,268 - DEBUG - setting property geometry
+2026-01-29 20:57:29,269 - DEBUG - setting property windowTitle
+2026-01-29 20:57:29,270 - DEBUG - setting property toolTipDuration
+2026-01-29 20:57:29,272 - DEBUG - push QDialog Dialog
+2026-01-29 20:57:29,299 - DEBUG - setting property geometry
+2026-01-29 20:57:29,301 - DEBUG - setting property readOnly
+2026-01-29 20:57:29,304 - DEBUG - push QTextEdit error_text
+2026-01-29 20:57:29,304 - DEBUG - pop widget QTextEdit error_text
+2026-01-29 20:57:29,304 - DEBUG - new topwidget <PyQt6.QtWidgets.QDialog object at 0x0000021E3CC407D0>
+2026-01-29 20:57:29,304 - DEBUG - setting property geometry
+2026-01-29 20:57:29,304 - DEBUG - push QWidget horizontalLayoutWidget
+2026-01-29 20:57:29,306 - DEBUG - setting property pyuicMargins
+2026-01-29 20:57:29,307 - DEBUG - push QHBoxLayout horizontalLayout
+2026-01-29 20:57:29,309 - DEBUG - setting property orientation
+2026-01-29 20:57:29,310 - DEBUG - setting property standardButtons
+2026-01-29 20:57:29,315 - DEBUG - setting property centerButtons
+2026-01-29 20:57:29,315 - DEBUG - push QDialogButtonBox buttonBox
+2026-01-29 20:57:29,316 - DEBUG - pop widget QDialogButtonBox buttonBox
+2026-01-29 20:57:29,316 - DEBUG - new topwidget <PyQt6.QtWidgets.QWidget object at 0x0000021E3CC41770>
+2026-01-29 20:57:29,316 - DEBUG - setting property text
+2026-01-29 20:57:29,316 - DEBUG - push QPushButton send_error
+2026-01-29 20:57:29,316 - DEBUG - pop widget QPushButton send_error
+2026-01-29 20:57:29,316 - DEBUG - new topwidget <PyQt6.QtWidgets.QWidget object at 0x0000021E3CC41770>
+2026-01-29 20:57:29,317 - DEBUG - pop layout QHBoxLayout horizontalLayout
+2026-01-29 20:57:29,317 - DEBUG - pop widget QWidget horizontalLayoutWidget
+2026-01-29 20:57:29,317 - DEBUG - new topwidget <PyQt6.QtWidgets.QDialog object at 0x0000021E3CC407D0>
+2026-01-29 20:57:29,317 - DEBUG - pop widget QDialog Dialog
+2026-01-29 20:57:29,317 - DEBUG - new topwidget None
+2026-01-29 20:58:10,837 - DEBUG - Starting new HTTP connection (1): ras-calc-site.onrender.com:80
+2026-01-29 20:58:11,075 - DEBUG - http://ras-calc-site.onrender.com:80 "GET /send_errors/ HTTP/1.1" 301 82
+2026-01-29 20:58:11,078 - DEBUG - Starting new HTTPS connection (1): ras-calc-site.onrender.com:443
+2026-01-29 20:58:12,869 - DEBUG - https://ras-calc-site.onrender.com:443 "GET /send_errors/ HTTP/1.1" 405 None
+2026-01-29 20:58:13,016 - DEBUG - http://ras-calc-site.onrender.com:80 "POST /send_errors/ HTTP/1.1" 307 0
+2026-01-29 20:58:13,736 - DEBUG - https://ras-calc-site.onrender.com:443 "POST /send_errors/ HTTP/1.1" 200 None

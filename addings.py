@@ -7,7 +7,7 @@ from sympy import Float, Integer
 from PyQt6.uic import loadUi
 # from UI import NewApp
 history = []
-
+history_of_errors = []
 
 def get_root_degree(window):
     degree, ok_pressed = QInputDialog.getInt(window, "Корень", "Какая степень корня?")
@@ -94,14 +94,53 @@ def handle_error(error_message, input_data=None, function_name=None):
         # Специальное сообщение для конкретной ошибки
         if 'деление на ноль' in error_message:
             full_error_message = 'Ошибка: Вы реально поделили на ноль? Вы не знаете правило математики?!'
-        
+        history_of_errors.append(full_error_message)
+        error_box.send_error.clicked.connect(lambda: send_error_click(full_error_message))
         error_box.error_text.setText(full_error_message)
         error_box.exec()
+        
         # Добавляем ошибку в историю
     except Exception as e:
         print(str(e))
+import requests
 
 
+def send_error_click(error: str):
+    try:
+        url = "http://ras-calc-site.onrender.com/send_errors/"
+        version_file = "version.txt"
+        with open(version_file, "r") as file:
+            installed_version = file.read().strip()
+
+        email, ok = QInputDialog.getText(None, "Ваш E-mail", "Введите E-mail:")
+        if ok:
+            data = [{
+                "error": error,
+                "version": installed_version,
+                "source": email
+            }]
+        else:
+            data = [{
+                "error": error,
+                "version": installed_version,
+                "source": "Не указан, Приложение"
+            }]
+
+        # ШАГ 1: Предварительно получаем CSRF-куки
+        session = requests.Session()
+        session.get(url)
+        csrftoken = session.cookies.get('csrftoken')  # Получаем CSRF-tокен
+        print(csrftoken)
+        # ШАГ 2: Отправляем POST-запрос с установленным CSRF-токеном
+        headers = {
+            'Referer': url,  # Устанавливаем Referer
+            'X-CSRFToken': csrftoken  # Добавляем CSRF-токен
+        }
+
+        response = session.post(url, json=data, headers=headers)
+        print(response.status_code)
+    except Exception as e:
+        print(e)
 def add_to_history(expression, result):
     if str(result).startswith("Ошибка:"):
         # Очищаем запись об ошибке

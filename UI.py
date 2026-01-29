@@ -257,21 +257,7 @@ class StatisticUI(QWidget):
         self.button_range.clicked.connect(lambda: self.on_click('range'))
         self.button_variance.clicked.connect(lambda: self.on_click('variance'))
     def on_click(self, stat_type):
-        try:
-            url = "https://calculator-api-mm7b.onrender.com/statistic/"
-            payload = {"numbers": list(map(float, self.entry_numbers.text().split())), "stat_type": stat_type}
-            headers = {"Content-Type": "application/json"}
-        
-            response = requests.post(url, json=payload, headers=headers)
-        
-            if response.status_code == 200:
-                print("Результат:", response.json())
-                
-                self.label_stat_result.setText(f"{stat_type}: {response.json()['result']}")
-            else:
-                print("Ошибка:", response.text)
-        except Exception as e:
-            print(e)
+        calculate_statistics(self, stat_type)
         
 from trinogremetric import *
 class TrigonometryUI(QWidget):
@@ -361,38 +347,6 @@ class FractionUI(QWidget):
     def on_click(self):
         arithmetic_operation_fractions(self, self.entry_first_fraction.text(), self.entry_second_fraction.text(), self.operator_variable.currentText())
 
-
-
-
-
-# class HistoryandError(QWidget):
-#     def __init__(self):
-#
-#         super().__init__()
-#
-#         self.error_text = QTextEdit(self)
-#         self.error_text.setReadOnly(True)
-#         self.error_text.resize(500, 150)
-#
-#         self.history_text = QTextEdit(self)
-#
-#         self.history_text.resize(600, 150)
-#         self.label_of_errors = QLabel(self, text='Поле с ошибками при вычислении:')
-#
-#         self.cl_b = QPushButton(text="Очистить историю", self)
-#
-#         self.box = QHBoxLayout(self)
-#         self.box.addWidget(self.label_of_errors)
-#         self.box.addWidget(self.error_text)
-#         self.box.addWidget(self.history_text)
-#         self.box.addWidget(self.cl_b)
-#
-#
-#     def auto_scroll(self):
-#         cursor = self.history_text.textCursor()
-#         cursor.movePosition(QTextCursor.MoveOperation.End)
-#         self.history_text.setTextCursor(cursor)
-
 class NewApp(QWidget):
     def __init__(self):
         super().__init__()
@@ -429,7 +383,7 @@ class NewApp(QWidget):
         page6.setLayout(sch.box)
         tab.addTab(page6, "Системы счисления")
         # self.history_text = QTextEdit(self)
-        self.box.addWidget(tab, 0, 0, 2, 1)
+        self.box.addWidget(tab, 0, 0, 3, 1)
         # self.box.addWidget(self.history_text)
         self.setGeometry(30, 30, 1000, 300)
         page7 = QWidget(tab)
@@ -442,20 +396,57 @@ class NewApp(QWidget):
         self.tg.clicked.connect(lambda: self.on_click("https://t.me/Ras_Kakulator_official"))
         self.box.addWidget(self.tg, 0, 1)
         self.reklam.clicked.connect(lambda: self.on_click("https://kostyaramensky.pythonanywhere.com/"))
-        
+        self.send_error = QPushButton("Сообщить об ошибке", self)
+        self.box.addWidget(self.send_error, 2, 1)
+        self.send_error.clicked.connect(lambda: self.on_click("https://forms.yandex.ru/u/6861698d84227cbab5e787ba"))
     def on_click(self, link):
         webbrowser.open_new_tab(link)
-        
+from addings import history_of_errors
+def quit_from_app():
+    try:
+        url = "http://ras-calc-site.onrender.com/send_errors/"
+        version_file = "version.txt"
+        with open(version_file, "r") as file:
+            installed_version = file.read().strip()
 
+        
+        data = []
+        
+        
+        
+        for error in history_of_errors:
+            data.append({
+                "error": error,
+                "version": installed_version,
+                "source": "Не указан, Приложение"
+            })
+
+        # ШАГ 1: Предварительно получаем CSRF-куки
+        session = requests.Session()
+        session.get(url)
+        csrftoken = session.cookies.get('csrftoken')  # Получаем CSRF-tокен
+        print(csrftoken)
+        # ШАГ 2: Отправляем POST-запрос с установленным CSRF-токеном
+        headers = {
+            'Referer': url,  # Устанавливаем Referer
+            'X-CSRFToken': csrftoken  # Добавляем CSRF-токен
+        }
+        print(data)
+        response = session.post(url, json=data, headers=headers)
+        print(response.status_code)
+    except Exception as e:
+        print(e)
 if __name__ == '__main__':
     with open("logs.log", "w") as f:
         f.write("")
     logging.basicConfig(level=logging.DEBUG, format='%(asctime)s - %(levelname)s - %(message)s', filename='logs.log', )
     from start import *
     app = QApplication(sys.argv)
+    
     logging.info(sys.argv)
     check_first_run_and_show_tutorial()
     app.setWindowIcon(QIcon("calculator.ico"))
     window = NewApp()
     window.show()
+    app.aboutToQuit.connect(quit_from_app)
     sys.exit(app.exec())
