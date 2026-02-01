@@ -404,7 +404,7 @@ class NewApp(QWidget):
 from addings import history_of_errors
 def quit_from_app():
     try:
-        url = "http://ras-calc-site.onrender.com/send_errors/"
+        url = "http://rascalculator.alwaysdata.net/send_errors/"
         version_file = "version.txt"
         with open(version_file, "r") as file:
             installed_version = file.read().strip()

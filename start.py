@@ -102,7 +102,7 @@ def has_internet_connection():
 
 def check_version():
     version_file = "version.txt"
-    server_url = "https://ras-calc-site.onrender.com/version_check/"
+    server_url = "https://rascalculator.alwaysdata.net/version_check/"
     curent_vers_file = "cur_version.txt"
     if not has_internet_connection():
         QMessageBox.warning(None,
@@ -165,12 +165,12 @@ def check_version():
                                             'Выбор',
                                             f"Ваша версия {installed_version} устарела.\n"
                 f"Рекомендуется установить последнюю версию с официального сайта Расширенного Калькулятора:\n"
-                f"https://ras-calc-site.onrender.com/download\n\n"
+                f"https://rascalculator.alwaysdata.net/download\n\n"
                 f"Эту страницу подтверждаю я как единственное официальное место для скачивания нашего калькулятора.\n\n"
                 f"Желаете перейти на страницу загрузки?",                                            QMessageBox.StandardButton.Yes | QMessageBox.StandardButton.No)
             if response == QMessageBox.StandardButton.Yes:
                 # Открываем ссылку на скачивание
-                webbrowser.open_new_tab("https://ras-calc-site.onrender.com/download")
+                webbrowser.open_new_tab("https://rascalculator.alwaysdata.net/download")
         else:
             logging.info("У вас установлена актуальная версия.")
     except requests.RequestException as req_err:

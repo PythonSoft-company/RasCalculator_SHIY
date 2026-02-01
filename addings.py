@@ -94,8 +94,9 @@ def handle_error(error_message, input_data=None, function_name=None):
         # Специальное сообщение для конкретной ошибки
         if 'деление на ноль' in error_message:
             full_error_message = 'Ошибка: Вы реально поделили на ноль? Вы не знаете правило математики?!'
-        history_of_errors.append(full_error_message)
-        error_box.send_error.clicked.connect(lambda: send_error_click(full_error_message))
+        if full_error_message != 'Ошибка: Вы реально поделили на ноль? Вы не знаете правило математики?!':
+            history_of_errors.append(full_error_message)
+            error_box.send_error.clicked.connect(lambda: send_error_click(full_error_message))
         error_box.error_text.setText(full_error_message)
         error_box.exec()
         
@@ -107,7 +108,7 @@ import requests
 
 def send_error_click(error: str):
     try:
-        url = "http://ras-calc-site.onrender.com/send_errors/"
+        url = "http://rascalulator.alwaysdata.net/send_errors/"
         version_file = "version.txt"
         with open(version_file, "r") as file:
             installed_version = file.read().strip()

@@ -88,3 +88,5 @@ notification.notify(
     app_icon='calculator.ico',  # Путь к иконке, если нужно
     timeout=None  # Время отображения уведомления в секундах
 )
+
+
