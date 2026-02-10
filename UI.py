@@ -1,3 +1,4 @@
+import addings
 from schislen import *
 from PyQt6.QtWidgets import QApplication, QWidget, QPushButton, QLabel, QLineEdit, QTextEdit, QComboBox, QMessageBox, \
     QTabWidget, QVBoxLayout, QGridLayout, QHBoxLayout
@@ -180,7 +181,7 @@ class EqualationUI(QWidget):
 
         self.entry = QLineEdit(self)
         self.entry.move(0, 80)
-
+        
         self.button_system_of_equations = QPushButton(parent=self, text="Решить систему уравнений")
         self.button_system_of_equations.move(305, 80)
         self.entry.resize(250, 20)
@@ -205,8 +206,12 @@ class EqualationUI(QWidget):
 
 
 
-
-
+from PyQt6.uic import loadUi
+from PyQt6.QtWidgets import QFileDialog, QDialogButtonBox
+import json
+import csv
+import pandas as pd
+from PyQt6 import QtWidgets
 class StatisticUI(QWidget):
     def __init__(self):
         super().__init__()
@@ -217,7 +222,7 @@ class StatisticUI(QWidget):
         self.entry_numbers = QLineEdit(self)
         self.entry_numbers.resize(245, 20)
         self.entry_numbers.move(0, 165)
-
+        
         self.button_mean = QPushButton(parent=self, text="Среднее значение")
         self.button_mean.move(305, 160)
 
@@ -239,6 +244,7 @@ class StatisticUI(QWidget):
         self.label_stat_result =QLineEdit(self)
         self.label_stat_result.move(0, 200)
         self.label_stat_result.resize(1000, 30)
+        self.import_data_btn = QPushButton("Импортировать данные")
         self.box = QVBoxLayout(self)
         self.label_stat_result.setReadOnly(True)
         self.box.addWidget(label_number_entry)
@@ -250,6 +256,8 @@ class StatisticUI(QWidget):
         self.box.addWidget(self.button_range)
         self.box.addWidget(self.button_variance)
         self.box.addWidget(self.label_stat_result)
+        self.box.addWidget(self.import_data_btn)
+        self.import_data_btn.clicked.connect(lambda: self.import_data())
         self.button_mean.clicked.connect(lambda: self.on_click('mean'))
         self.button_median.clicked.connect(lambda: self.on_click('median'))
         self.button_max.clicked.connect(lambda: self.on_click('max'))
@@ -258,6 +266,118 @@ class StatisticUI(QWidget):
         self.button_variance.clicked.connect(lambda: self.on_click('variance'))
     def on_click(self, stat_type):
         calculate_statistics(self, stat_type)
+    def import_data(self):
+        try:
+            self.dialog = loadUi("import_data.ui")
+            
+            self.dialog.pushButton.clicked.connect(lambda: self.get_file())
+            
+            
+            self.dialog.show()
+            self.dialog.exec()
+        except Exception as e:
+            print(e)
+    def get_file(self):
+        try:
+            self.dialog.lineEdit_2.setEnabled(False)
+            self.dialog.lineEdit_3.setEnabled(False)
+            self.file_name, _ = QFileDialog.getOpenFileName(None,
+                                                   'Выберите файл',
+                                                   '',
+                                                   'Файлы TXT (*.txt);;Файлы JSON (*.json);;Файлы CSV (*.csv);;Файлы XLSX (*.xlsx)')
+            self.dialog.Cancel.clicked.connect(lambda: self.dialog.close())
+            if self.file_name:
+                print(f'Выбран файл: {self.file_name}')
+                if _ == 'Файлы XLSX (*.xlsx)':
+                    
+                    self.dialog.lineEdit_3.setEnabled(True)
+                    
+                    
+                    self.dialog.Ok.clicked.connect(lambda: self.test_file())
+                    
+                elif _ == "Файлы JSON (*.json)":
+                    self.dialog.Ok.clicked.connect(lambda: self.json_file())
+                elif _ == "Файлы CSV (*.csv)":
+                    self.dialog.lineEdit_3.setEnabled(True)
+                    
+                    self.dialog.Ok.clicked.connect(lambda: self.csv_file())
+                elif _ == "Файлы TXT (*.txt)":
+                    self.dialog.lineEdit_2.setEnabled(True)
+                    self.dialog.Ok.clicked.connect(lambda: self.txt_file())
+        except Exception as e:
+            print(e)
+    def test_file(self):
+        try:
+            df = pd.read_excel(self.file_name)
+            columns = self.dialog.lineEdit_3.text()
+            # Преобразуем столбец 'Price' в список
+            prices = df[f'{columns}'].tolist()
+            prices = list(map(str, prices))
+            print(prices)
+            self.entry_numbers.setText(f'{" ".join(prices)}')
+        except Exception as e:
+            logging.error(f"{e}")
+            addings.handle_error(str(e), None, "test_file from UI")
+    def json_file(self):
+        try:
+            data = []
+            with open(self.file_name, "r", encoding="UTF-8") as file:
+                dic = json.load(file)
+                print(dic, type(dic))
+            if type(dic) == dict:
+                for dat in dic.keys():
+                    
+                    dat = dic[dat]
+                    if type(dat) == list:
+                        print("Сработало")
+                        for dat_1 in dat:
+                            data.append(dat_1)
+                    else:
+                        dat = dic[dat]
+                        data.append(dat)
+            elif type(dic) == list:
+                for dat in dic:
+                    data.append(dat)
+            else:
+                pass
+            print(data)
+            self.entry_numbers.setText(f"{" ".join(list(map(str, data)))}")
+        except Exception as e:
+            logging.error(f"{e}")
+            addings.handle_error(str(e), None, "json_file from UI")
+    def csv_file(self):
+        try:
+            data = []
+            
+            with open(self.file_name, "r", newline='') as file:
+                reader = csv.DictReader(file)
+                for row in reader:
+                    columns = self.dialog.lineEdit_3.text()
+                    data.append(row[columns])
+                print(data)
+            self.entry_numbers.setText(" ".join(data))
+        except Exception as e:
+            logging.error(f"{e}")
+            addings.handle_error(str(e), None, "csv_file from UI")
+    def txt_file(self):
+        try:
+            data = []
+            c = []
+            with open(self.file_name, "r") as file:
+                text = file.read().split("\n")
+                for row in text:
+                    separ = self.dialog.lineEdit_2.text()
+                    i = row.split(separ)
+                    c.append(i)
+            for b in c:
+                for a in b:
+                    data.append(a)
+            print(data)
+            self.entry_numbers.setText(" ".join(data))
+        except Exception as e:
+            logging.error(f"{e}")
+            addings.handle_error(str(e), None, "txt_file from UI")
+            
         
 from trinogremetric import *
 class TrigonometryUI(QWidget):
@@ -404,7 +524,7 @@ class NewApp(QWidget):
 from addings import history_of_errors
 def quit_from_app():
     try:
-        url = "http://rascalculator.alwaysdata.net/send_errors/"
+        url = "https://rascalculator.alwaysdata.net/send_errors/"
         version_file = "version.txt"
         with open(version_file, "r") as file:
             installed_version = file.read().strip()
@@ -439,7 +559,7 @@ def quit_from_app():
 if __name__ == '__main__':
     with open("logs.log", "w") as f:
         f.write("")
-    logging.basicConfig(level=logging.DEBUG, format='%(asctime)s - %(levelname)s - %(message)s', filename='logs.log', )
+    logging.basicConfig(level=logging.DEBUG, format='%(asctime)s - %(levelname)s - %(message)s', filename='logs.log', encoding="UTF-8")
     from start import *
     app = QApplication(sys.argv)
     

@@ -4,6 +4,7 @@ from fractions import Fraction
 import math
 import logging
 from decimal import Decimal, getcontext
+import re
 def replace_caret_with_power(expression):
     """Заменяет символ ^ на оператор возведения в степень (**)."""
     return expression.replace('^', '**')
@@ -54,8 +55,8 @@ def calculate(windows):
             parts = expression.split('√')
             if len(parts) != 2:
                 raise ValueError("Неверный формат корня")
-            n = float(parts[0])
             x = float(parts[1])
+            n = float(parts[0])
             result = nth_root(x, n)
         else:
             result = sympify(expression).evalf()

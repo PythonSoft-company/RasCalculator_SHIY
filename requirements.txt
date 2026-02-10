@@ -1,7 +1,7 @@
 PyQt6
-cx_Freeze
 requests
 sympy
 numpy
 matplotlib
-pillow
+xlsxwriter
+plyer

@@ -108,7 +108,7 @@ import requests
 
 def send_error_click(error: str):
     try:
-        url = "http://rascalulator.alwaysdata.net/send_errors/"
+        url = "https://rascalculator.alwaysdata.net/send_errors/"
         version_file = "version.txt"
         with open(version_file, "r") as file:
             installed_version = file.read().strip()

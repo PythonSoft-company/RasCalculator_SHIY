@@ -9,6 +9,7 @@ def variance(numbers):
 	return sum(squared_diffs) / len(numbers)
 
 
+
 def calculate_statistics(window, stat_type):
 	"""Вычисляет статистику набора чисел (среднее, медиана, минимум, максимум, размах, дисперсия)."""
 	
